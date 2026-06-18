@@ -306,3 +306,79 @@ The app maps `OrbitEntryModel` to `OrbitEntry` before rendering UI. This keeps p
 - Changed the SwiftData sort descriptor to `SortDescriptor(\.createdAt, order: .forward)`.
 - Replaced `OrbitEntryModel` convenience initializer with a normal initializer to reduce `@Model` macro expansion risk.
 - No data schema fields were added, removed, or renamed in v0.2.1.
+
+## v0.2.2-ci / CI Validation
+
+- Current version marker: `v0.2.2-ci`.
+- GitHub Actions macOS CI build passed.
+- `v0.2.2-ci` tag has been pushed.
+- `v0.2.2-ci` GitHub pre-release has been created.
+- This confirms the Xcode project can compile on a macOS runner.
+- Manual Simulator CRUD smoke test is still pending because there is no local Mac available.
+
+Manual validation still pending:
+
+- Simulator launch.
+- First-launch seed manual verification.
+- Add / edit / delete / clear / restore manual verification.
+- Restart-after-save SwiftData persistence manual verification.
+- iPhone SE layout manual verification.
+
+Do not start before manual validation:
+
+- Widget.
+- Notifications.
+- App Intents.
+- Share Extension.
+- Lottie / Jitter.
+- TestFlight.
+- SwiftData schema expansion.
+
+## v0.3 / Data Quality And Export
+
+Scope:
+
+- JSON export for local orbit entries.
+- CSV export for local orbit entries.
+- System Share Sheet for exported files.
+- Lightweight glass feedback for add, edit, delete, clear, restore, export success, and export failure.
+- SwiftData save/delete/export errors are surfaced through non-blocking feedback instead of silent failure.
+- Empty states are clearer on Orbit, Timeline, and Me.
+- Simple first-launch onboarding explains the orbit metaphor in three short cards.
+
+Export fields:
+
+- `title`
+- `category`
+- `energyType`
+- `intensity`
+- `distance`
+- `note`
+- `date`
+- `createdAt`
+
+Export filenames:
+
+- `orbit-note-export-yyyy-MM-dd.json`
+- `orbit-note-export-yyyy-MM-dd.csv`
+
+JSON format:
+
+- Array of records.
+- Dates are ISO 8601 strings.
+- Enum values use raw values: `relationship`, `work`, `project`, `body`, `creation`, `money`, `unknown`; `positive`, `draining`, `neutral`; `near`, `middle`, `far`.
+
+CSV format:
+
+- Header row followed by one row per orbit entry.
+- Text fields are CSV-escaped.
+- Dates are ISO 8601 strings.
+
+Out of scope for v0.3:
+
+- Widget.
+- Notifications.
+- App Intents.
+- Share Extension.
+- Lottie / Jitter.
+- SwiftData schema changes.

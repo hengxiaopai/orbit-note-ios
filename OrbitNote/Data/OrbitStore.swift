@@ -6,6 +6,7 @@ final class OrbitStore: ObservableObject {
     @Published private(set) var entries: [OrbitEntry]
     @Published var recentlyAddedID: OrbitEntry.ID?
     @Published private(set) var lastErrorMessage: String?
+    @Published var feedback: OrbitFeedback?
 
     private var modelContext: ModelContext?
     private let seedDefaultsKey = "orbitNote.didSeedSampleData.v1"
@@ -60,11 +61,12 @@ final class OrbitStore: ObservableObject {
         guard let modelContext else {
             entries.append(entry)
             recentlyAddedID = entry.id
+            publishSuccess("Orbit point added")
             return true
         }
 
         modelContext.insert(OrbitEntryModel(entry: entry))
-        return saveAndRefresh(recentlyAddedID: entry.id)
+        return saveAndRefresh(recentlyAddedID: entry.id, successMessage: "Orbit point added")
     }
 
     @MainActor
@@ -72,18 +74,21 @@ final class OrbitStore: ObservableObject {
     func update(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
             guard let index = entries.firstIndex(where: { $0.id == entry.id }) else {
+                publishError("Could not find orbit point")
                 return false
             }
             entries[index] = entry
+            publishSuccess("Orbit point updated")
             return true
         }
 
         guard let model = model(for: entry.id) else {
+            publishError("Could not find orbit point")
             return false
         }
 
         model.apply(entry)
-        return saveAndRefresh()
+        return saveAndRefresh(successMessage: "Orbit point updated")
     }
 
     @MainActor
@@ -91,21 +96,24 @@ final class OrbitStore: ObservableObject {
     func delete(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
             entries.removeAll { $0.id == entry.id }
+            publishSuccess("Orbit point deleted")
             return true
         }
 
         guard let model = model(for: entry.id) else {
+            publishError("Could not delete orbit point")
             return false
         }
 
         modelContext.delete(model)
-        return saveAndRefresh()
+        return saveAndRefresh(successMessage: "Orbit point deleted")
     }
 
     @MainActor
     func clearLocalData(reseed: Bool = false) {
         guard let modelContext else {
             entries = reseed ? OrbitSeedData.entries : []
+            publishSuccess(reseed ? "Sample data restored" : "Local data cleared")
             return
         }
 
@@ -119,8 +127,10 @@ final class OrbitStore: ObservableObject {
             }
             try modelContext.save()
             refresh()
+            publishSuccess(reseed ? "Sample data restored" : "Local data cleared")
         } catch {
             lastErrorMessage = "Could not clear local data."
+            publishError("Could not clear local data")
         }
     }
 
@@ -179,6 +189,7 @@ final class OrbitStore: ObservableObject {
             UserDefaults.standard.set(true, forKey: seedDefaultsKey)
         } catch {
             lastErrorMessage = "Could not seed local data."
+            publishError("Could not seed local data")
         }
     }
 
@@ -198,12 +209,24 @@ final class OrbitStore: ObservableObject {
             lastErrorMessage = nil
         } catch {
             lastErrorMessage = "Could not load local orbit data."
+            publishError("Could not load local data")
         }
     }
 
     @MainActor
-    private func saveAndRefresh(recentlyAddedID: OrbitEntry.ID? = nil) -> Bool {
+    func publishSuccess(_ message: String) {
+        feedback = OrbitFeedback(message: message, style: .success)
+    }
+
+    @MainActor
+    func publishError(_ message: String) {
+        feedback = OrbitFeedback(message: message, style: .error)
+    }
+
+    @MainActor
+    private func saveAndRefresh(recentlyAddedID: OrbitEntry.ID? = nil, successMessage: String? = nil) -> Bool {
         guard let modelContext else {
+            publishError("Local store is not ready")
             return false
         }
 
@@ -213,9 +236,13 @@ final class OrbitStore: ObservableObject {
                 self.recentlyAddedID = recentlyAddedID
             }
             refresh()
+            if let successMessage {
+                publishSuccess(successMessage)
+            }
             return true
         } catch {
             lastErrorMessage = "Could not save local orbit data."
+            publishError("Could not save local data")
             return false
         }
     }
@@ -231,6 +258,7 @@ final class OrbitStore: ObservableObject {
             return try modelContext.fetch(descriptor).first { $0.id == id }
         } catch {
             lastErrorMessage = "Could not find local orbit point."
+            publishError("Could not find orbit point")
             return nil
         }
     }

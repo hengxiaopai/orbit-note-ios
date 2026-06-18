@@ -35,7 +35,7 @@ struct OrbitHomeView: View {
                     Button {
                         showingAdd = true
                     } label: {
-                        Label("Add orbit point", systemImage: "plus")
+                        Label(store.todaysEntries.isEmpty ? "Add your first orbit point" : "Add orbit point", systemImage: "plus")
                             .font(.system(size: 16, weight: .semibold))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
