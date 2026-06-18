@@ -21,6 +21,7 @@ struct MeView: View {
                     reminderSection
                     privacySection
                     dataSection
+                    widgetSnapshotSection
                     exportSection
                 }
                 .padding(20)
@@ -256,6 +257,71 @@ struct MeView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
+    }
+
+    private var widgetSnapshotSection: some View {
+        SettingsCard(title: "Widget snapshot", symbol: "rectangle.inset.filled") {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("Status")
+                        .font(OrbitTheme.body)
+                    Spacer()
+                    Text(widgetSnapshotStatusText)
+                        .font(OrbitTheme.numeric)
+                        .foregroundStyle(widgetSnapshotStatusColor)
+                }
+
+                if let generatedAt = store.widgetSnapshot?.generatedAt {
+                    HStack {
+                        Text("Last generated")
+                            .font(OrbitTheme.caption)
+                            .foregroundStyle(OrbitTheme.textSecondary)
+                        Spacer()
+                        Text(snapshotDateFormatter.string(from: generatedAt))
+                            .font(OrbitTheme.caption)
+                            .foregroundStyle(OrbitTheme.textSecondary)
+                    }
+                }
+
+                Button {
+                    store.refreshWidgetSnapshotFromSettings()
+                } label: {
+                    Label("Refresh snapshot", systemImage: "arrow.clockwise")
+                        .font(.system(size: 15, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .foregroundStyle(OrbitTheme.background)
+                        .background(Capsule().fill(OrbitTheme.positive))
+                }
+                .buttonStyle(PressScaleButtonStyle())
+
+                Text("Widget snapshot is prepared for the upcoming widget version.")
+                    .font(OrbitTheme.caption)
+                    .foregroundStyle(OrbitTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+
+    private var widgetSnapshotStatusText: String {
+        guard let snapshot = store.widgetSnapshot else {
+            return "Not generated"
+        }
+        return snapshot.entryCount == 0 ? "Empty" : "Ready"
+    }
+
+    private var widgetSnapshotStatusColor: Color {
+        guard let snapshot = store.widgetSnapshot else {
+            return OrbitTheme.textSecondary
+        }
+        return snapshot.entryCount == 0 ? OrbitTheme.neutral : OrbitTheme.positive
+    }
+
+    private var snapshotDateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter
     }
 
     private func exportButton(format: OrbitExportFormat) -> some View {

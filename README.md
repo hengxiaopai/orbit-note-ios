@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.3.1`
+Current release: `v0.4.1-local-notification`
 
-Current implementation track: `v0.4.1-local-notification`
+Current implementation track: `v0.4.2a-widget-snapshot-infra`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -18,6 +18,8 @@ Current implementation track: `v0.4.1-local-notification`
 - `v0.3.0` GitHub pre-release created.
 - `v0.3.1` release polish and docs cleanup completed.
 - `v0.4.0-notification-spec` completed.
+- `v0.4.1-local-notification` completed.
+- `v0.4.1-local-notification` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -71,6 +73,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Empty state improvements.
 - 3-card onboarding.
 - Local evening reminder settings.
+- Main app Today Orbit Widget snapshot infrastructure.
 
 ## Tech Stack
 
@@ -113,6 +116,7 @@ File names include the export date, for example:
 - `v0.3.1` Release polish and documentation cleanup.
 - `v0.4.0-notification-spec` Notification and Widget technical plan.
 - `v0.4.1-local-notification` UserNotifications local evening reminder.
+- `v0.4.2a-widget-snapshot-infra` Main app JSON snapshot infrastructure for the future Widget.
 
 ## Roadmap
 
@@ -137,7 +141,8 @@ Split plan:
 
 - `v0.4.0-notification-spec`: documentation plan only.
 - `v0.4.1-local-notification`: `UserNotifications` evening reminder.
-- `v0.4.2-widget-readonly`: App Group JSON snapshot readonly Widget.
+- `v0.4.2a-widget-snapshot-infra`: main app JSON snapshot infrastructure.
+- `v0.4.2b-widget-extension`: App Group JSON snapshot readonly Widget.
 - `v0.4.3-deeplink-polish`: `orbitnote://orbit` routes to the Orbit tab.
 
 Local notification plan:
@@ -224,3 +229,56 @@ Still not implemented:
 - Remote push.
 - Multiple reminders.
 - Streaks or check-in pressure.
+
+## v0.4.2a Widget Snapshot Infrastructure
+
+Implementation scope:
+
+- Adds `OrbitWidgetSnapshot`.
+- Adds `WidgetSnapshotService`.
+- The main app writes a readonly Today Orbit JSON snapshot.
+- Me shows Widget snapshot status and a manual refresh action.
+- Snapshot data is prepared for the upcoming Widget version.
+
+Snapshot file:
+
+- File name: `OrbitWidgetSnapshot.json`
+- Current location: app Application Support directory.
+- Future `v0.4.2b` location: App Group container.
+
+Snapshot fields:
+
+- `generatedAt`
+- `date`
+- `entryCount`
+- `dominantEnergy`
+- `dominantEnergyLabel`
+- `dominantEnergyColorName`
+- `closestTitle`
+- `strongestPositiveTitle`
+- `strongestDrainingTitle`
+- `latestEntryTitle`
+
+Refresh timing:
+
+- After store configure / load succeeds.
+- After add succeeds.
+- After edit succeeds.
+- After delete succeeds.
+- After clear local data succeeds.
+- After sample data restore succeeds.
+- When the user taps `Refresh snapshot` in Me.
+
+Important boundaries:
+
+- No Widget target in `v0.4.2a`.
+- No App Group entitlement in `v0.4.2a`.
+- No URL scheme or Deep Link in `v0.4.2a`.
+- No SwiftData schema changes.
+- The future Widget must read JSON snapshot data, not SwiftData directly.
+
+Why this split:
+
+- There is currently no local Mac for manual Widget setup and QA.
+- Widget target and App Group configuration carry higher Xcode project risk.
+- Snapshot data infrastructure can be validated by GitHub Actions first.

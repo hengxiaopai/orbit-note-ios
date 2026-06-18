@@ -627,3 +627,102 @@ Before `v0.4.2`, keep the Widget plan unchanged:
 - Main app should write `OrbitWidgetSnapshot.json`.
 - Widget should read snapshot JSON through App Group.
 - App Group should not share the SwiftData store.
+
+## v0.4.2a-widget-snapshot-infra / Implementation Scope
+
+Status:
+
+- Adds the main app data infrastructure for the future Today Orbit Widget.
+- Does not add a Widget target.
+- Does not add App Group entitlements.
+- Does not add URL scheme or Deep Link routing.
+- Does not modify SwiftData schema.
+- Does not add App Intents, Share Extension, Lottie / Jitter, TestFlight, Live Activity, or interactive Widget behavior.
+
+### Snapshot Model
+
+`OrbitWidgetSnapshot` is a lightweight `Codable` value written by the main app.
+
+Fields:
+
+- `generatedAt`
+- `date`
+- `entryCount`
+- `dominantEnergy`
+- `dominantEnergyLabel`
+- `dominantEnergyColorName`
+- `closestTitle`
+- `strongestPositiveTitle`
+- `strongestDrainingTitle`
+- `latestEntryTitle`
+
+The snapshot intentionally stores display-ready strings and simple counts so the future Widget can stay readonly and avoid touching SwiftData.
+
+### Snapshot Service
+
+`WidgetSnapshotService` is responsible for:
+
+- Building today's snapshot from `[OrbitEntry]`.
+- Writing `OrbitWidgetSnapshot.json`.
+- Reading `OrbitWidgetSnapshot.json`.
+- Clearing `OrbitWidgetSnapshot.json` when needed.
+
+Current storage:
+
+- Uses `FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)`.
+- File name: `OrbitWidgetSnapshot.json`.
+
+Future `v0.4.2b` storage:
+
+- Move the container behind `containerURL()` to `FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:)`.
+- Keep sharing JSON only.
+- Do not share the SwiftData store with the Widget.
+
+### Store Refresh Points
+
+`OrbitStore` refreshes the snapshot after:
+
+- configure / load succeeds.
+- add succeeds.
+- edit succeeds.
+- delete succeeds.
+- clear local data succeeds.
+- restore sample data succeeds.
+
+Snapshot write failures are non-blocking. They should not roll back or block SwiftData changes.
+
+### Me Status UI
+
+Me includes a readonly Widget snapshot status section:
+
+- `Ready` when a generated snapshot has today's entries.
+- `Empty` when a generated snapshot has no entries.
+- `Not generated` when no snapshot exists yet.
+- Shows last generated time when available.
+- Includes `Refresh snapshot`.
+
+Required copy:
+
+- `Widget snapshot is prepared for the upcoming widget version.`
+
+This UI must not imply that the Widget itself is already implemented.
+
+### Why v0.4.2a Is Split From Widget Work
+
+- There is currently no local Mac for manual Widget target setup, Widget Gallery insertion, or visual QA.
+- Widget target and App Group setup are higher-risk Xcode project changes.
+- Snapshot infrastructure can be CI-validated first without entitlements.
+- `v0.4.2b-widget-extension` will add the Widget target and App Group in a separate PR.
+
+### Validation Status
+
+GitHub Actions:
+
+- Must keep iOS Build passing.
+
+Manual validation still pending without local Mac / device:
+
+- Snapshot file path inspection in Simulator container.
+- Me snapshot status visual QA.
+- Widget Extension read path after App Group is introduced.
+- Widget Gallery insertion and small / medium Widget visual QA.

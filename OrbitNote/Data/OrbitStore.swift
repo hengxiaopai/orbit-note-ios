@@ -7,6 +7,7 @@ final class OrbitStore: ObservableObject {
     @Published var recentlyAddedID: OrbitEntry.ID?
     @Published private(set) var lastErrorMessage: String?
     @Published var feedback: OrbitFeedback?
+    @Published private(set) var widgetSnapshot: OrbitWidgetSnapshot?
 
     private var modelContext: ModelContext?
     private let seedDefaultsKey = "orbitNote.didSeedSampleData.v1"
@@ -61,6 +62,7 @@ final class OrbitStore: ObservableObject {
         guard let modelContext else {
             entries.append(entry)
             recentlyAddedID = entry.id
+            refreshWidgetSnapshot()
             publishSuccess("Orbit point added")
             return true
         }
@@ -78,6 +80,7 @@ final class OrbitStore: ObservableObject {
                 return false
             }
             entries[index] = entry
+            refreshWidgetSnapshot()
             publishSuccess("Orbit point updated")
             return true
         }
@@ -96,6 +99,7 @@ final class OrbitStore: ObservableObject {
     func delete(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
             entries.removeAll { $0.id == entry.id }
+            refreshWidgetSnapshot()
             publishSuccess("Orbit point deleted")
             return true
         }
@@ -113,6 +117,7 @@ final class OrbitStore: ObservableObject {
     func clearLocalData(reseed: Bool = false) {
         guard let modelContext else {
             entries = reseed ? OrbitSeedData.entries : []
+            refreshWidgetSnapshot()
             publishSuccess(reseed ? "Sample data restored" : "Local data cleared")
             return
         }
@@ -142,6 +147,20 @@ final class OrbitStore: ObservableObject {
     @MainActor
     func clearRecentlyAdded() {
         recentlyAddedID = nil
+    }
+
+    @MainActor
+    @discardableResult
+    func refreshWidgetSnapshotFromSettings() -> Bool {
+        do {
+            widgetSnapshot = try WidgetSnapshotService.writeTodaySnapshot(entries: entries)
+            publishSuccess("Widget snapshot refreshed")
+            return true
+        } catch {
+            recordWidgetSnapshotFailure()
+            publishError("Could not refresh widget snapshot")
+            return false
+        }
     }
 
     func closestEntry(in entries: [OrbitEntry]) -> OrbitEntry? {
@@ -207,6 +226,7 @@ final class OrbitStore: ObservableObject {
         do {
             entries = try modelContext.fetch(descriptor).map(\.entry)
             lastErrorMessage = nil
+            refreshWidgetSnapshot()
         } catch {
             lastErrorMessage = "Could not load local orbit data."
             publishError("Could not load local data")
@@ -261,5 +281,19 @@ final class OrbitStore: ObservableObject {
             publishError("Could not find orbit point")
             return nil
         }
+    }
+
+    @MainActor
+    private func refreshWidgetSnapshot() {
+        do {
+            widgetSnapshot = try WidgetSnapshotService.writeTodaySnapshot(entries: entries)
+        } catch {
+            recordWidgetSnapshotFailure()
+        }
+    }
+
+    @MainActor
+    private func recordWidgetSnapshotFailure() {
+        lastErrorMessage = "Could not update widget snapshot."
     }
 }
