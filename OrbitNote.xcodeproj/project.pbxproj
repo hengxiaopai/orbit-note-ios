@@ -33,6 +33,8 @@
 		000000000000000000000117 /* ToastBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000217 /* ToastBanner.swift */; };
 		000000000000000000000118 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000218 /* OnboardingView.swift */; };
 		000000000000000000000119 /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000219 /* ReminderService.swift */; };
+		00000000000000000000011A /* OrbitWidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* OrbitWidgetSnapshot.swift */; };
+		00000000000000000000011B /* WidgetSnapshotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021B /* WidgetSnapshotService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		000000000000000000000217 /* ToastBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components/ToastBanner.swift; sourceTree = "<group>"; };
 		000000000000000000000218 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Onboarding/OnboardingView.swift; sourceTree = "<group>"; };
 		000000000000000000000219 /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/ReminderService.swift; sourceTree = "<group>"; };
+		00000000000000000000021A /* OrbitWidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/OrbitWidgetSnapshot.swift; sourceTree = "<group>"; };
+		00000000000000000000021B /* WidgetSnapshotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/WidgetSnapshotService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +96,12 @@
 				000000000000000000000202 /* RootView.swift */,
 				000000000000000000000203 /* OrbitEntry.swift */,
 				000000000000000000000213 /* OrbitEntryModel.swift */,
+				00000000000000000000021A /* OrbitWidgetSnapshot.swift */,
 				000000000000000000000205 /* OrbitStore.swift */,
 				000000000000000000000214 /* OrbitSeedData.swift */,
 				000000000000000000000215 /* OrbitExportService.swift */,
 				000000000000000000000219 /* ReminderService.swift */,
+				00000000000000000000021B /* WidgetSnapshotService.swift */,
 				000000000000000000000204 /* OrbitTheme.swift */,
 				000000000000000000000206 /* GlassCard.swift */,
 				000000000000000000000207 /* Pills.swift */,
@@ -219,6 +225,8 @@
 				000000000000000000000117 /* ToastBanner.swift in Sources */,
 				000000000000000000000118 /* OnboardingView.swift in Sources */,
 				000000000000000000000119 /* ReminderService.swift in Sources */,
+				00000000000000000000011A /* OrbitWidgetSnapshot.swift in Sources */,
+				00000000000000000000011B /* WidgetSnapshotService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
