@@ -8,7 +8,7 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 Current release: `v0.3.1`
 
-Current planning track: `v0.4.0-notification-spec`
+Current implementation track: `v0.4.1-local-notification`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -17,6 +17,7 @@ Current planning track: `v0.4.0-notification-spec`
 - `v0.3.0` tag pushed.
 - `v0.3.0` GitHub pre-release created.
 - `v0.3.1` release polish and docs cleanup completed.
+- `v0.4.0-notification-spec` completed.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -69,6 +70,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - SwiftData error feedback.
 - Empty state improvements.
 - 3-card onboarding.
+- Local evening reminder settings.
 
 ## Tech Stack
 
@@ -110,6 +112,7 @@ File names include the export date, for example:
 - `v0.3.0` Data export, feedback states, empty-state improvements, and onboarding.
 - `v0.3.1` Release polish and documentation cleanup.
 - `v0.4.0-notification-spec` Notification and Widget technical plan.
+- `v0.4.1-local-notification` UserNotifications local evening reminder.
 
 ## Roadmap
 
@@ -177,3 +180,47 @@ v0.4 preconditions:
 - `v0.4.2` must be an independent PR because it changes the Xcode project, entitlements, and adds a Widget extension.
 - Every sub-version must keep iOS Build green in GitHub Actions.
 - Manual validation remains pending until a local Mac is available.
+
+## v0.4.1 Local Notification
+
+Implementation scope:
+
+- `UserNotifications` local evening reminder.
+- Me tab reminder switch and time picker.
+- Default reminder time: 21:30.
+- Permission is requested only when the user enables the reminder.
+- Permission denied state shows a lightweight toast.
+- At most one repeating daily notification is scheduled.
+
+AppStorage keys:
+
+- `orbitNote.reminderEnabled`
+- `orbitNote.reminderHour`
+- `orbitNote.reminderMinute`
+
+Notification:
+
+- Identifier: `orbitNote.eveningReminder`
+- Title: `Check your orbit`
+- Body: `What stayed close to your attention today?`
+
+Still pending without a local Mac or device:
+
+- Permission prompt manual verification.
+- Pending notification scheduling verification.
+- Daily repeat trigger verification.
+- Toggle off cancellation verification.
+- Time-change reschedule verification.
+
+Still not implemented:
+
+- Widget.
+- App Group.
+- Deep Link.
+- App Intents.
+- Share Extension.
+- Lottie / Jitter.
+- TestFlight.
+- Remote push.
+- Multiple reminders.
+- Streaks or check-in pressure.

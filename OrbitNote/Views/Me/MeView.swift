@@ -3,10 +3,12 @@ import SwiftUI
 struct MeView: View {
     @EnvironmentObject private var store: OrbitStore
     @State private var darkModePinned = true
-    @State private var eveningReminder = true
-    @State private var weeklySummary = false
     @State private var showingClearConfirmation = false
     @State private var exportItem: ExportShareItem?
+    @State private var permissionStatus: ReminderPermissionStatus = .notRequested
+    @AppStorage("orbitNote.reminderEnabled") private var reminderEnabled = false
+    @AppStorage("orbitNote.reminderHour") private var reminderHour = 21
+    @AppStorage("orbitNote.reminderMinute") private var reminderMinute = 30
 
     var body: some View {
         ZStack {
@@ -30,6 +32,18 @@ struct MeView: View {
         .sheet(item: $exportItem) { item in
             ShareSheet(activityItems: [item.url])
                 .presentationDetents([.medium, .large])
+        }
+        .task {
+            permissionStatus = await ReminderService.permissionStatus()
+        }
+        .onChange(of: reminderTime) { _, newValue in
+            guard reminderEnabled else { return }
+            let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+            reminderHour = components.hour ?? reminderHour
+            reminderMinute = components.minute ?? reminderMinute
+            Task {
+                await scheduleReminder(showSuccess: true)
+            }
         }
     }
 
@@ -58,11 +72,102 @@ struct MeView: View {
 
     private var reminderSection: some View {
         SettingsCard(title: "Reminders", symbol: "bell") {
-            Toggle("Evening orbit check-in", isOn: $eveningReminder)
-            Toggle("Weekly imbalance summary", isOn: $weeklySummary)
-            Text("Notification wiring is reserved for a later release.")
-                .font(OrbitTheme.caption)
-                .foregroundStyle(OrbitTheme.textSecondary)
+            VStack(alignment: .leading, spacing: 14) {
+                Toggle("Evening orbit reminder", isOn: Binding(
+                    get: { reminderEnabled },
+                    set: { isEnabled in
+                        Task {
+                            await setReminderEnabled(isEnabled)
+                        }
+                    }
+                ))
+
+                DatePicker("Reminder time", selection: reminderTimeBinding, displayedComponents: .hourAndMinute)
+                    .disabled(!reminderEnabled)
+                    .opacity(reminderEnabled ? 1 : 0.48)
+
+                HStack {
+                    Text("Permission")
+                        .font(OrbitTheme.caption)
+                        .foregroundStyle(OrbitTheme.textSecondary)
+                    Spacer()
+                    Text(permissionStatus.title)
+                        .font(OrbitTheme.numeric)
+                        .foregroundStyle(permissionStatus == .allowed ? OrbitTheme.positive : OrbitTheme.textSecondary)
+                }
+
+                Text(reminderHelpText)
+                    .font(OrbitTheme.caption)
+                    .foregroundStyle(OrbitTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+
+    private var reminderTime: Date {
+        var components = DateComponents()
+        components.hour = reminderHour
+        components.minute = reminderMinute
+        return Calendar.current.date(from: components) ?? Date()
+    }
+
+    private var reminderTimeBinding: Binding<Date> {
+        Binding(
+            get: { reminderTime },
+            set: { newValue in
+                let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                reminderHour = components.hour ?? reminderHour
+                reminderMinute = components.minute ?? reminderMinute
+            }
+        )
+    }
+
+    private var reminderHelpText: String {
+        switch permissionStatus {
+        case .notRequested:
+            return "Turn on the reminder when you are ready. Orbit Note will ask for permission then."
+        case .allowed:
+            return "One quiet reminder is scheduled each evening. No streaks, no pressure."
+        case .notAllowed:
+            return "Notifications are disabled. You can enable them in Settings."
+        }
+    }
+
+    @MainActor
+    private func setReminderEnabled(_ isEnabled: Bool) async {
+        if isEnabled {
+            var status = await ReminderService.permissionStatus()
+            if status == .notRequested {
+                status = await ReminderService.requestPermission()
+            }
+            permissionStatus = status
+
+            guard status == .allowed else {
+                reminderEnabled = false
+                ReminderService.cancelReminder()
+                store.publishError("Notifications are disabled. You can enable them in Settings.")
+                return
+            }
+
+            reminderEnabled = true
+            await scheduleReminder(showSuccess: true)
+        } else {
+            reminderEnabled = false
+            ReminderService.cancelReminder()
+            store.publishSuccess("Evening reminder turned off")
+        }
+    }
+
+    @MainActor
+    private func scheduleReminder(showSuccess: Bool) async {
+        do {
+            try await ReminderService.scheduleDailyReminder(hour: reminderHour, minute: reminderMinute)
+            if showSuccess {
+                store.publishSuccess("Evening reminder scheduled")
+            }
+        } catch {
+            reminderEnabled = false
+            store.publishError("Could not schedule reminder")
         }
     }
 
