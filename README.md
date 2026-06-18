@@ -6,13 +6,14 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current version: `v0.2.2-ci`
+Current version: `v0.3.0`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
 - GitHub Actions macOS CI build passed.
-- `v0.2.2-ci` tag pushed.
-- `v0.2.2-ci` GitHub pre-release created.
+- PR #2 merged to `master`.
+- `v0.3.0` tag pushed.
+- `v0.3.0` GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -59,9 +60,13 @@ Do not start these areas until manual Simulator validation is complete:
 - SwiftData local persistence.
 - Clear local data.
 - Restore sample data.
-- v0.3 local export foundation: JSON / CSV export via system Share Sheet.
-- Lightweight local action feedback.
-- Simple first-launch onboarding.
+- JSON export.
+- CSV export.
+- System Share Sheet for exports.
+- Toast / banner feedback.
+- SwiftData error feedback.
+- Empty state improvements.
+- 3-card onboarding.
 
 ## Tech Stack
 
@@ -100,6 +105,7 @@ File names include the export date, for example:
 - `v0.2.0` SwiftData persistence.
 - `v0.2.1` Xcode build preparation.
 - `v0.2.2-ci` GitHub Actions macOS CI build passed.
+- `v0.3.0` Data export, feedback states, empty-state improvements, and onboarding.
 
 ## Roadmap
 

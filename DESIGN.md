@@ -382,3 +382,42 @@ Out of scope for v0.3:
 - Share Extension.
 - Lottie / Jitter.
 - SwiftData schema changes.
+
+## v0.3.0 / Release Status
+
+- PR #2 has been merged to `master`.
+- GitHub Actions macOS CI build passed.
+- `v0.3.0` tag has been pushed.
+- `v0.3.0` GitHub pre-release has been created.
+- This release includes JSON export, CSV export, system Share Sheet, toast/banner feedback, SwiftData error feedback, empty-state improvements, and 3-card onboarding.
+- No SwiftData schema changes were made for v0.3.0.
+
+## v0.3.0 / Validation Status
+
+Validated:
+
+- macOS CI Xcode build passed on GitHub Actions.
+- Project files compile in CI.
+- New v0.3 source files are included in the Xcode target.
+
+Still not manually verified because there is no local Mac available:
+
+- Simulator launch.
+- First-launch seed.
+- Add / edit / delete / clear / restore CRUD flow.
+- Restart-after-save SwiftData persistence.
+- iPhone SE layout.
+- Share Sheet presentation on device or Simulator.
+- Onboarding first-launch presentation and skip behavior.
+
+## v0.4 Preconditions
+
+Do not start v0.4 Widget or notification work until:
+
+- Manual Simulator launch succeeds.
+- First-launch seed is manually verified.
+- Add / edit / delete / clear / restore flows are manually verified.
+- SwiftData persistence after app restart is manually verified.
+- iPhone SE layout is manually checked.
+- v0.3 export Share Sheet is manually checked.
+- Any v0.3 CI regressions are fixed.
