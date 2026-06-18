@@ -421,3 +421,120 @@ Do not start v0.4 Widget or notification work until:
 - iPhone SE layout is manually checked.
 - v0.3 export Share Sheet is manually checked.
 - Any v0.3 CI regressions are fixed.
+
+## v0.4.0-notification-spec / Technical Plan
+
+Status:
+
+- `v0.3.1` release polish and docs cleanup is complete.
+- GitHub Actions macOS CI build passed.
+- There is no local Mac available.
+- Manual Simulator CRUD smoke test is still pending.
+- This version is documentation-only. It does not add code, change SwiftData schema, add a Widget target, or modify Xcode project settings.
+
+### v0.4 Goals
+
+- Local evening reminder.
+- Readonly Today Orbit Widget.
+- Widget tap deep link to the Orbit tab.
+- Keep Orbit Note local-first.
+- No backend.
+- No account system.
+- No TestFlight work in v0.4.
+
+### v0.4 Split Plan
+
+- `v0.4.0-notification-spec`: documentation and technical plan only.
+- `v0.4.1-local-notification`: add `UserNotifications` local evening reminder.
+- `v0.4.2-widget-readonly`: add App Group JSON snapshot and readonly Today Orbit Widget.
+- `v0.4.3-deeplink-polish`: add `orbitnote://orbit` routing to the Orbit tab.
+
+### Local Notification Plan
+
+- Use `UserNotifications`.
+- Add reminder controls in Me:
+  - reminder enabled switch
+  - reminder time picker
+  - permission status copy
+- Default reminder time: 21:30.
+- Request notification permission only after the user actively enables reminders.
+- If permission is denied, show explanatory copy and avoid repeated permission prompts.
+- Schedule at most one daily repeating reminder.
+- Reminder copy should stay calm and non-coercive.
+- Do not add:
+  - streaks
+  - check-in pressure
+  - multiple reminders
+  - notification actions
+  - remote push notifications
+
+### Widget Plan
+
+- Do not let the Widget directly read SwiftData.
+- The main app should generate `OrbitWidgetSnapshot.json`.
+- The Widget should read that JSON snapshot through App Group.
+- The App Group shares only the JSON snapshot, not the SwiftData store.
+
+Small Widget:
+
+- Today's dominant energy.
+- Today's entry count.
+- Closest orbit point.
+
+Medium Widget:
+
+- Today's dominant energy.
+- Recent orbit points.
+- Strongest draining summary.
+- Strongest energizing summary.
+
+Empty Widget state:
+
+- `No orbit yet`
+
+Do not add:
+
+- interactive Widget
+- Live Activity
+- complex charts
+- animated Widget content
+
+### Deep Link Plan
+
+- URL scheme: `orbitnote`.
+- `orbitnote://orbit` routes to the Orbit tab.
+- Future extension: `orbitnote://add`.
+- Deep link implementation belongs to `v0.4.3-deeplink-polish`, not `v0.4.0-notification-spec`.
+
+### App Group And Snapshot Risk
+
+- A Widget needs App Group to reliably read data written by the main app.
+- The recommended v0.4 MVP shares a JSON snapshot only.
+- The Widget should not open or migrate the main SwiftData store.
+- This reduces SwiftData container, migration, and Widget timeline risks.
+- Because there is no local Mac, manual Widget insertion and visual QA will remain pending after CI until a Mac is available.
+
+### v0.4 Preconditions And Sequencing
+
+- `v0.4.1-local-notification` can start before Widget work because it does not require a Widget target.
+- `v0.4.2-widget-readonly` must be an independent PR because it changes:
+  - Xcode project
+  - entitlements
+  - Widget extension target
+  - App Group configuration
+- Every v0.4 sub-version must keep GitHub Actions iOS Build green.
+- Manual validation must remain explicitly documented as pending while no local Mac is available.
+
+### Explicitly Out Of Scope For v0.4.0
+
+- Widget direct SwiftData access.
+- Interactive Widget.
+- Live Activity.
+- App Intents.
+- Share Extension.
+- Lottie / Jitter.
+- TestFlight.
+- Remote push notifications.
+- Multiple reminders.
+- Streaks or check-in pressure.
+- SwiftData schema expansion.
