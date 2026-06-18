@@ -43,6 +43,8 @@ struct DayOrbitDetailView: View {
                                             Text("\(entry.category.title) · \(entry.distance.title)")
                                                 .font(OrbitTheme.caption)
                                                 .foregroundStyle(OrbitTheme.textSecondary)
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
                                         }
                                         Spacer()
                                         Text("\(entry.intensity)")

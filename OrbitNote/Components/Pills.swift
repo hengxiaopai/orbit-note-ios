@@ -21,9 +21,12 @@ struct EnergyPill: View {
 
     private var symbol: String {
         switch energy {
-        case .positive: "arrow.up.right"
-        case .draining: "arrow.down.right"
-        case .neutral: "minus"
+        case .positive:
+            return "arrow.up.right"
+        case .draining:
+            return "arrow.down.right"
+        case .neutral:
+            return "minus"
         }
     }
 }

@@ -47,25 +47,39 @@ enum OrbitCategory: String, CaseIterable, Identifiable, Hashable {
 
     var title: String {
         switch self {
-        case .relationship: "Relationship"
-        case .work: "Work"
-        case .project: "Project"
-        case .body: "Body"
-        case .creation: "Creation"
-        case .money: "Money"
-        case .unknown: "Unknown"
+        case .relationship:
+            return "Relationship"
+        case .work:
+            return "Work"
+        case .project:
+            return "Project"
+        case .body:
+            return "Body"
+        case .creation:
+            return "Creation"
+        case .money:
+            return "Money"
+        case .unknown:
+            return "Unknown"
         }
     }
 
     var symbol: String {
         switch self {
-        case .relationship: "person.2"
-        case .work: "briefcase"
-        case .project: "square.stack.3d.up"
-        case .body: "figure.mind.and.body"
-        case .creation: "sparkles"
-        case .money: "creditcard"
-        case .unknown: "questionmark.circle"
+        case .relationship:
+            return "person.2"
+        case .work:
+            return "briefcase"
+        case .project:
+            return "square.stack.3d.up"
+        case .body:
+            return "figure.mind.and.body"
+        case .creation:
+            return "sparkles"
+        case .money:
+            return "creditcard"
+        case .unknown:
+            return "questionmark.circle"
         }
     }
 }
@@ -79,25 +93,34 @@ enum EnergyType: String, CaseIterable, Identifiable, Hashable {
 
     var title: String {
         switch self {
-        case .positive: "Gives energy"
-        case .draining: "Drains me"
-        case .neutral: "Neutral"
+        case .positive:
+            return "Gives energy"
+        case .draining:
+            return "Drains me"
+        case .neutral:
+            return "Neutral"
         }
     }
 
     var shortTitle: String {
         switch self {
-        case .positive: "Positive"
-        case .draining: "Draining"
-        case .neutral: "Neutral"
+        case .positive:
+            return "Positive"
+        case .draining:
+            return "Draining"
+        case .neutral:
+            return "Neutral"
         }
     }
 
     var color: Color {
         switch self {
-        case .positive: OrbitTheme.positive
-        case .draining: OrbitTheme.draining
-        case .neutral: OrbitTheme.neutral
+        case .positive:
+            return OrbitTheme.positive
+        case .draining:
+            return OrbitTheme.draining
+        case .neutral:
+            return OrbitTheme.neutral
         }
     }
 }
@@ -111,25 +134,34 @@ enum OrbitDistance: String, CaseIterable, Identifiable, Hashable {
 
     var title: String {
         switch self {
-        case .near: "Near"
-        case .middle: "Middle"
-        case .far: "Far"
+        case .near:
+            return "Near"
+        case .middle:
+            return "Middle"
+        case .far:
+            return "Far"
         }
     }
 
     var radiusMultiplier: CGFloat {
         switch self {
-        case .near: 0.25
-        case .middle: 0.42
-        case .far: 0.58
+        case .near:
+            return 0.28
+        case .middle:
+            return 0.52
+        case .far:
+            return 0.78
         }
     }
 
     var summary: String {
         switch self {
-        case .near: "occupies attention"
-        case .middle: "stays present"
-        case .far: "passes at the edge"
+        case .near:
+            return "occupies attention"
+        case .middle:
+            return "stays present"
+        case .far:
+            return "passes at the edge"
         }
     }
 }

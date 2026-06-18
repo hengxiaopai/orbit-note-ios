@@ -14,16 +14,18 @@ struct MiniOrbitCard: View {
                     Text(day.date.formatted(.dateTime.weekday(.wide).month(.abbreviated).day()))
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundStyle(OrbitTheme.textPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
 
                     Text("\(day.entries.count) orbit points")
                         .font(OrbitTheme.caption)
                         .foregroundStyle(OrbitTheme.textSecondary)
 
                     EnergyPill(energy: day.dominantEnergy)
-                        .fixedSize(horizontal: true, vertical: false)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
                 }
-
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading)
 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 13, weight: .semibold))

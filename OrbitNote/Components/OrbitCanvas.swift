@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 struct OrbitCanvas: View {
@@ -29,7 +30,12 @@ struct OrbitCanvas: View {
                         Button {
                             onSelect?(entry)
                         } label: {
-                            OrbitPoint(entry: entry, isNew: entry.id == recentlyAddedID, phase: phase + CGFloat(index))
+                            OrbitPoint(
+                                entry: entry,
+                                isNew: entry.id == recentlyAddedID,
+                                compact: compact,
+                                phase: phase + CGFloat(index)
+                            )
                         }
                         .buttonStyle(PressScaleButtonStyle())
                         .position(point)
@@ -48,7 +54,7 @@ struct OrbitCanvas: View {
 
     private func orbitLines(size: CGFloat) -> some View {
         ZStack {
-            ForEach([0.50, 0.84, 1.16], id: \.self) { scale in
+            ForEach([0.32, 0.58, 0.86], id: \.self) { scale in
                 Circle()
                     .stroke(OrbitTheme.orbitLine, lineWidth: compact ? 0.7 : 1)
                     .frame(width: size * scale, height: size * scale)
@@ -58,7 +64,7 @@ struct OrbitCanvas: View {
                 Rectangle()
                     .fill(OrbitTheme.orbitLine.opacity(index.isMultiple(of: 3) ? 0.70 : 0.34))
                     .frame(width: compact ? 6 : 10, height: 1)
-                    .offset(x: size * 0.59)
+                    .offset(x: size * 0.43)
                     .rotationEffect(.degrees(Double(index) * 30))
             }
         }
@@ -85,7 +91,7 @@ struct OrbitCanvas: View {
     }
 
     private func position(for entry: OrbitEntry, index: Int, size: CGFloat, center: CGPoint, phase: CGFloat) -> CGPoint {
-        let radius = size * entry.distance.radiusMultiplier
+        let radius = (size / 2) * entry.distance.radiusMultiplier
         let angle = deterministicAngle(for: entry, index: index) + sin(phase / 12 + CGFloat(index)) * 0.035
         let drift = cos(phase / 10 + CGFloat(index)) * (compact ? 1.2 : 3.2)
 

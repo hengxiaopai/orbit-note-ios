@@ -69,17 +69,17 @@ struct MeView: View {
 
     private var exportSection: some View {
         SettingsCard(title: "Export", symbol: "square.and.arrow.up") {
-            Button {
-            } label: {
-                HStack {
-                    Text("Export records")
-                    Spacer()
-                    Text("Soon")
-                        .font(OrbitTheme.numeric)
-                        .foregroundStyle(OrbitTheme.textSecondary)
-                }
+            HStack {
+                Text("Export records")
+                    .font(OrbitTheme.body)
+                Spacer()
+                Text("Planned")
+                    .font(OrbitTheme.numeric)
+                    .foregroundStyle(OrbitTheme.textSecondary)
             }
-            .disabled(true)
+            Text("This is intentionally a roadmap item in v0.1.1, not a broken control.")
+                .font(OrbitTheme.caption)
+                .foregroundStyle(OrbitTheme.textSecondary)
         }
     }
 }

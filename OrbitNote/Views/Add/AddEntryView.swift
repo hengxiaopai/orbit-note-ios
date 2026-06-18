@@ -39,6 +39,12 @@ struct AddEntryView: View {
                         }
                     }
                     noteInput
+                    if !canSave {
+                        Text("Add a name to enable saving.")
+                            .font(OrbitTheme.caption)
+                            .foregroundStyle(OrbitTheme.textSecondary)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
                     saveButton
                 }
                 .padding(20)

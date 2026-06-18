@@ -46,6 +46,7 @@ private struct SummaryRow: View {
                     .font(.system(size: 15, weight: .medium))
                     .foregroundStyle(OrbitTheme.textPrimary)
                     .lineLimit(1)
+                    .minimumScaleFactor(0.78)
             }
             Spacer()
             if let entry {
