@@ -35,18 +35,16 @@ final class OrbitEntryModel {
         self.createdAt = createdAt
     }
 
-    convenience init(entry: OrbitEntry) {
-        self.init(
-            id: entry.id,
-            title: entry.title,
-            categoryRawValue: entry.category.rawValue,
-            energyTypeRawValue: entry.energyType.rawValue,
-            intensity: entry.intensity,
-            distanceRawValue: entry.distance.rawValue,
-            note: entry.note,
-            date: entry.date,
-            createdAt: entry.createdAt
-        )
+    init(entry: OrbitEntry) {
+        id = entry.id
+        title = entry.title
+        categoryRawValue = entry.category.rawValue
+        energyTypeRawValue = entry.energyType.rawValue
+        intensity = min(max(entry.intensity, 1), 5)
+        distanceRawValue = entry.distance.rawValue
+        note = entry.note
+        date = Calendar.current.startOfDay(for: entry.date)
+        createdAt = entry.createdAt
     }
 
     var entry: OrbitEntry {

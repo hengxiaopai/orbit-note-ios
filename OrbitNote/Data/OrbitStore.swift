@@ -1,7 +1,7 @@
+import Combine
 import Foundation
 import SwiftData
 
-@MainActor
 final class OrbitStore: ObservableObject {
     @Published private(set) var entries: [OrbitEntry]
     @Published var recentlyAddedID: OrbitEntry.ID?
@@ -14,14 +14,17 @@ final class OrbitStore: ObservableObject {
         self.entries = entries
     }
 
+    @MainActor
     var today: Date {
         Calendar.current.startOfDay(for: Date())
     }
 
+    @MainActor
     var todaysEntries: [OrbitEntry] {
         entries(for: today)
     }
 
+    @MainActor
     var recentDays: [OrbitDay] {
         let grouped = Dictionary(grouping: entries, by: { Calendar.current.startOfDay(for: $0.date) })
         let days = grouped
@@ -31,12 +34,14 @@ final class OrbitStore: ObservableObject {
         return Array(days.prefix(7))
     }
 
+    @MainActor
     func configure(modelContext: ModelContext) {
         self.modelContext = modelContext
         seedIfNeeded()
         refresh()
     }
 
+    @MainActor
     func entries(for date: Date) -> [OrbitEntry] {
         let day = Calendar.current.startOfDay(for: date)
         return entries
@@ -44,10 +49,12 @@ final class OrbitStore: ObservableObject {
             .sorted { $0.createdAt < $1.createdAt }
     }
 
+    @MainActor
     func entry(id: OrbitEntry.ID) -> OrbitEntry? {
         entries.first { $0.id == id }
     }
 
+    @MainActor
     @discardableResult
     func add(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
@@ -60,6 +67,7 @@ final class OrbitStore: ObservableObject {
         return saveAndRefresh(recentlyAddedID: entry.id)
     }
 
+    @MainActor
     @discardableResult
     func update(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
@@ -78,6 +86,7 @@ final class OrbitStore: ObservableObject {
         return saveAndRefresh()
     }
 
+    @MainActor
     @discardableResult
     func delete(_ entry: OrbitEntry) -> Bool {
         guard let modelContext else {
@@ -93,6 +102,7 @@ final class OrbitStore: ObservableObject {
         return saveAndRefresh()
     }
 
+    @MainActor
     func clearLocalData(reseed: Bool = false) {
         guard let modelContext else {
             entries = reseed ? OrbitSeedData.entries : []
@@ -114,10 +124,12 @@ final class OrbitStore: ObservableObject {
         }
     }
 
+    @MainActor
     func restoreSampleData() {
         clearLocalData(reseed: true)
     }
 
+    @MainActor
     func clearRecentlyAdded() {
         recentlyAddedID = nil
     }
@@ -143,6 +155,7 @@ final class OrbitStore: ObservableObject {
             .max { $0.intensity < $1.intensity }
     }
 
+    @MainActor
     private func seedIfNeeded() {
         guard let modelContext else {
             return
@@ -169,6 +182,7 @@ final class OrbitStore: ObservableObject {
         }
     }
 
+    @MainActor
     private func refresh() {
         guard let modelContext else {
             entries.sort { $0.createdAt < $1.createdAt }
@@ -176,7 +190,7 @@ final class OrbitStore: ObservableObject {
         }
 
         let descriptor = FetchDescriptor<OrbitEntryModel>(
-            sortBy: [SortDescriptor(\OrbitEntryModel.createdAt, order: .forward)]
+            sortBy: [SortDescriptor(\.createdAt, order: .forward)]
         )
 
         do {
@@ -187,6 +201,7 @@ final class OrbitStore: ObservableObject {
         }
     }
 
+    @MainActor
     private func saveAndRefresh(recentlyAddedID: OrbitEntry.ID? = nil) -> Bool {
         guard let modelContext else {
             return false
@@ -205,6 +220,7 @@ final class OrbitStore: ObservableObject {
         }
     }
 
+    @MainActor
     private func model(for id: OrbitEntry.ID) -> OrbitEntryModel? {
         guard let modelContext else {
             return nil

@@ -54,7 +54,7 @@ struct RootView: View {
             GlassTabBar.configure()
         }
         .task {
-            store.configure(modelContext: modelContext)
+            await store.configure(modelContext: modelContext)
         }
     }
 }

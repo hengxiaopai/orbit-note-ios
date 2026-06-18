@@ -296,3 +296,13 @@ The app maps `OrbitEntryModel` to `OrbitEntry` before rendering UI. This keeps p
 - App Intents
 - Jitter / Lottie motion assets
 - Sync, login, backend, subscription, or cloud storage
+
+## v0.2.1 / Xcode Compatibility Fixes
+
+- Added `import Combine` to `OrbitStore.swift` for `ObservableObject` and `@Published`.
+- Removed class-wide `@MainActor` from `OrbitStore` to avoid `@StateObject` initializer isolation issues at app launch.
+- Kept `ModelContext` reads/writes on `@MainActor` methods.
+- Updated `RootView.task` to `await store.configure(modelContext:)` for main-actor crossing.
+- Changed the SwiftData sort descriptor to `SortDescriptor(\.createdAt, order: .forward)`.
+- Replaced `OrbitEntryModel` convenience initializer with a normal initializer to reduce `@Model` macro expansion risk.
+- No data schema fields were added, removed, or renamed in v0.2.1.
