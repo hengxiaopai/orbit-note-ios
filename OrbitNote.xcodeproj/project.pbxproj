@@ -28,6 +28,10 @@
 		000000000000000000000112 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000212 /* MeView.swift */; };
 		000000000000000000000113 /* OrbitEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000213 /* OrbitEntryModel.swift */; };
 		000000000000000000000114 /* OrbitSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000214 /* OrbitSeedData.swift */; };
+		000000000000000000000115 /* OrbitExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000215 /* OrbitExportService.swift */; };
+		000000000000000000000116 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000216 /* ShareSheet.swift */; };
+		000000000000000000000117 /* ToastBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000217 /* ToastBanner.swift */; };
+		000000000000000000000118 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000218 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		000000000000000000000212 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Me/MeView.swift; sourceTree = "<group>"; };
 		000000000000000000000213 /* OrbitEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/OrbitEntryModel.swift; sourceTree = "<group>"; };
 		000000000000000000000214 /* OrbitSeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OrbitSeedData.swift; sourceTree = "<group>"; };
+		000000000000000000000215 /* OrbitExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OrbitExportService.swift; sourceTree = "<group>"; };
+		000000000000000000000216 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components/ShareSheet.swift; sourceTree = "<group>"; };
+		000000000000000000000217 /* ToastBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components/ToastBanner.swift; sourceTree = "<group>"; };
+		000000000000000000000218 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Onboarding/OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +92,7 @@
 				000000000000000000000213 /* OrbitEntryModel.swift */,
 				000000000000000000000205 /* OrbitStore.swift */,
 				000000000000000000000214 /* OrbitSeedData.swift */,
+				000000000000000000000215 /* OrbitExportService.swift */,
 				000000000000000000000204 /* OrbitTheme.swift */,
 				000000000000000000000206 /* GlassCard.swift */,
 				000000000000000000000207 /* Pills.swift */,
@@ -92,12 +101,15 @@
 				00000000000000000000020A /* OrbitSummaryCard.swift */,
 				00000000000000000000020B /* MiniOrbitCard.swift */,
 				00000000000000000000020C /* EmptyState.swift */,
+				000000000000000000000216 /* ShareSheet.swift */,
+				000000000000000000000217 /* ToastBanner.swift */,
 				00000000000000000000020D /* OrbitHomeView.swift */,
 				00000000000000000000020E /* OrbitDetailView.swift */,
 				00000000000000000000020F /* AddEntryView.swift */,
 				000000000000000000000210 /* TimelineScreen.swift */,
 				000000000000000000000211 /* DayOrbitDetailView.swift */,
 				000000000000000000000212 /* MeView.swift */,
+				000000000000000000000218 /* OnboardingView.swift */,
 			);
 			path = OrbitNote;
 			sourceTree = "<group>";
@@ -199,6 +211,10 @@
 				000000000000000000000112 /* MeView.swift in Sources */,
 				000000000000000000000113 /* OrbitEntryModel.swift in Sources */,
 				000000000000000000000114 /* OrbitSeedData.swift in Sources */,
+				000000000000000000000115 /* OrbitExportService.swift in Sources */,
+				000000000000000000000116 /* ShareSheet.swift in Sources */,
+				000000000000000000000117 /* ToastBanner.swift in Sources */,
+				000000000000000000000118 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

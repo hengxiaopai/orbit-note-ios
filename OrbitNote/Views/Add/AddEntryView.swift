@@ -208,10 +208,15 @@ struct AddEntryView: View {
             createdAt: editingEntry?.createdAt ?? Date()
         )
 
+        let didSave: Bool
         if editingEntry == nil {
-            store.add(entry)
+            didSave = store.add(entry)
         } else {
-            store.update(entry)
+            didSave = store.update(entry)
+        }
+
+        guard didSave else {
+            return
         }
         reset()
 

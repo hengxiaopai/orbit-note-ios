@@ -6,6 +6,7 @@ struct MeView: View {
     @State private var eveningReminder = true
     @State private var weeklySummary = false
     @State private var showingClearConfirmation = false
+    @State private var exportItem: ExportShareItem?
 
     var body: some View {
         ZStack {
@@ -26,6 +27,10 @@ struct MeView: View {
             }
         }
         .navigationBarHidden(true)
+        .sheet(item: $exportItem) { item in
+            ShareSheet(activityItems: [item.url])
+                .presentationDetents([.medium, .large])
+        }
     }
 
     private var header: some View {
@@ -125,19 +130,62 @@ struct MeView: View {
 
     private var exportSection: some View {
         SettingsCard(title: "Export", symbol: "square.and.arrow.up") {
-            HStack {
-                Text("Export records")
-                    .font(OrbitTheme.body)
-                Spacer()
-                Text("Planned")
-                    .font(OrbitTheme.numeric)
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("Export local data")
+                        .font(OrbitTheme.body)
+                    Spacer()
+                    Text(store.entries.isEmpty ? "Empty" : "\(store.entries.count)")
+                        .font(OrbitTheme.numeric)
+                        .foregroundStyle(store.entries.isEmpty ? OrbitTheme.textSecondary : OrbitTheme.positive)
+                }
+
+                HStack(spacing: 10) {
+                    exportButton(format: .json)
+                    exportButton(format: .csv)
+                }
+
+                Text(store.entries.isEmpty ? "Add orbit points before exporting." : "Exports include title, category, energy, intensity, distance, note, date, and createdAt.")
+                    .font(OrbitTheme.caption)
                     .foregroundStyle(OrbitTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            Text("This is intentionally a roadmap item in v0.1.1, not a broken control.")
-                .font(OrbitTheme.caption)
-                .foregroundStyle(OrbitTheme.textSecondary)
         }
     }
+
+    private func exportButton(format: OrbitExportFormat) -> some View {
+        Button {
+            export(format: format)
+        } label: {
+            Label(format.title, systemImage: "square.and.arrow.up")
+                .font(.system(size: 14, weight: .semibold))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 11)
+                .foregroundStyle(store.entries.isEmpty ? OrbitTheme.textSecondary : OrbitTheme.background)
+                .background(
+                    Capsule()
+                        .fill(store.entries.isEmpty ? OrbitTheme.glassSurface : OrbitTheme.positive)
+                        .overlay(Capsule().stroke(OrbitTheme.borderSubtle, lineWidth: 1))
+                )
+        }
+        .disabled(store.entries.isEmpty)
+        .buttonStyle(PressScaleButtonStyle())
+    }
+
+    private func export(format: OrbitExportFormat) {
+        do {
+            exportItem = ExportShareItem(url: try OrbitExportService.makeExportFile(entries: store.entries, format: format))
+            store.publishSuccess("\(format.title) export ready")
+        } catch {
+            store.publishError(error.localizedDescription)
+        }
+    }
+}
+
+private struct ExportShareItem: Identifiable {
+    let url: URL
+
+    var id: String { url.absoluteString }
 }
 
 private struct SettingsCard<Content: View>: View {

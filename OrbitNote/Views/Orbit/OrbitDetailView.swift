@@ -51,8 +51,9 @@ struct OrbitDetailView: View {
         }
         .alert("Delete orbit point?", isPresented: $showingDeleteConfirmation) {
             Button("Delete", role: .destructive) {
-                store.delete(currentEntry)
-                dismiss()
+                if store.delete(currentEntry) {
+                    dismiss()
+                }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
