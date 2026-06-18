@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct MeView: View {
+    @EnvironmentObject private var store: OrbitStore
     @State private var darkModePinned = true
     @State private var eveningReminder = true
     @State private var weeklySummary = false
+    @State private var showingClearConfirmation = false
 
     var body: some View {
         ZStack {
@@ -15,6 +17,7 @@ struct MeView: View {
                     themeSection
                     reminderSection
                     privacySection
+                    dataSection
                     exportSection
                 }
                 .padding(20)
@@ -52,7 +55,7 @@ struct MeView: View {
         SettingsCard(title: "Reminders", symbol: "bell") {
             Toggle("Evening orbit check-in", isOn: $eveningReminder)
             Toggle("Weekly imbalance summary", isOn: $weeklySummary)
-            Text("Notification wiring is reserved for v0.2.")
+            Text("Notification wiring is reserved for a later release.")
                 .font(OrbitTheme.caption)
                 .foregroundStyle(OrbitTheme.textSecondary)
         }
@@ -60,10 +63,63 @@ struct MeView: View {
 
     private var privacySection: some View {
         SettingsCard(title: "Privacy", symbol: "lock.shield") {
-            Text("Mock data is stored in memory only. A production build should use local persistence first, with explicit export and deletion controls.")
+            Text("Orbit points are stored locally with SwiftData. There is no account, login, sync, or external backend in v0.2.")
                 .font(OrbitTheme.body)
                 .foregroundStyle(OrbitTheme.textPrimary)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private var dataSection: some View {
+        SettingsCard(title: "Local data", symbol: "internaldrive") {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("\(store.entries.count) saved orbit points")
+                        .font(OrbitTheme.body)
+                    Spacer()
+                    Text("Local")
+                        .font(OrbitTheme.numeric)
+                        .foregroundStyle(OrbitTheme.positive)
+                }
+
+                Button(role: .destructive) {
+                    showingClearConfirmation = true
+                } label: {
+                    Label("Clear local data", systemImage: "trash")
+                        .font(.system(size: 15, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 12)
+                        .foregroundStyle(OrbitTheme.draining)
+                        .background(Capsule().fill(OrbitTheme.draining.opacity(0.12)))
+                }
+                .buttonStyle(PressScaleButtonStyle())
+
+                if store.entries.isEmpty {
+                    Button {
+                        store.restoreSampleData()
+                    } label: {
+                        Label("Restore sample data", systemImage: "sparkles")
+                            .font(.system(size: 15, weight: .semibold))
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 12)
+                            .foregroundStyle(OrbitTheme.background)
+                            .background(Capsule().fill(OrbitTheme.positive))
+                    }
+                    .buttonStyle(PressScaleButtonStyle())
+                }
+
+                Text("Clearing data leaves the app empty. You can restore the sample orbit after clearing.")
+                    .font(OrbitTheme.caption)
+                    .foregroundStyle(OrbitTheme.textSecondary)
+            }
+        }
+        .alert("Clear all local data?", isPresented: $showingClearConfirmation) {
+            Button("Clear", role: .destructive) {
+                store.clearLocalData(reseed: false)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This removes all saved orbit points from this device.")
         }
     }
 

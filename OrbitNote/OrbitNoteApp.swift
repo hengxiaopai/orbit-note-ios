@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 @main
@@ -10,5 +11,6 @@ struct OrbitNoteApp: App {
                 .environmentObject(store)
                 .preferredColorScheme(.dark)
         }
+        .modelContainer(for: OrbitEntryModel.self)
     }
 }

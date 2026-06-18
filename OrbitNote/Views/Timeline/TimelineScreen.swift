@@ -12,13 +12,20 @@ struct TimelineScreen: View {
                 VStack(alignment: .leading, spacing: 18) {
                     header
 
-                    ForEach(store.recentDays) { day in
-                        Button {
-                            selectedDay = day
-                        } label: {
-                            MiniOrbitCard(day: day)
+                    if store.recentDays.isEmpty {
+                        EmptyState(
+                            title: "No timeline yet",
+                            message: "Add an orbit point or restore sample data to begin seeing weekly movement."
+                        )
+                    } else {
+                        ForEach(store.recentDays) { day in
+                            Button {
+                                selectedDay = day
+                            } label: {
+                                MiniOrbitCard(day: day)
+                            }
+                            .buttonStyle(PressScaleButtonStyle())
                         }
-                        .buttonStyle(PressScaleButtonStyle())
                     }
                 }
                 .padding(20)

@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 enum AppTab: Hashable {
@@ -8,6 +9,8 @@ enum AppTab: Hashable {
 }
 
 struct RootView: View {
+    @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject private var store: OrbitStore
     @State private var selectedTab: AppTab = .orbit
 
     var body: some View {
@@ -50,11 +53,15 @@ struct RootView: View {
         .onAppear {
             GlassTabBar.configure()
         }
+        .task {
+            store.configure(modelContext: modelContext)
+        }
     }
 }
 
 #Preview {
     RootView()
-        .environmentObject(OrbitStore())
+        .environmentObject(OrbitStore(entries: OrbitSeedData.entries))
+        .modelContainer(for: OrbitEntryModel.self, inMemory: true)
         .preferredColorScheme(.dark)
 }

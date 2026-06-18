@@ -26,6 +26,8 @@
 		000000000000000000000110 /* TimelineScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000210 /* TimelineScreen.swift */; };
 		000000000000000000000111 /* DayOrbitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000211 /* DayOrbitDetailView.swift */; };
 		000000000000000000000112 /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000212 /* MeView.swift */; };
+		000000000000000000000113 /* OrbitEntryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000213 /* OrbitEntryModel.swift */; };
+		000000000000000000000114 /* OrbitSeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000214 /* OrbitSeedData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		000000000000000000000210 /* TimelineScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Timeline/TimelineScreen.swift; sourceTree = "<group>"; };
 		000000000000000000000211 /* DayOrbitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Timeline/DayOrbitDetailView.swift; sourceTree = "<group>"; };
 		000000000000000000000212 /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Me/MeView.swift; sourceTree = "<group>"; };
+		000000000000000000000213 /* OrbitEntryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/OrbitEntryModel.swift; sourceTree = "<group>"; };
+		000000000000000000000214 /* OrbitSeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/OrbitSeedData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +81,9 @@
 				000000000000000000000200 /* Assets.xcassets */,
 				000000000000000000000202 /* RootView.swift */,
 				000000000000000000000203 /* OrbitEntry.swift */,
+				000000000000000000000213 /* OrbitEntryModel.swift */,
 				000000000000000000000205 /* OrbitStore.swift */,
+				000000000000000000000214 /* OrbitSeedData.swift */,
 				000000000000000000000204 /* OrbitTheme.swift */,
 				000000000000000000000206 /* GlassCard.swift */,
 				000000000000000000000207 /* Pills.swift */,
@@ -191,6 +197,8 @@
 				000000000000000000000110 /* TimelineScreen.swift in Sources */,
 				000000000000000000000111 /* DayOrbitDetailView.swift in Sources */,
 				000000000000000000000112 /* MeView.swift in Sources */,
+				000000000000000000000113 /* OrbitEntryModel.swift in Sources */,
+				000000000000000000000114 /* OrbitSeedData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,14 +10,27 @@ struct AddEntryView: View {
     @Environment(\.dismiss) private var dismiss
 
     let mode: AddEntryMode
+    private let editingEntry: OrbitEntry?
     var onSaved: () -> Void
 
-    @State private var title = ""
-    @State private var category: OrbitCategory = .project
-    @State private var energyType: EnergyType = .positive
-    @State private var intensity = 3.0
-    @State private var distance: OrbitDistance = .middle
-    @State private var note = ""
+    @State private var title: String
+    @State private var category: OrbitCategory
+    @State private var energyType: EnergyType
+    @State private var intensity: Double
+    @State private var distance: OrbitDistance
+    @State private var note: String
+
+    init(mode: AddEntryMode, editingEntry: OrbitEntry? = nil, onSaved: @escaping () -> Void) {
+        self.mode = mode
+        self.editingEntry = editingEntry
+        self.onSaved = onSaved
+        _title = State(initialValue: editingEntry?.title ?? "")
+        _category = State(initialValue: editingEntry?.category ?? .project)
+        _energyType = State(initialValue: editingEntry?.energyType ?? .positive)
+        _intensity = State(initialValue: Double(editingEntry?.intensity ?? 3))
+        _distance = State(initialValue: editingEntry?.distance ?? .middle)
+        _note = State(initialValue: editingEntry?.note ?? "")
+    }
 
     var body: some View {
         ZStack {
@@ -68,10 +81,10 @@ struct AddEntryView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(mode == .modal ? "New point" : "Add")
+            Text(headerTitle)
                 .font(OrbitTheme.largeTitle)
                 .foregroundStyle(OrbitTheme.textPrimary)
-            Text("Name one thing circling your attention. Keep it light; the orbit will carry the rest.")
+            Text(headerCopy)
                 .font(OrbitTheme.body)
                 .foregroundStyle(OrbitTheme.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -145,7 +158,7 @@ struct AddEntryView: View {
         Button {
             save()
         } label: {
-            Label("Save to today's orbit", systemImage: "checkmark")
+            Label(editingEntry == nil ? "Save to today's orbit" : "Save changes", systemImage: "checkmark")
                 .font(.system(size: 16, weight: .semibold))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
@@ -164,22 +177,42 @@ struct AddEntryView: View {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
+    private var headerTitle: String {
+        if editingEntry != nil {
+            return "Edit point"
+        }
+        return mode == .modal ? "New point" : "Add"
+    }
+
+    private var headerCopy: String {
+        if editingEntry != nil {
+            return "Adjust its distance, energy, or note without turning it into a task."
+        }
+        return "Name one thing circling your attention. Keep it light; the orbit will carry the rest."
+    }
+
     private func save() {
         let fallbackNote = note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             ? "No note yet. Just enough signal to place it on the map."
             : note.trimmingCharacters(in: .whitespacesAndNewlines)
 
         let entry = OrbitEntry(
+            id: editingEntry?.id ?? UUID(),
             title: title.trimmingCharacters(in: .whitespacesAndNewlines),
             category: category,
             energyType: energyType,
             intensity: Int(intensity.rounded()),
             distance: distance,
             note: fallbackNote,
-            date: Date()
+            date: editingEntry?.date ?? Date(),
+            createdAt: editingEntry?.createdAt ?? Date()
         )
 
-        store.add(entry)
+        if editingEntry == nil {
+            store.add(entry)
+        } else {
+            store.update(entry)
+        }
         reset()
 
         if mode == .modal {

@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct EmptyState: View {
+    var title = "No orbit points yet"
+    var message = "Add one thing that stayed around your attention today."
+
     var body: some View {
         GlassCard {
             VStack(spacing: 14) {
@@ -13,11 +16,11 @@ struct EmptyState: View {
                         .foregroundStyle(OrbitTheme.positive)
                 }
 
-                Text("No orbit points yet")
+                Text(title)
                     .font(OrbitTheme.pageTitle)
                     .foregroundStyle(OrbitTheme.textPrimary)
 
-                Text("Add one thing that stayed around your attention today.")
+                Text(message)
                     .font(OrbitTheme.body)
                     .foregroundStyle(OrbitTheme.textSecondary)
                     .multilineTextAlignment(.center)
