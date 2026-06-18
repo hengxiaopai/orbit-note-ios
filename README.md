@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.4.1-local-notification`
+Current release: `v0.4.2a-widget-snapshot-infra`
 
-Current implementation track: `v0.4.2a-widget-snapshot-infra`
+Current implementation track: `v0.4.2b-widget-extension`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -20,6 +20,8 @@ Current implementation track: `v0.4.2a-widget-snapshot-infra`
 - `v0.4.0-notification-spec` completed.
 - `v0.4.1-local-notification` completed.
 - `v0.4.1-local-notification` tag and GitHub pre-release created.
+- `v0.4.2a-widget-snapshot-infra` completed.
+- `v0.4.2a-widget-snapshot-infra` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -74,6 +76,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - 3-card onboarding.
 - Local evening reminder settings.
 - Main app Today Orbit Widget snapshot infrastructure.
+- Readonly Today Orbit Widget target.
 
 ## Tech Stack
 
@@ -117,6 +120,7 @@ File names include the export date, for example:
 - `v0.4.0-notification-spec` Notification and Widget technical plan.
 - `v0.4.1-local-notification` UserNotifications local evening reminder.
 - `v0.4.2a-widget-snapshot-infra` Main app JSON snapshot infrastructure for the future Widget.
+- `v0.4.2b-widget-extension` Readonly small and medium Today Orbit Widget using App Group JSON snapshot.
 
 ## Roadmap
 
@@ -282,3 +286,52 @@ Why this split:
 - There is currently no local Mac for manual Widget setup and QA.
 - Widget target and App Group configuration carry higher Xcode project risk.
 - Snapshot data infrastructure can be validated by GitHub Actions first.
+
+## v0.4.2b Readonly Today Orbit Widget
+
+Implementation scope:
+
+- Adds the `OrbitNoteWidget` Widget Extension target.
+- Adds App Group entitlements for the main app and Widget.
+- Adds a readonly Today Orbit Widget.
+- Supports small and medium Widget families.
+- Widget reads `OrbitWidgetSnapshot.json` through App Group.
+- Widget does not read SwiftData directly.
+- Deep Link remains reserved for `v0.4.3-deeplink-polish`.
+
+App Group:
+
+- Identifier: `group.com.codex.orbitnote`
+- Main app writes `OrbitWidgetSnapshot.json`.
+- Widget reads the same JSON snapshot.
+- The SwiftData store is not shared with the Widget.
+
+Snapshot storage:
+
+- Primary: App Group container.
+- Fallback: Application Support directory when App Group is unavailable.
+- File name remains `OrbitWidgetSnapshot.json`.
+
+Widget display:
+
+- Small: title, dominant energy, entry count, closest orbit point.
+- Medium: title, dominant energy, entry count, closest point, strongest positive, strongest draining.
+- Empty state: `No orbit yet`.
+
+Important boundaries:
+
+- No URL scheme.
+- No `widgetURL`.
+- No `onOpenURL`.
+- No App Intents.
+- No Share Extension.
+- No Lottie / Jitter.
+- No TestFlight.
+- No Live Activity.
+- No interactive Widget.
+- No SwiftData schema changes.
+
+Validation status:
+
+- GitHub Actions iOS Build must pass.
+- Manual Widget insertion and small / medium visual QA remain pending because there is no local Mac / Simulator.

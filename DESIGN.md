@@ -726,3 +726,145 @@ Manual validation still pending without local Mac / device:
 - Me snapshot status visual QA.
 - Widget Extension read path after App Group is introduced.
 - Widget Gallery insertion and small / medium Widget visual QA.
+
+## v0.4.2b-widget-extension / Implementation Scope
+
+Status:
+
+- Adds readonly Today Orbit Widget.
+- Adds `OrbitNoteWidget` Widget Extension target.
+- Adds App Group entitlements to the main app and Widget target.
+- Supports small and medium Widget families.
+- Keeps Deep Link for `v0.4.3-deeplink-polish`.
+- Does not modify SwiftData schema.
+- Does not add App Intents, Share Extension, Lottie / Jitter, TestFlight, Live Activity, interactive Widget behavior, remote notifications, complex charts, or weekly insights.
+
+### App Group
+
+Identifier:
+
+- `group.com.codex.orbitnote`
+
+Files:
+
+- Main app entitlement: `OrbitNote/OrbitNote.entitlements`
+- Widget entitlement: `OrbitNoteWidget/OrbitNoteWidget.entitlements`
+
+Purpose:
+
+- Main app writes `OrbitWidgetSnapshot.json`.
+- Widget reads `OrbitWidgetSnapshot.json`.
+- App Group shares JSON snapshot data only.
+- App Group does not share the SwiftData store.
+
+### Snapshot Storage
+
+`WidgetSnapshotService.containerURL()` now prefers:
+
+- `FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.codex.orbitnote")`
+
+Fallback:
+
+- Application Support directory.
+
+The fallback keeps app data operations non-blocking if App Group access is unavailable in CI or a local unsigned build.
+
+### Widget Reader
+
+`OrbitWidgetSnapshotReader` lives inside the Widget extension.
+
+Rules:
+
+- Reads `OrbitWidgetSnapshot.json` from App Group.
+- Returns nil when the file is missing or decode fails.
+- Does not import SwiftData.
+- Does not use `OrbitStore`.
+- Does not access main app data directly.
+
+Shared model:
+
+- `OrbitWidgetSnapshot.swift` is included in both the app target and Widget target.
+- The model stays lightweight and `Codable`.
+
+### Widget Provider
+
+Timeline:
+
+- Simple readonly timeline.
+- Refreshes every 45 minutes.
+- Uses snapshot data when available.
+- Falls back to empty state when unavailable.
+
+Families:
+
+- `.systemSmall`
+- `.systemMedium`
+
+### Widget UI
+
+Visual direction:
+
+- Radium Noir + Aurora Glass, reduced for Widget constraints.
+- Near-black background.
+- High-contrast text.
+- Small amounts of cyan, pink-orange, and mist-purple.
+- No animation.
+- No complex Material stack.
+
+Small Widget:
+
+- `Today Orbit`
+- Dominant energy.
+- Today's record count.
+- Closest orbit point.
+- Empty state: `No orbit yet`.
+
+Medium Widget:
+
+- `Today Orbit`
+- Dominant energy.
+- Today's record count.
+- Closest orbit point.
+- Strongest positive point.
+- Strongest draining point.
+- Minimal orbit-line / point visual atmosphere.
+
+### Explicitly Not Included
+
+- URL scheme.
+- `widgetURL`.
+- `orbitnote://orbit`.
+- App `onOpenURL`.
+- DeepLinkRouter.
+- App Intents.
+- Share Extension.
+- Lottie / Jitter.
+- TestFlight.
+- Remote notifications.
+- Interactive Widget.
+- Live Activity.
+- Complex charts.
+- Weekly insights.
+- SwiftData schema changes.
+
+### CI Notes
+
+The GitHub Actions iOS build may use:
+
+- `CODE_SIGNING_ALLOWED=NO`
+- `CODE_SIGNING_REQUIRED=NO`
+
+This avoids blocking CI on Apple Developer App Group signing while still validating that the project, app target, and Widget extension compile.
+
+### Manual Validation Status
+
+Still pending without local Mac / Simulator:
+
+- Widget target appears in Xcode.
+- App Group entitlement capability is accepted by a real signing team.
+- Main app writes snapshot into the App Group container.
+- Widget reads snapshot from the App Group container.
+- Small Widget layout.
+- Medium Widget layout.
+- Widget Gallery insertion.
+- Device refresh cadence.

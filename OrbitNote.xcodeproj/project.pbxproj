@@ -35,10 +35,42 @@
 		000000000000000000000119 /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000219 /* ReminderService.swift */; };
 		00000000000000000000011A /* OrbitWidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* OrbitWidgetSnapshot.swift */; };
 		00000000000000000000011B /* WidgetSnapshotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021B /* WidgetSnapshotService.swift */; };
+		00000000000000000000011C /* OrbitNoteWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000223 /* OrbitNoteWidgetBundle.swift */; };
+		00000000000000000000011D /* OrbitNoteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000222 /* OrbitNoteWidget.swift */; };
+		00000000000000000000011E /* OrbitWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000220 /* OrbitWidgetProvider.swift */; };
+		00000000000000000000011F /* OrbitWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000221 /* OrbitWidgetView.swift */; };
+		000000000000000000000120 /* OrbitWidgetSnapshotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021F /* OrbitWidgetSnapshotReader.swift */; };
+		000000000000000000000121 /* OrbitWidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* OrbitWidgetSnapshot.swift */; };
+		000000000000000000000122 /* OrbitNoteWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 000000000000000000000002 /* OrbitNoteWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000000503 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000601 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000502;
+			remoteInfo = OrbitNoteWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		000000000000000000000703 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				000000000000000000000122 /* OrbitNoteWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		000000000000000000000001 /* OrbitNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrbitNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000002 /* OrbitNoteWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OrbitNoteWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		000000000000000000000201 /* OrbitNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteApp.swift; sourceTree = "<group>"; };
 		000000000000000000000202 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -67,10 +99,25 @@
 		000000000000000000000219 /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/ReminderService.swift; sourceTree = "<group>"; };
 		00000000000000000000021A /* OrbitWidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/OrbitWidgetSnapshot.swift; sourceTree = "<group>"; };
 		00000000000000000000021B /* WidgetSnapshotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/WidgetSnapshotService.swift; sourceTree = "<group>"; };
+		00000000000000000000021C /* OrbitNote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrbitNote.entitlements; sourceTree = "<group>"; };
+		00000000000000000000021D /* OrbitNoteWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrbitNoteWidget.entitlements; sourceTree = "<group>"; };
+		00000000000000000000021E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00000000000000000000021F /* OrbitWidgetSnapshotReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitWidgetSnapshotReader.swift; sourceTree = "<group>"; };
+		000000000000000000000220 /* OrbitWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitWidgetProvider.swift; sourceTree = "<group>"; };
+		000000000000000000000221 /* OrbitWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitWidgetView.swift; sourceTree = "<group>"; };
+		000000000000000000000222 /* OrbitNoteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteWidget.swift; sourceTree = "<group>"; };
+		000000000000000000000223 /* OrbitNoteWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteWidgetBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		000000000000000000000301 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000302 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -84,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000402 /* OrbitNote */,
+				000000000000000000000404 /* OrbitNoteWidget */,
 				000000000000000000000403 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,6 +141,7 @@
 			children = (
 				000000000000000000000201 /* OrbitNoteApp.swift */,
 				000000000000000000000200 /* Assets.xcassets */,
+				00000000000000000000021C /* OrbitNote.entitlements */,
 				000000000000000000000202 /* RootView.swift */,
 				000000000000000000000203 /* OrbitEntry.swift */,
 				000000000000000000000213 /* OrbitEntryModel.swift */,
@@ -127,8 +176,23 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000001 /* OrbitNote.app */,
+				000000000000000000000002 /* OrbitNoteWidget.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		000000000000000000000404 /* OrbitNoteWidget */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000021D /* OrbitNoteWidget.entitlements */,
+				00000000000000000000021E /* Info.plist */,
+				000000000000000000000223 /* OrbitNoteWidgetBundle.swift */,
+				000000000000000000000222 /* OrbitNoteWidget.swift */,
+				000000000000000000000220 /* OrbitWidgetProvider.swift */,
+				000000000000000000000221 /* OrbitWidgetView.swift */,
+				00000000000000000000021F /* OrbitWidgetSnapshotReader.swift */,
+			);
+			path = OrbitNoteWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,15 +205,34 @@
 				000000000000000000000701 /* Sources */,
 				000000000000000000000301 /* Frameworks */,
 				000000000000000000000702 /* Resources */,
+				000000000000000000000703 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				000000000000000000000504 /* PBXTargetDependency */,
 			);
 			name = OrbitNote;
 			productName = OrbitNote;
 			productReference = 000000000000000000000001 /* OrbitNote.app */;
 			productType = "com.apple.product-type.application";
+		};
+		000000000000000000000502 /* OrbitNoteWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000903 /* Build configuration list for PBXNativeTarget "OrbitNoteWidget" */;
+			buildPhases = (
+				000000000000000000000705 /* Sources */,
+				000000000000000000000302 /* Frameworks */,
+				000000000000000000000704 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrbitNoteWidget;
+			productName = OrbitNoteWidget;
+			productReference = 000000000000000000000002 /* OrbitNoteWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -162,6 +245,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					000000000000000000000501 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					000000000000000000000502 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -180,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				000000000000000000000501 /* OrbitNote */,
+				000000000000000000000502 /* OrbitNoteWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -190,6 +277,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				000000000000000000000100 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000704 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +324,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		000000000000000000000705 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000000000000000000011C /* OrbitNoteWidgetBundle.swift in Sources */,
+				00000000000000000000011D /* OrbitNoteWidget.swift in Sources */,
+				00000000000000000000011E /* OrbitWidgetProvider.swift in Sources */,
+				00000000000000000000011F /* OrbitWidgetView.swift in Sources */,
+				000000000000000000000120 /* OrbitWidgetSnapshotReader.swift in Sources */,
+				000000000000000000000121 /* OrbitWidgetSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000000504 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000502 /* OrbitNoteWidget */;
+			targetProxy = 000000000000000000000503 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		000000000000000000000801 /* Debug */ = {
@@ -352,6 +467,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OrbitNote/OrbitNote.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -382,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OrbitNote/OrbitNote.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -408,6 +525,58 @@
 			};
 			name = Release;
 		};
+		000000000000000000000805 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = OrbitNoteWidget/OrbitNoteWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OrbitNoteWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.orbitnote.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		000000000000000000000806 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = OrbitNoteWidget/OrbitNoteWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OrbitNoteWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.orbitnote.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -425,6 +594,15 @@
 			buildConfigurations = (
 				000000000000000000000801 /* Debug */,
 				000000000000000000000802 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000903 /* Build configuration list for PBXNativeTarget "OrbitNoteWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000805 /* Debug */,
+				000000000000000000000806 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
