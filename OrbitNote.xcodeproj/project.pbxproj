@@ -32,6 +32,7 @@
 		000000000000000000000116 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000216 /* ShareSheet.swift */; };
 		000000000000000000000117 /* ToastBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000217 /* ToastBanner.swift */; };
 		000000000000000000000118 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000218 /* OnboardingView.swift */; };
+		000000000000000000000119 /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000219 /* ReminderService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		000000000000000000000216 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components/ShareSheet.swift; sourceTree = "<group>"; };
 		000000000000000000000217 /* ToastBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components/ToastBanner.swift; sourceTree = "<group>"; };
 		000000000000000000000218 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Onboarding/OnboardingView.swift; sourceTree = "<group>"; };
+		000000000000000000000219 /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/ReminderService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				000000000000000000000205 /* OrbitStore.swift */,
 				000000000000000000000214 /* OrbitSeedData.swift */,
 				000000000000000000000215 /* OrbitExportService.swift */,
+				000000000000000000000219 /* ReminderService.swift */,
 				000000000000000000000204 /* OrbitTheme.swift */,
 				000000000000000000000206 /* GlassCard.swift */,
 				000000000000000000000207 /* Pills.swift */,
@@ -215,6 +218,7 @@
 				000000000000000000000116 /* ShareSheet.swift in Sources */,
 				000000000000000000000117 /* ToastBanner.swift in Sources */,
 				000000000000000000000118 /* OnboardingView.swift in Sources */,
+				000000000000000000000119 /* ReminderService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

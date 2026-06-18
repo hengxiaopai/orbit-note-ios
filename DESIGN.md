@@ -538,3 +538,92 @@ Do not add:
 - Multiple reminders.
 - Streaks or check-in pressure.
 - SwiftData schema expansion.
+
+## v0.4.1-local-notification / Implementation Scope
+
+Status:
+
+- Implements local evening reminder only.
+- Does not add Widget target.
+- Does not add App Group.
+- Does not add Deep Link.
+- Does not modify SwiftData schema.
+- Does not add App Intents, Share Extension, Lottie / Jitter, TestFlight, Focus Mode, remote push, multiple reminders, streaks, or notification actions.
+
+### ReminderService
+
+- Uses `UserNotifications`.
+- Fixed notification identifier: `orbitNote.eveningReminder`.
+- Reads current notification permission status.
+- Requests notification permission only after the user enables the reminder.
+- Schedules one daily repeating reminder with `UNCalendarNotificationTrigger`.
+- Cancels the pending reminder when the user turns the setting off.
+
+Default notification copy:
+
+- Title: `Check your orbit`
+- Body: `What stayed close to your attention today?`
+
+### Reminder Settings
+
+Settings live in Me.
+
+Controls:
+
+- Toggle: `Evening orbit reminder`
+- DatePicker: reminder time
+- Permission status row: `Not requested` / `Allowed` / `Not allowed`
+
+AppStorage keys:
+
+- `orbitNote.reminderEnabled`
+- `orbitNote.reminderHour`
+- `orbitNote.reminderMinute`
+
+Default time:
+
+- 21:30
+
+Behavior:
+
+- Enabling the toggle requests permission if status is not requested.
+- If permission is allowed, schedule the daily reminder.
+- If permission is denied, turn the toggle back off and show: `Notifications are disabled. You can enable them in Settings.`
+- Changing the time while enabled reschedules the single daily reminder.
+- Turning the toggle off cancels the pending reminder.
+
+### Feedback
+
+Uses existing ToastBanner style:
+
+- Reminder scheduled.
+- Reminder turned off.
+- Could not schedule reminder.
+- Notifications disabled / permission denied.
+
+### Validation Status
+
+GitHub Actions:
+
+- Must keep iOS Build passing.
+
+Manual validation still pending without local Mac / device:
+
+- Permission prompt.
+- Allowed permission flow.
+- Denied permission flow.
+- Pending notification exists after enabling.
+- Pending notification removed after disabling.
+- Time change reschedules the reminder.
+- Daily repeat delivery behavior.
+
+### v0.4.2 Handoff
+
+Widget remains unimplemented and is reserved for `v0.4.2-widget-readonly`.
+
+Before `v0.4.2`, keep the Widget plan unchanged:
+
+- Widget should not directly read SwiftData.
+- Main app should write `OrbitWidgetSnapshot.json`.
+- Widget should read snapshot JSON through App Group.
+- App Group should not share the SwiftData store.
