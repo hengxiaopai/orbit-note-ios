@@ -32,4 +32,6 @@ jobs:
             -scheme OrbitNote \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build \
-            clean build
+            clean build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO

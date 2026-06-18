@@ -12,13 +12,17 @@ enum WidgetSnapshotError: LocalizedError {
 }
 
 enum WidgetSnapshotService {
+    static let appGroupIdentifier = "group.com.codex.orbitnote"
     static let fileName = "OrbitWidgetSnapshot.json"
 
     static func containerURL() throws -> URL {
-        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-        guard let url = urls.first else {
+        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)
+            ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+
+        guard let url else {
             throw WidgetSnapshotError.applicationSupportUnavailable
         }
+
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
     }
