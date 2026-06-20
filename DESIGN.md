@@ -1098,6 +1098,70 @@ Do not start these in v0.5 unless the plan is explicitly revised:
 
 Start with:
 
-- `v0.5.0-validation-run`
+- `v0.5.0-ci-runtime-smoke`
 
-That release should not add features. It should execute the manual checklist, record findings, and produce a focused fix list for `v0.5.1-runtime-fixes`.
+Because there is no local Mac available, that release should first strengthen GitHub Actions macOS/Xcode smoke coverage. It should not mark manual validation as passed.
+
+After a Mac / Simulator is available, run the manual checklist, record findings, and produce a focused fix list for `v0.5.1-runtime-fixes`.
+
+## v0.5.0-ci-runtime-smoke / CI Validation Hardening
+
+Status:
+
+- CI-only release for Windows-based development.
+- Does not change Swift code.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not change Widget UI.
+- Does not change Deep Link behavior.
+- Does not change notification behavior.
+- Does not change App Group behavior.
+
+### CI Coverage
+
+GitHub Actions now checks:
+
+- macOS runner version.
+- Xcode version and selected developer directory.
+- Available iOS runtimes.
+- Available iPhone Simulators.
+- Xcode project and scheme listing.
+- Main app build for iOS Simulator.
+- `OrbitNoteWidget` target build for iOS Simulator.
+- Xcode build log artifacts for easier CI failure triage.
+
+The smoke script lives at:
+
+- `scripts/ci/ios_runtime_smoke.sh`
+
+The script intentionally checks runtime and device availability without installing or launching the app. This keeps CI useful and stable while avoiding a fragile substitute for manual Simulator QA.
+
+### What CI Still Does Not Prove
+
+Manual validation remains required for:
+
+- Simulator launch.
+- SwiftData seed, CRUD, and restart persistence.
+- Notification permission prompt.
+- Notification delivery.
+- Widget Gallery insertion.
+- Small and medium Widget visual QA.
+- App Group signed container behavior.
+- Widget snapshot refresh in a live Widget.
+- Widget tap deep link behavior.
+- iPhone SE layout.
+
+### v0.5 Sequencing Update
+
+While no local Mac is available:
+
+- Prefer CI hardening and documentation work.
+- Do not record manual validation results.
+- Do not start App Intents, Interactive Widget, Live Activity, Share Extension, TestFlight, or SwiftData schema expansion.
+
+When Mac access becomes available:
+
+- Run `docs/MANUAL_VALIDATION.md`.
+- Record real device, OS, Xcode, result, and notes.
+- Convert failures into focused `v0.5.1-runtime-fixes` issues.

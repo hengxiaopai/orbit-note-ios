@@ -2,13 +2,14 @@
 
 This checklist covers the manual validation still required for the v0.4 feature chain: local notifications, Today Orbit Widget, App Group snapshot sharing, deep links, and baseline regressions.
 
-GitHub Actions verifies that the Xcode project compiles on macOS. It does not replace Simulator, Widget Gallery, notification delivery, App Group signing, or real-device validation.
+GitHub Actions verifies that the Xcode project compiles on macOS. As of `v0.5.0-ci-runtime-smoke`, it also checks runner/Xcode diagnostics, iOS runtime availability, iPhone Simulator availability, the main app build, and the `OrbitNoteWidget` target build. It does not replace Simulator launch, Widget Gallery, notification delivery, App Group signing, or real-device validation.
 
 ## Validation Status Overview
 
 | Area | Status | Required device | Notes |
 | --- | --- | --- | --- |
-| GitHub Actions build | Passed | GitHub macOS runner | Confirms project compile only. |
+| GitHub Actions build | Passed | GitHub macOS runner | Confirms project compile. |
+| GitHub Actions runtime smoke | Pending latest run | GitHub macOS runner | Checks Xcode diagnostics, iOS 17+ runtime availability, iPhone Simulator availability, app build, and Widget target build. |
 | App launch | Pending | Mac + iOS Simulator | Must verify launch and first screen manually. |
 | SwiftData seed/load | Pending | Mac + iOS Simulator | Confirm first-launch sample data and subsequent load. |
 | Add/edit/delete orbit entry | Pending | Mac + iOS Simulator | Validate CRUD and UI refresh. |
@@ -34,6 +35,33 @@ GitHub Actions verifies that the Xcode project compiles on macOS. It does not re
 - Optional real iPhone for notification delivery, Widget behavior, and App Group signing confidence.
 - Apple Developer account is only required for full App Group capability signing and real-device validation.
 - GitHub Actions CI is not a replacement for Widget Gallery, notification delivery, App Group signing, or deep link launch validation.
+
+## CI Smoke Coverage
+
+`v0.5.0-ci-runtime-smoke` strengthens GitHub Actions so Windows-based development can catch more Apple-tooling issues before manual validation is possible.
+
+CI now checks:
+
+- macOS runner and Xcode version.
+- Selected Xcode developer directory.
+- Available iOS runtimes.
+- Available iPhone Simulators.
+- Xcode project and scheme listing.
+- Main app build for iOS Simulator.
+- `OrbitNoteWidget` target build for iOS Simulator.
+- Xcode build logs as artifacts.
+
+CI still does not prove:
+
+- The app launches in Simulator.
+- SwiftData seed, CRUD, and restart persistence work at runtime.
+- Notification permission UI appears correctly.
+- Notifications are delivered.
+- The Widget appears in Widget Gallery.
+- Small or medium Widgets are visually correct.
+- App Group signing works on a real device.
+- Widget tap deep links route correctly.
+- iPhone SE layout is readable.
 
 ## Simulator Validation Checklist
 

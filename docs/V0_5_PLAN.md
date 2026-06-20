@@ -35,7 +35,40 @@ Before v0.5 implementation work starts, confirm:
 
 ## 3. Proposed Milestones
 
-### v0.5.0-validation-run
+### v0.5.0-ci-runtime-smoke
+
+Goal:
+
+- Strengthen GitHub Actions macOS/Xcode validation while local Mac access is unavailable.
+- Keep manual validation explicitly pending.
+- Do not add new product functionality.
+
+Scope:
+
+- Print macOS runner and Xcode environment diagnostics.
+- List available iOS runtimes and iPhone Simulators.
+- List the Xcode project and schemes.
+- Build the main app for iOS Simulator.
+- Build the `OrbitNoteWidget` target for iOS Simulator.
+- Upload Xcode build logs for CI failure triage.
+
+Non-goal:
+
+- No app install.
+- No app launch.
+- No Widget Gallery validation.
+- No notification delivery validation.
+- No App Group signing validation.
+- No manual validation result recording.
+- No Swift, SwiftData schema, UI, entitlement, or Xcode project changes.
+
+Acceptance:
+
+- GitHub Actions iOS Build passes.
+- CI fails clearly if no iOS 17+ runtime or available iPhone Simulator is present.
+- Documentation states that manual Simulator / real-device validation remains pending.
+
+### v0.5.x-manual-validation-run
 
 Goal:
 
@@ -192,3 +225,10 @@ For each v0.5 turn:
 - Tag only after merge.
 - Keep manual validation status explicit.
 - If a manual test is still pending, state the exact device or environment needed.
+
+Current sequence while no local Mac is available:
+
+1. Complete `v0.5.0-ci-runtime-smoke`.
+2. Keep `docs/MANUAL_VALIDATION.md` pending.
+3. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+4. Start `v0.5.1-runtime-fixes` only from real validation findings or CI failures.

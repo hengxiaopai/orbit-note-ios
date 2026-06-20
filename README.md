@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.4.4-manual-validation-checklist`
+Current release: `v0.5.0-planning`
 
-Current implementation track: `v0.5-planning`
+Current implementation track: `v0.5.0-ci-runtime-smoke`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -28,6 +28,8 @@ Current implementation track: `v0.5-planning`
 - `v0.4.3-deeplink-polish` tag and GitHub pre-release created.
 - `v0.4.4-manual-validation-checklist` completed.
 - `v0.4.4-manual-validation-checklist` tag and GitHub pre-release created.
+- `v0.5.0-planning` completed.
+- `v0.5.0-planning` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -86,6 +88,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Widget deep link routing to Today Orbit.
 - Manual validation checklist for v0.4.
 - v0.5 validation-first plan.
+- GitHub Actions macOS/Xcode CI runtime smoke checks.
 
 ## Tech Stack
 
@@ -133,12 +136,13 @@ File names include the export date, for example:
 - `v0.4.3-deeplink-polish` Widget tap opens the app to Today Orbit through `orbitnote://today`.
 - `v0.4.4-manual-validation-checklist` Documentation-only manual validation checklist.
 - `v0.5.0-planning` Documentation-only validation-first v0.5 plan.
+- `v0.5.0-ci-runtime-smoke` Stronger GitHub Actions macOS/Xcode build and simulator availability smoke checks.
 
 ## Roadmap
 
 - `v0.3` JSON / CSV export and feedback states.
 - `v0.4` Evening reminders and readonly Today Orbit Widget.
-- `v0.5` App Intents and quick capture.
+- `v0.5` Validation-first runtime hardening before new quick-capture surfaces.
 - `v0.6` Orbit share cards and light motion.
 - `v1.0` Public beta.
 
@@ -439,9 +443,9 @@ Adds:
 
 Recommended first v0.5 step:
 
-- `v0.5.0-validation-run`
+- `v0.5.0-ci-runtime-smoke`
 
-This should execute the core checks from [Manual validation checklist](docs/MANUAL_VALIDATION.md) before adding new product surfaces.
+This strengthens GitHub Actions macOS/Xcode validation while local Mac access is unavailable. It does not replace the core checks from [Manual validation checklist](docs/MANUAL_VALIDATION.md).
 
 No implementation changes:
 
@@ -453,3 +457,44 @@ No implementation changes:
 - No Deep Link changes.
 - No notification changes.
 - No v0.5 feature implementation.
+
+## v0.5.0 CI Runtime Smoke
+
+CI-only validation hardening for Windows-based development.
+
+Adds:
+
+- GitHub Actions runner and Xcode environment diagnostics.
+- Project and scheme listing before build.
+- Simulator runtime availability smoke check.
+- iOS 17+ runtime presence check.
+- Available iPhone Simulator presence check.
+- Main app build for iOS Simulator.
+- `OrbitNoteWidget` target build for iOS Simulator.
+- Xcode build log artifact upload.
+
+This release does not add product functionality.
+
+No implementation changes:
+
+- No Swift code changes.
+- No SwiftData schema changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group behavior changes.
+
+Manual validation remains pending:
+
+- App launch in Simulator.
+- Widget Gallery insertion.
+- Widget visual QA.
+- Notification permission prompt.
+- Notification delivery.
+- App Group real-device signing.
+- SwiftData CRUD and persistence smoke test.
+- iPhone SE layout check.
+
+The CI smoke check improves confidence that macOS/Xcode tooling can build the app and Widget, but it does not replace hands-on Simulator or real-device validation.
