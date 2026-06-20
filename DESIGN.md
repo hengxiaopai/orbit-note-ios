@@ -975,3 +975,66 @@ Still pending without local Mac / Simulator:
 - App Group real-device signing.
 - Snapshot actual Widget read.
 - Notification permission and delivery.
+
+## v0.4.4-manual-validation-checklist / Validation Strategy
+
+Status:
+
+- Documentation-only release.
+- Adds `docs/MANUAL_VALIDATION.md`.
+- Does not change Swift code.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not add v0.5 functionality.
+
+### Why This Exists
+
+The v0.4 chain now has several iOS surfaces that compile in GitHub Actions but still require hands-on validation:
+
+- Local notification permission and delivery.
+- Widget Gallery discovery.
+- Small Widget layout.
+- Medium Widget layout.
+- App Group capability signing.
+- App Group JSON snapshot write/read.
+- Widget tap deep link.
+- Deep link cold launch and warm routing.
+
+GitHub Actions macOS CI has validated that the app and Widget extension compile. It cannot validate Widget Gallery behavior, notification delivery, signed App Group capability behavior, real Widget refresh behavior, or user-visible Simulator layout.
+
+### Manual Validation Source Of Truth
+
+Use:
+
+- `docs/MANUAL_VALIDATION.md`
+
+Coverage:
+
+- Validation status overview.
+- Environment prerequisites.
+- Simulator validation checklist.
+- Notification validation checklist.
+- Widget validation checklist.
+- App Group / snapshot validation checklist.
+- Deep link validation checklist.
+- Regression checklist.
+- Known pending items.
+- Pass / fail template.
+
+### Recommendation Before v0.5
+
+Before implementing v0.5 features, complete at least one manual validation pass on:
+
+- iOS 17+ Simulator.
+- Small Widget.
+- Medium Widget.
+- `orbitnote://today` deep link.
+- Notification permission flow.
+
+For production confidence, also complete a real-device pass with:
+
+- Apple Developer signing.
+- App Group capability enabled.
+- Notification delivery.
+- Widget snapshot read from the App Group container.
