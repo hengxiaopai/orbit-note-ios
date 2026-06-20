@@ -49,7 +49,6 @@ jobs:
             -project OrbitNote.xcodeproj \
             -target OrbitNoteWidget \
             -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath build-widget \
             clean build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
@@ -61,5 +60,4 @@ jobs:
           name: xcode-build-logs
           path: |
             build/Logs
-            build-widget/Logs
           if-no-files-found: ignore
