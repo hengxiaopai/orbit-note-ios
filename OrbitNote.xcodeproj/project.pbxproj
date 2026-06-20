@@ -42,6 +42,7 @@
 		000000000000000000000120 /* OrbitWidgetSnapshotReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021F /* OrbitWidgetSnapshotReader.swift */; };
 		000000000000000000000121 /* OrbitWidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000021A /* OrbitWidgetSnapshot.swift */; };
 		000000000000000000000122 /* OrbitNoteWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 000000000000000000000002 /* OrbitNoteWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		000000000000000000000123 /* DeepLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000225 /* DeepLinkRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 		000000000000000000000221 /* OrbitWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitWidgetView.swift; sourceTree = "<group>"; };
 		000000000000000000000222 /* OrbitNoteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteWidget.swift; sourceTree = "<group>"; };
 		000000000000000000000223 /* OrbitNoteWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteWidgetBundle.swift; sourceTree = "<group>"; };
+		000000000000000000000224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		000000000000000000000225 /* DeepLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing/DeepLinkRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +144,10 @@
 			children = (
 				000000000000000000000201 /* OrbitNoteApp.swift */,
 				000000000000000000000200 /* Assets.xcassets */,
+				000000000000000000000224 /* Info.plist */,
 				00000000000000000000021C /* OrbitNote.entitlements */,
 				000000000000000000000202 /* RootView.swift */,
+				000000000000000000000225 /* DeepLinkRouter.swift */,
 				000000000000000000000203 /* OrbitEntry.swift */,
 				000000000000000000000213 /* OrbitEntryModel.swift */,
 				00000000000000000000021A /* OrbitWidgetSnapshot.swift */,
@@ -321,6 +326,7 @@
 				000000000000000000000119 /* ReminderService.swift in Sources */,
 				00000000000000000000011A /* OrbitWidgetSnapshot.swift in Sources */,
 				00000000000000000000011B /* WidgetSnapshotService.swift in Sources */,
+				000000000000000000000123 /* DeepLinkRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,13 +479,8 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Orbit Note";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OrbitNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -504,13 +505,8 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Orbit Note";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OrbitNote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

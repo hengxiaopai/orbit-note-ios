@@ -18,6 +18,7 @@ struct OrbitWidgetView: View {
         .containerBackground(for: .widget) {
             Color(red: 0.02, green: 0.025, blue: 0.035)
         }
+        .widgetURL(URL(string: "orbitnote://today"))
     }
 
     @ViewBuilder

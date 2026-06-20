@@ -283,6 +283,18 @@ struct MeView: View {
                     }
                 }
 
+                HStack {
+                    Text("Deep link")
+                        .font(OrbitTheme.caption)
+                        .foregroundStyle(OrbitTheme.textSecondary)
+                    Spacer()
+                    Text("orbitnote://today")
+                        .font(OrbitTheme.caption)
+                        .foregroundStyle(OrbitTheme.textSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+                }
+
                 Button {
                     store.refreshWidgetSnapshotFromSettings()
                 } label: {
@@ -296,6 +308,11 @@ struct MeView: View {
                 .buttonStyle(PressScaleButtonStyle())
 
                 Text("Widget snapshot is prepared for the upcoming widget version.")
+                    .font(OrbitTheme.caption)
+                    .foregroundStyle(OrbitTheme.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Text("Widget taps open Today Orbit through orbitnote://today.")
                     .font(OrbitTheme.caption)
                     .foregroundStyle(OrbitTheme.textSecondary)
                     .fixedSize(horizontal: false, vertical: true)

@@ -832,10 +832,10 @@ Medium Widget:
 ### Explicitly Not Included
 
 - URL scheme.
-- `widgetURL`.
-- `orbitnote://orbit`.
-- App `onOpenURL`.
-- DeepLinkRouter.
+- `widgetURL` was not included in v0.4.2b; it is added in v0.4.3.
+- `orbitnote://orbit` was not included in v0.4.2b; deep links are added in v0.4.3.
+- App `onOpenURL` was not included in v0.4.2b; it is added in v0.4.3.
+- `DeepLinkRouter` was not included in v0.4.2b; it is added in v0.4.3.
 - App Intents.
 - Share Extension.
 - Lottie / Jitter.
@@ -868,3 +868,110 @@ Still pending without local Mac / Simulator:
 - Medium Widget layout.
 - Widget Gallery insertion.
 - Device refresh cadence.
+
+## v0.4.3-deeplink-polish / Implementation Scope
+
+Status:
+
+- Adds minimal Widget-to-app deep link routing.
+- Adds the `orbitnote` URL scheme to the main app.
+- Adds `DeepLinkRouter`.
+- Adds `.widgetURL(URL(string: "orbitnote://today"))` to the Widget root view.
+- Keeps routing centralized in `RootView`.
+- Does not modify SwiftData schema.
+- Does not add App Intents, Universal Links, Associated Domains, Share Extension, Interactive Widget, Live Activity, TestFlight, Lottie / Jitter, remote notifications, or large navigation refactors.
+
+### URL Scheme
+
+Scheme:
+
+- `orbitnote`
+
+Supported URLs:
+
+- `orbitnote://today`
+- `orbitnote://orbit`
+- `orbitnote://timeline`
+- `orbitnote://me`
+
+Not included:
+
+- Universal Links.
+- Associated Domains.
+- External web routing.
+- Complex route parameters.
+
+### DeepLinkRouter
+
+`DeepLinkRouter` is intentionally small.
+
+Responsibilities:
+
+- Validate the URL scheme.
+- Normalize the host or path route.
+- Map known URLs to lightweight destinations.
+- Return nil for unknown URLs.
+- Avoid SwiftData, Widget target dependencies, and large router state.
+
+Destination mapping:
+
+- `.today` -> Orbit tab.
+- `.orbit` -> Orbit tab.
+- `.timeline` -> Timeline tab.
+- `.me` -> Me tab.
+
+### RootView Integration
+
+`RootView` owns `selectedTab`, so it is the single deep link handling point.
+
+Behavior:
+
+- `.onOpenURL` receives incoming URLs.
+- `DeepLinkRouter.destination(for:)` parses the URL.
+- Recognized destinations update `selectedTab`.
+- Unknown URLs are ignored without alerts.
+
+This keeps cold launch and warm routing on the same parsing path while avoiding a larger navigation system.
+
+### Widget Integration
+
+`OrbitWidgetView` sets:
+
+- `widgetURL(URL(string: "orbitnote://today"))`
+
+Behavior:
+
+- Small Widget tap opens Today Orbit.
+- Medium Widget tap opens Today Orbit.
+- No `Link` controls.
+- No multi-region Widget tap targets.
+- No App Intents.
+- No Interactive Widget behavior.
+
+### Me Status Copy
+
+Me shows a readonly status row:
+
+- `Deep link`
+- `orbitnote://today`
+
+Supporting copy:
+
+- `Widget taps open Today Orbit through orbitnote://today.`
+
+This is informational only and not a test button.
+
+### Manual Validation Status
+
+Still pending without local Mac / Simulator:
+
+- `orbitnote://today` cold launch.
+- `orbitnote://orbit` warm routing.
+- `orbitnote://timeline` warm routing.
+- `orbitnote://me` warm routing.
+- Widget tap opens Today Orbit.
+- Widget Gallery validation.
+- Small / medium Widget layout.
+- App Group real-device signing.
+- Snapshot actual Widget read.
+- Notification permission and delivery.

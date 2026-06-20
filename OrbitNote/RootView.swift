@@ -63,6 +63,9 @@ struct RootView: View {
         .onAppear {
             GlassTabBar.configure()
         }
+        .onOpenURL { url in
+            handleDeepLink(url)
+        }
         .task {
             await store.configure(modelContext: modelContext)
         }
@@ -86,6 +89,15 @@ struct RootView: View {
             }
             .preferredColorScheme(.dark)
         }
+    }
+
+    @MainActor
+    private func handleDeepLink(_ url: URL) {
+        guard let destination = DeepLinkRouter.destination(for: url) else {
+            return
+        }
+
+        selectedTab = destination.tab
     }
 }
 
