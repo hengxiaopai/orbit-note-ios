@@ -1038,3 +1038,66 @@ For production confidence, also complete a real-device pass with:
 - App Group capability enabled.
 - Notification delivery.
 - Widget snapshot read from the App Group container.
+
+## v0.5 Planning / Validation-First Strategy
+
+Status:
+
+- Documentation-only planning release.
+- Adds `docs/V0_5_PLAN.md`.
+- Does not change Swift code.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not implement v0.5 features.
+
+### Strategic Direction
+
+v0.5 should be a validation-first polish release.
+
+The priority is to move Orbit Note from "CI-compiles" to "Mac / Simulator / real-device verified" for the v0.4 feature chain:
+
+- Local notifications.
+- Today Orbit Widget.
+- App Group snapshot sharing.
+- Widget deep link routing.
+- SwiftData persistence and CRUD regression.
+- Export and onboarding regression.
+
+### Why Not Expand Yet
+
+Orbit Note should not enter account, cloud sync, AI generation, subscription, or social expansion before v0.4 runtime behavior is validated.
+
+The current product promise is local-first, quiet, and iPhone-native. v0.5 should protect that promise by proving the foundation before adding another layer.
+
+### Proposed v0.5 Shape
+
+- `v0.5.0-validation-run`: run `docs/MANUAL_VALIDATION.md` and record real results.
+- `v0.5.1-runtime-fixes`: fix only validation-discovered runtime issues.
+- `v0.5.2-polish`: small UI, copy, Widget, and empty-state polish.
+- `v0.5.3-insight-prototype`: optional lightweight local insight prototype using existing `OrbitEntry` data only.
+
+### Non-goals
+
+Do not start these in v0.5 unless the plan is explicitly revised:
+
+- Account system.
+- Cloud sync.
+- AI generation.
+- Subscription or monetization.
+- Social sharing.
+- App Intents.
+- Interactive Widget.
+- Live Activity.
+- Share Extension.
+- Push notification.
+- Large redesign.
+- SwiftData schema migration unless validation forces it.
+
+### Next Recommended Step
+
+Start with:
+
+- `v0.5.0-validation-run`
+
+That release should not add features. It should execute the manual checklist, record findings, and produce a focused fix list for `v0.5.1-runtime-fixes`.
