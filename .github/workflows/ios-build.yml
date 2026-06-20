@@ -48,8 +48,9 @@ jobs:
           xcodebuild \
             -project OrbitNote.xcodeproj \
             -target OrbitNoteWidget \
-            -destination 'generic/platform=iOS Simulator' \
-            clean build \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
 
