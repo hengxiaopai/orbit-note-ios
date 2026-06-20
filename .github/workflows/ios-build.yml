@@ -9,23 +9,30 @@ on:
 
 jobs:
   build:
-    name: Build Orbit Note
+    name: Build and Smoke Check Orbit Note
     runs-on: macos-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Show Xcode version
+      - name: Show runner and Xcode environment
         run: |
+          sw_vers
           xcodebuild -version
+          xcode-select -p
           xcrun simctl list runtimes
+          xcrun simctl list devices available
 
-      - name: List project
+      - name: List project and schemes
         run: |
           xcodebuild -list -project OrbitNote.xcodeproj
 
-      - name: Build for iOS Simulator
+      - name: Simulator runtime smoke check
+        run: |
+          bash scripts/ci/ios_runtime_smoke.sh
+
+      - name: Build app for iOS Simulator
         run: |
           xcodebuild \
             -project OrbitNote.xcodeproj \
@@ -35,3 +42,24 @@ jobs:
             clean build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
+
+      - name: Build Widget target for iOS Simulator
+        run: |
+          xcodebuild \
+            -project OrbitNote.xcodeproj \
+            -target OrbitNoteWidget \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build-widget \
+            clean build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Upload Xcode build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcode-build-logs
+          path: |
+            build/Logs
+            build-widget/Logs
+          if-no-files-found: ignore
