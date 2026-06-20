@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.4.2b-widget-extension`
+Current release: `v0.4.3-deeplink-polish`
 
-Current implementation track: `v0.4.3-deeplink-polish`
+Current implementation track: `v0.4.4-manual-validation-checklist`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -24,6 +24,8 @@ Current implementation track: `v0.4.3-deeplink-polish`
 - `v0.4.2a-widget-snapshot-infra` tag and GitHub pre-release created.
 - `v0.4.2b-widget-extension` completed.
 - `v0.4.2b-widget-extension` tag and GitHub pre-release created.
+- `v0.4.3-deeplink-polish` completed.
+- `v0.4.3-deeplink-polish` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -80,6 +82,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Main app Today Orbit Widget snapshot infrastructure.
 - Readonly Today Orbit Widget target.
 - Widget deep link routing to Today Orbit.
+- Manual validation checklist for v0.4.
 
 ## Tech Stack
 
@@ -125,6 +128,7 @@ File names include the export date, for example:
 - `v0.4.2a-widget-snapshot-infra` Main app JSON snapshot infrastructure for the future Widget.
 - `v0.4.2b-widget-extension` Readonly small and medium Today Orbit Widget using App Group JSON snapshot.
 - `v0.4.3-deeplink-polish` Widget tap opens the app to Today Orbit through `orbitnote://today`.
+- `v0.4.4-manual-validation-checklist` Documentation-only manual validation checklist.
 
 ## Roadmap
 
@@ -387,3 +391,30 @@ Manual validation still pending without local Mac / Simulator:
 - App Group real-device signing.
 - Snapshot actual Widget read.
 - Notification permission and delivery.
+
+## v0.4.4 Manual Validation Checklist
+
+Documentation-only release.
+
+Adds:
+
+- [Manual validation checklist](docs/MANUAL_VALIDATION.md)
+- Notification validation steps.
+- Widget Gallery, small Widget, and medium Widget validation steps.
+- App Group snapshot write/read validation steps.
+- Deep link cold-start and warm-routing validation steps.
+- Export, onboarding, toast, reminder, and data regression checks.
+
+No implementation changes:
+
+- No Swift code changes.
+- No SwiftData schema changes.
+- No Xcode target changes.
+- No entitlement changes.
+- No Widget target changes.
+- No App Group changes.
+- No Deep Link implementation changes.
+- No notification implementation changes.
+- No v0.5 feature implementation.
+
+Manual Mac / Simulator / real-device validation remains pending.
