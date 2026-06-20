@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.4.3-deeplink-polish`
+Current release: `v0.4.4-manual-validation-checklist`
 
-Current implementation track: `v0.4.4-manual-validation-checklist`
+Current implementation track: `v0.5-planning`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -26,6 +26,8 @@ Current implementation track: `v0.4.4-manual-validation-checklist`
 - `v0.4.2b-widget-extension` tag and GitHub pre-release created.
 - `v0.4.3-deeplink-polish` completed.
 - `v0.4.3-deeplink-polish` tag and GitHub pre-release created.
+- `v0.4.4-manual-validation-checklist` completed.
+- `v0.4.4-manual-validation-checklist` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -83,6 +85,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Readonly Today Orbit Widget target.
 - Widget deep link routing to Today Orbit.
 - Manual validation checklist for v0.4.
+- v0.5 validation-first plan.
 
 ## Tech Stack
 
@@ -129,6 +132,7 @@ File names include the export date, for example:
 - `v0.4.2b-widget-extension` Readonly small and medium Today Orbit Widget using App Group JSON snapshot.
 - `v0.4.3-deeplink-polish` Widget tap opens the app to Today Orbit through `orbitnote://today`.
 - `v0.4.4-manual-validation-checklist` Documentation-only manual validation checklist.
+- `v0.5.0-planning` Documentation-only validation-first v0.5 plan.
 
 ## Roadmap
 
@@ -418,3 +422,34 @@ No implementation changes:
 - No v0.5 feature implementation.
 
 Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5 Planning
+
+Documentation-only planning release.
+
+Adds:
+
+- [v0.5 validation-first plan](docs/V0_5_PLAN.md)
+- v0.5 positioning as a validation-first polish release.
+- Release gates before new feature expansion.
+- Proposed milestones from validation run through focused polish.
+- Explicit non-goals.
+- Risk register.
+- Suggested Codex workflow for v0.5 PRs.
+
+Recommended first v0.5 step:
+
+- `v0.5.0-validation-run`
+
+This should execute the core checks from [Manual validation checklist](docs/MANUAL_VALIDATION.md) before adding new product surfaces.
+
+No implementation changes:
+
+- No Swift code changes.
+- No SwiftData schema changes.
+- No Xcode target changes.
+- No entitlement changes.
+- No Widget changes.
+- No Deep Link changes.
+- No notification changes.
+- No v0.5 feature implementation.
