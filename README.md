@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.4.2a-widget-snapshot-infra`
+Current release: `v0.4.2b-widget-extension`
 
-Current implementation track: `v0.4.2b-widget-extension`
+Current implementation track: `v0.4.3-deeplink-polish`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -22,6 +22,8 @@ Current implementation track: `v0.4.2b-widget-extension`
 - `v0.4.1-local-notification` tag and GitHub pre-release created.
 - `v0.4.2a-widget-snapshot-infra` completed.
 - `v0.4.2a-widget-snapshot-infra` tag and GitHub pre-release created.
+- `v0.4.2b-widget-extension` completed.
+- `v0.4.2b-widget-extension` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -77,6 +79,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Local evening reminder settings.
 - Main app Today Orbit Widget snapshot infrastructure.
 - Readonly Today Orbit Widget target.
+- Widget deep link routing to Today Orbit.
 
 ## Tech Stack
 
@@ -121,6 +124,7 @@ File names include the export date, for example:
 - `v0.4.1-local-notification` UserNotifications local evening reminder.
 - `v0.4.2a-widget-snapshot-infra` Main app JSON snapshot infrastructure for the future Widget.
 - `v0.4.2b-widget-extension` Readonly small and medium Today Orbit Widget using App Group JSON snapshot.
+- `v0.4.3-deeplink-polish` Widget tap opens the app to Today Orbit through `orbitnote://today`.
 
 ## Roadmap
 
@@ -321,8 +325,8 @@ Widget display:
 Important boundaries:
 
 - No URL scheme.
-- No `widgetURL`.
-- No `onOpenURL`.
+- `widgetURL` was not included in v0.4.2b; it is added in v0.4.3.
+- `onOpenURL` was not included in v0.4.2b; it is added in v0.4.3.
 - No App Intents.
 - No Share Extension.
 - No Lottie / Jitter.
@@ -335,3 +339,51 @@ Validation status:
 
 - GitHub Actions iOS Build must pass.
 - Manual Widget insertion and small / medium visual QA remain pending because there is no local Mac / Simulator.
+
+## v0.4.3 Deep Link Polish
+
+Implementation scope:
+
+- Adds the `orbitnote` URL scheme to the main app.
+- Adds lightweight deep link routing.
+- Widget uses `widgetURL(URL(string: "orbitnote://today"))`.
+- Widget taps open the app to Today Orbit / Orbit tab.
+- App can route warm deep links to Orbit, Timeline, or Me.
+
+Supported URLs:
+
+- `orbitnote://today`
+- `orbitnote://orbit`
+- `orbitnote://timeline`
+- `orbitnote://me`
+
+Routing:
+
+- `orbitnote://today` -> Orbit tab.
+- `orbitnote://orbit` -> Orbit tab.
+- `orbitnote://timeline` -> Timeline tab.
+- `orbitnote://me` -> Me tab.
+
+Important boundaries:
+
+- No App Intents.
+- No Universal Links.
+- No Associated Domains.
+- No Share Extension.
+- No Interactive Widget.
+- No Live Activity.
+- No SwiftData schema changes.
+- No Widget direct SwiftData access.
+- No complex route parameters.
+- No multi-region Widget links.
+
+Manual validation still pending without local Mac / Simulator:
+
+- Deep link cold launch.
+- Deep link warm routing.
+- Widget tap routing.
+- Widget Gallery validation.
+- Small / medium Widget layout.
+- App Group real-device signing.
+- Snapshot actual Widget read.
+- Notification permission and delivery.
