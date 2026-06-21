@@ -2,7 +2,7 @@
 
 This checklist covers the manual validation still required for the v0.4 feature chain: local notifications, Today Orbit Widget, App Group snapshot sharing, deep links, and baseline regressions.
 
-GitHub Actions verifies that the Xcode project compiles on macOS. As of `v0.5.0-ci-runtime-smoke`, it also checks runner/Xcode diagnostics, iOS runtime availability, iPhone Simulator availability, the main app build, and the `OrbitNoteWidget` target build. It does not replace Simulator launch, Widget Gallery, notification delivery, App Group signing, or real-device validation.
+GitHub Actions verifies that the Xcode project compiles on macOS. As of `v0.5.0-ci-runtime-smoke`, it also checks runner/Xcode diagnostics, iOS runtime availability, iPhone Simulator availability, the main app build, and the `OrbitNoteWidget` target build. As of `v0.5.1-windows-safe-workflow`, it also syntax-checks CI shell scripts with `bash -n`. It does not replace Simulator launch, Widget Gallery, notification delivery, App Group signing, or real-device validation.
 
 ## Validation Status Overview
 
@@ -47,6 +47,7 @@ CI now checks:
 - Available iOS runtimes.
 - Available iPhone Simulators.
 - Xcode project and scheme listing.
+- CI shell script syntax with `bash -n`.
 - Main app build for iOS Simulator.
 - `OrbitNoteWidget` target build for iOS Simulator.
 - Xcode build logs as artifacts.

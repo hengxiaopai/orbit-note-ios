@@ -94,30 +94,58 @@ Acceptance:
 - Results are recorded with date, tester, device, OS, Xcode, result, and notes.
 - Failures are converted into small follow-up issues or a v0.5.1 fix list.
 
-### v0.5.1-runtime-fixes
+### v0.5.1-windows-safe-workflow
 
 Goal:
 
-- Fix issues discovered in validation.
+- Harden Windows-based iOS development workflow without requiring local Mac / Simulator visual QA.
+- Keep CI useful, explicit, and low-maintenance.
+- Keep manual validation explicitly pending.
 
-Possible scope:
+Scope:
 
-- Widget layout clipping or readability issues.
-- App Group fallback behavior.
-- Snapshot refresh timing.
-- Deep link routing edge cases.
-- Notification scheduling or cancellation issues.
-- Me status copy that is unclear in real use.
+- GitHub Actions official action maintenance.
+- CI shell script syntax checks.
+- Windows development guide.
+- GitHub HTTPS recovery documentation.
+- Bundle backup and temporary proxy push workflow.
 
 Non-goal:
 
-- No feature expansion.
+- No Swift feature code.
+- No SwiftUI UI polish that needs visual QA.
+- No SwiftData schema change.
+- No Xcode project or entitlement change.
+- No Widget, Deep Link, Notification, or App Group behavior change.
+- No manual validation result recording.
 
 Acceptance:
 
-- Every fix maps to a validation finding.
 - CI passes.
-- A focused manual re-test confirms the fix.
+- Modified files are limited to workflow, CI scripts, and documentation.
+- `docs/WINDOWS_DEVELOPMENT.md` documents safe Windows workflow and GitHub connectivity recovery.
+- Manual validation remains pending.
+
+### v0.5.x-runtime-fixes-after-validation
+
+Goal:
+
+- Fix issues discovered by real Mac / Simulator / device validation or actionable CI failures.
+
+Possible scope:
+
+- Widget layout clipping or readability issues found on Simulator.
+- App Group fallback behavior confirmed by runtime testing.
+- Snapshot refresh timing issues found on device or Simulator.
+- Deep link routing edge cases from cold or warm launch tests.
+- Notification scheduling or cancellation issues found through permission and delivery validation.
+- Me status copy that is unclear in real use.
+
+Acceptance:
+
+- Every fix maps to a validation finding or CI failure.
+- CI passes.
+- A focused manual re-test confirms the fix when the finding came from manual validation.
 
 ### v0.5.2-polish
 
@@ -230,5 +258,6 @@ Current sequence while no local Mac is available:
 
 1. Complete `v0.5.0-ci-runtime-smoke`.
 2. Keep `docs/MANUAL_VALIDATION.md` pending.
-3. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-4. Start `v0.5.1-runtime-fixes` only from real validation findings or CI failures.
+3. Complete `v0.5.1-windows-safe-workflow` for CI maintenance and developer workflow hardening.
+4. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+5. Start runtime fixes only from real validation findings or actionable CI failures.
