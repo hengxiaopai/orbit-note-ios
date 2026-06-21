@@ -180,7 +180,39 @@ Acceptance:
 - Manual validation remains pending.
 - Modified files are limited to documentation unless a specific copy-only Swift change is justified.
 
-### v0.5.3-insight-prototype
+### v0.5.3-ci-guardrails
+
+Goal:
+
+- Add static CI guardrails for key iOS architecture boundaries.
+- Catch accidental drift in Widget, App Group snapshot, Deep Link, Reminder, and documentation contracts.
+- Keep manual validation explicitly pending.
+
+Scope:
+
+- Add `scripts/ci/ios_guardrails.sh`.
+- Run guardrails in GitHub Actions before Xcode build steps.
+- Verify the Widget target does not directly read SwiftData.
+- Verify App Group ID and snapshot filename consistency.
+- Verify Deep Link scheme / Widget URL / app URL handler strings.
+- Verify reminder keys and notification identifier.
+- Verify documentation still states manual validation and CI limits.
+
+Non-goal:
+
+- No Swift feature code.
+- No SwiftUI UI changes.
+- No Widget, Deep Link, Notification, App Group, or SwiftData behavior changes.
+- No Xcode project or entitlement changes.
+- No manual validation result recording.
+
+Acceptance:
+
+- CI passes.
+- Guardrails fail clearly when expected static boundaries drift.
+- Manual validation remains pending.
+
+### v0.5.4-insight-prototype
 
 Goal:
 
@@ -268,5 +300,6 @@ Current sequence while no local Mac is available:
 2. Keep `docs/MANUAL_VALIDATION.md` pending.
 3. Complete `v0.5.1-windows-safe-workflow` for CI maintenance and developer workflow hardening.
 4. Complete `v0.5.2-windows-safe-product-polish` for release-status and validation-boundary copy cleanup.
-5. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-6. Start runtime fixes only from real validation findings or actionable CI failures.
+5. Complete `v0.5.3-ci-guardrails` for static architecture boundary checks.
+6. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+7. Start runtime fixes only from real validation findings or actionable CI failures.

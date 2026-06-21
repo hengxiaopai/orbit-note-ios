@@ -1293,3 +1293,44 @@ Do not use v0.5.2 as a reason to start:
 - Share Extension.
 - TestFlight.
 - SwiftData schema expansion.
+
+## v0.5.3-ci-guardrails / Architecture Guardrails
+
+Status:
+
+- CI-only static architecture protection release.
+- Does not change Swift feature behavior.
+- Does not change SwiftUI UI.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not change Widget behavior.
+- Does not change Deep Link behavior.
+- Does not change notification behavior.
+- Does not change App Group behavior.
+
+### Guardrail Purpose
+
+The CI guardrails protect fragile v0.4/v0.5 architecture boundaries while development continues from Windows.
+
+They check:
+
+- The Widget target does not import SwiftData or reference `OrbitStore`.
+- The Widget reads `OrbitWidgetSnapshot.json` rather than opening the main app data store.
+- The App Group ID stays consistent between the app, Widget, snapshot writer, and snapshot reader.
+- The Deep Link URL scheme and Widget `widgetURL` stay aligned.
+- Reminder AppStorage keys and notification identifier stay stable.
+- Documentation still states that manual validation is pending and CI has limits.
+
+### What This Does Not Prove
+
+These checks do not prove runtime behavior:
+
+- Widget Gallery insertion.
+- Widget refresh cadence.
+- App Group signed container behavior.
+- Notification permission prompt or delivery.
+- Deep Link cold launch.
+- iPhone SE layout.
+
+Manual Mac / Simulator / real-device validation remains required.
