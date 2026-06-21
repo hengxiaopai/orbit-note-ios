@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.0-planning`
+Current release: `v0.5.0-ci-runtime-smoke`
 
-Current implementation track: `v0.5.0-ci-runtime-smoke`
+Current implementation track: `v0.5.1-windows-safe-workflow`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -30,6 +30,8 @@ Current implementation track: `v0.5.0-ci-runtime-smoke`
 - `v0.4.4-manual-validation-checklist` tag and GitHub pre-release created.
 - `v0.5.0-planning` completed.
 - `v0.5.0-planning` tag and GitHub pre-release created.
+- `v0.5.0-ci-runtime-smoke` completed.
+- `v0.5.0-ci-runtime-smoke` tag and GitHub pre-release created.
 - Manual Simulator CRUD smoke test still pending.
 
 ## Pending Manual Mac Validation
@@ -89,6 +91,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - Manual validation checklist for v0.4.
 - v0.5 validation-first plan.
 - GitHub Actions macOS/Xcode CI runtime smoke checks.
+- Windows development guide.
 
 ## Tech Stack
 
@@ -137,6 +140,7 @@ File names include the export date, for example:
 - `v0.4.4-manual-validation-checklist` Documentation-only manual validation checklist.
 - `v0.5.0-planning` Documentation-only validation-first v0.5 plan.
 - `v0.5.0-ci-runtime-smoke` Stronger GitHub Actions macOS/Xcode build and simulator availability smoke checks.
+- `v0.5.1-windows-safe-workflow` Windows-safe CI maintenance, script syntax checks, and GitHub HTTPS recovery documentation.
 
 ## Roadmap
 
@@ -498,3 +502,29 @@ Manual validation remains pending:
 - iPhone SE layout check.
 
 The CI smoke check improves confidence that macOS/Xcode tooling can build the app and Widget, but it does not replace hands-on Simulator or real-device validation.
+
+## v0.5.1 Windows-safe Workflow
+
+Windows-safe polish and developer workflow hardening.
+
+Adds:
+
+- GitHub Actions official action maintenance:
+  - `actions/checkout@v7.0.0`
+  - `actions/upload-artifact@v7.0.1`
+- CI shell script syntax check with `bash -n`.
+- [Windows development guide](docs/WINDOWS_DEVELOPMENT.md).
+- Documentation for GitHub HTTPS recovery, bundle backup, and temporary proxy push.
+
+No implementation changes:
+
+- No Swift code changes.
+- No SwiftData schema changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.

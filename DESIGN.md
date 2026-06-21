@@ -1165,3 +1165,77 @@ When Mac access becomes available:
 - Run `docs/MANUAL_VALIDATION.md`.
 - Record real device, OS, Xcode, result, and notes.
 - Convert failures into focused `v0.5.1-runtime-fixes` issues.
+
+## v0.5.1-windows-safe-workflow / Development Reliability
+
+Status:
+
+- Windows-safe workflow and documentation release.
+- Does not change Swift code.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not change Widget UI.
+- Does not change Deep Link behavior.
+- Does not change notification behavior.
+- Does not change App Group behavior.
+
+### Development Strategy
+
+Orbit Note can continue moving from Windows for scoped work that does not require visual Simulator confirmation.
+
+Windows is appropriate for:
+
+- Documentation.
+- CI workflow maintenance.
+- Shell script checks.
+- Static project inspection.
+- Small release process hardening.
+
+GitHub Actions remains the macOS/Xcode verification layer for:
+
+- Project listing.
+- iOS runtime availability.
+- iPhone Simulator availability.
+- Main app build.
+- Widget target build.
+- CI log artifacts.
+
+Manual Mac / Simulator / real-device validation remains deferred and must not be recorded as passed from Windows.
+
+### CI Maintenance
+
+The `iOS Build` workflow now includes:
+
+- Official action maintenance for checkout and artifact upload.
+- `bash -n` syntax checks for scripts in `scripts/ci/*.sh`.
+
+The script syntax check is intentionally lightweight. It avoids extra package managers, third-party actions, or brittle dependencies.
+
+### Windows Guide
+
+Windows development guidance lives in:
+
+- `docs/WINDOWS_DEVELOPMENT.md`
+
+It documents:
+
+- What Windows can safely edit.
+- What still requires Mac / Simulator / device.
+- GitHub Actions verification boundaries.
+- GitHub HTTPS recovery with bundle backup.
+- Temporary proxy push using one-command `git -c` configuration.
+
+### Manual Validation Boundary
+
+Still pending:
+
+- Simulator launch.
+- SwiftData seed, CRUD, and restart persistence.
+- Notification permission prompt.
+- Notification delivery.
+- Widget Gallery insertion.
+- Small and medium Widget visual QA.
+- App Group signed container behavior.
+- Widget tap deep link behavior.
+- iPhone SE layout.
