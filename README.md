@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.1-windows-safe-workflow`
+Current release: `v0.5.2-windows-safe-product-polish`
 
-Current implementation track: `v0.5.2-windows-safe-product-polish`
+Current implementation track: `v0.5.3-ci-guardrails`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -34,6 +34,8 @@ Current implementation track: `v0.5.2-windows-safe-product-polish`
 - `v0.5.0-ci-runtime-smoke` tag and GitHub pre-release created.
 - `v0.5.1-windows-safe-workflow` completed.
 - `v0.5.1-windows-safe-workflow` tag and GitHub pre-release created.
+- `v0.5.2-windows-safe-product-polish` completed.
+- `v0.5.2-windows-safe-product-polish` tag and GitHub pre-release created.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -107,6 +109,7 @@ Do not start these areas from Windows-only validation:
 - GitHub Actions macOS/Xcode CI runtime smoke checks.
 - Windows development guide.
 - Release status documentation.
+- Static iOS architecture guardrails in CI.
 
 ## Tech Stack
 
@@ -157,6 +160,7 @@ File names include the export date, for example:
 - `v0.5.0-ci-runtime-smoke` Stronger GitHub Actions macOS/Xcode build and simulator availability smoke checks.
 - `v0.5.1-windows-safe-workflow` Windows-safe CI maintenance, script syntax checks, and GitHub HTTPS recovery documentation.
 - `v0.5.2-windows-safe-product-polish` Release-status copy cleanup and manual-validation boundary clarification.
+- `v0.5.3-ci-guardrails` Static CI guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
 
 ## Roadmap
 
@@ -565,6 +569,33 @@ No implementation changes:
 - No Widget UI changes.
 - No Deep Link changes.
 - No notification changes.
+- No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.3 CI Guardrails
+
+Windows-safe architecture protection for existing iOS boundaries.
+
+Adds:
+
+- `scripts/ci/ios_guardrails.sh`.
+- CI step: `Run iOS architecture guardrails`.
+- Static check that the Widget target does not directly read SwiftData.
+- Static checks for App Group ID and `OrbitWidgetSnapshot.json` consistency.
+- Static checks for `orbitnote` scheme, `orbitnote://today`, and app `onOpenURL`.
+- Static checks for reminder AppStorage keys and notification identifier.
+- Documentation checks that manual validation remains pending and CI boundaries remain explicit.
+
+No implementation changes:
+
+- No Swift feature changes.
+- No SwiftData schema changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No Widget UI changes.
+- No Deep Link behavior changes.
+- No notification behavior changes.
 - No App Group behavior changes.
 
 Manual Mac / Simulator / real-device validation remains pending.

@@ -2,9 +2,9 @@
 
 ## Current Release
 
-- Current release: `v0.5.1-windows-safe-workflow`
-- Current development track: `v0.5.2-windows-safe-product-polish`
-- Latest released tag: `v0.5.1-windows-safe-workflow`
+- Current release: `v0.5.2-windows-safe-product-polish`
+- Current development track: `v0.5.3-ci-guardrails`
+- Latest released tag: `v0.5.2-windows-safe-product-polish`
 - Development environment: Windows
 - Manual Mac / Simulator / real-device validation: pending
 
@@ -25,6 +25,7 @@ GitHub Actions currently verifies:
 - Available iPhone Simulator availability.
 - Main app build for iOS Simulator.
 - `OrbitNoteWidget` target build with the iOS Simulator SDK.
+- Static architecture guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
 - Xcode build log artifact upload.
 
 ## What CI Proves
@@ -34,6 +35,7 @@ GitHub Actions currently verifies:
 - The current CI shell scripts parse successfully.
 - The runner has a usable iOS runtime and at least one available iPhone Simulator.
 - The main app and Widget target compile in CI.
+- The Widget boundary, snapshot filename, App Group ID, Deep Link strings, Reminder keys, and documentation boundary strings have not drifted from expected static values.
 
 ## What CI Does Not Prove
 
@@ -67,4 +69,4 @@ v0.5 is focused on stability, validation readiness, and developer workflow relia
 
 ## Next Recommended Milestone
 
-Continue with Windows-safe documentation or CI polish only while no local Mac is available. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.
+Complete `v0.5.3-ci-guardrails`, then continue with Windows-safe documentation or CI polish only while no local Mac is available. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.

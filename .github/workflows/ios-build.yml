@@ -34,6 +34,10 @@ jobs:
             bash -n "$script"
           done
 
+      - name: Run iOS architecture guardrails
+        run: |
+          bash scripts/ci/ios_guardrails.sh
+
       - name: Simulator runtime smoke check
         run: |
           bash scripts/ci/ios_runtime_smoke.sh

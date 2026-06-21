@@ -10,6 +10,7 @@ For the current released version, CI coverage, and pending manual checks, see [R
 - Review project structure and Xcode project references statically.
 - Run Git and GitHub CLI workflows.
 - Run shell syntax checks such as `bash -n scripts/ci/ios_runtime_smoke.sh` when Bash is available.
+- Run static guardrails such as `bash scripts/ci/ios_guardrails.sh` when Git Bash is available.
 - Update documentation, CI scripts, and release notes.
 
 Windows cannot locally verify:
@@ -31,6 +32,7 @@ The `iOS Build` workflow checks:
 - macOS runner and Xcode diagnostics.
 - Xcode project and scheme listing.
 - CI shell script syntax.
+- Static architecture guardrails.
 - iOS runtime availability.
 - Available iPhone Simulator availability.
 - Main app build for iOS Simulator.
@@ -38,6 +40,8 @@ The `iOS Build` workflow checks:
 - Xcode build log artifact upload.
 
 CI does not replace manual Mac, Simulator, or real-device validation.
+
+On Windows PowerShell, `bash` may not be available. In that case, rely on GitHub Actions to run `bash -n scripts/ci/*.sh` and `bash scripts/ci/ios_guardrails.sh`.
 
 ## Manual Validation Status
 
