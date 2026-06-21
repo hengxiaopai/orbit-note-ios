@@ -64,6 +64,23 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO
 
+      - name: Run insight engine unit tests
+        run: |
+          simulator_udid="$(xcrun simctl list devices available | awk -F '[()]' '/iPhone/ {print $2; exit}')"
+          if [[ -z "$simulator_udid" ]]; then
+            echo "No available iPhone Simulator found." >&2
+            exit 1
+          fi
+
+          xcodebuild \
+            -project OrbitNote.xcodeproj \
+            -scheme OrbitNote \
+            -destination "id=$simulator_udid" \
+            -derivedDataPath build \
+            test \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+
       - name: Upload Xcode build logs
         if: always()
         uses: actions/upload-artifact@v7.0.1

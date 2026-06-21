@@ -248,6 +248,42 @@ Acceptance:
 - No UI behavior changes are introduced.
 - The insight UI remains deferred until after Mac / Simulator validation.
 
+### v0.5.5-insight-engine-tests
+
+Goal:
+
+- Add automated logic coverage for the local Today Orbit insight engine.
+- Keep insight UI deferred.
+- Keep manual validation explicitly pending.
+
+Scope:
+
+- Add a minimal `OrbitNoteTests` XCTest target.
+- Add `TodayOrbitInsightEngineTests`.
+- Run insight engine tests in GitHub Actions.
+- Keep CI guardrails around the insight engine local-only boundary.
+
+Test scenarios:
+
+- Empty input returns a stable empty insight.
+- Only entries from the requested day are counted.
+- Focus, strongest positive, and strongest draining titles are selected deterministically.
+
+Non-goal:
+
+- No UI integration.
+- No OrbitStore integration.
+- No SwiftData schema changes.
+- No Widget, Deep Link, Notification, App Group, export, or onboarding behavior changes.
+- No AI, network, cloud, or file writes.
+
+Acceptance:
+
+- CI passes.
+- `xcodebuild test` runs for the `OrbitNote` scheme.
+- Insight engine unit tests pass.
+- Manual Mac / Simulator / real-device validation remains pending.
+
 ## 4. Explicit Non-goals
 
 v0.5 does not include:
@@ -314,5 +350,6 @@ Current sequence while no local Mac is available:
 4. Complete `v0.5.2-windows-safe-product-polish` for release-status and validation-boundary copy cleanup.
 5. Complete `v0.5.3-ci-guardrails` for static architecture boundary checks.
 6. Complete `v0.5.4-insight-engine-prototype` as a local-only logic layer with no UI surface.
-7. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-8. Start runtime fixes only from real validation findings or actionable CI failures.
+7. Complete `v0.5.5-insight-engine-tests` for CI-level insight logic coverage.
+8. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+9. Start runtime fixes only from real validation findings or actionable CI failures.

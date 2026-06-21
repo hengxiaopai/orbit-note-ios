@@ -2,9 +2,9 @@
 
 ## Current Release
 
-- Current release: `v0.5.3-ci-guardrails`
-- Current development track: `v0.5.4-insight-engine-prototype`
-- Latest released tag: `v0.5.3-ci-guardrails`
+- Current release: `v0.5.4-insight-engine-prototype`
+- Current development track: `v0.5.5-insight-engine-tests`
+- Latest released tag: `v0.5.4-insight-engine-prototype`
 - Development environment: Windows
 - Manual Mac / Simulator / real-device validation: pending
 
@@ -27,6 +27,7 @@ GitHub Actions currently verifies:
 - `OrbitNoteWidget` target build with the iOS Simulator SDK.
 - Static architecture guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
 - Static guardrails for the local-only Today Orbit insight engine boundary.
+- XCTest coverage for the local Today Orbit insight engine.
 - Xcode build log artifact upload.
 
 ## What CI Proves
@@ -38,6 +39,7 @@ GitHub Actions currently verifies:
 - The main app and Widget target compile in CI.
 - The Widget boundary, snapshot filename, App Group ID, Deep Link strings, Reminder keys, and documentation boundary strings have not drifted from expected static values.
 - The insight engine avoids SwiftData schema annotations, WidgetKit, network calls, and file writes.
+- The insight engine handles empty input, filters to the requested day, and selects focus / positive / draining titles deterministically in unit tests.
 
 ## What CI Does Not Prove
 
@@ -71,4 +73,4 @@ v0.5 is focused on stability, validation readiness, and developer workflow relia
 
 ## Next Recommended Milestone
 
-Complete `v0.5.4-insight-engine-prototype`, then continue with Windows-safe documentation or CI polish only while no local Mac is available. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.
+Complete `v0.5.5-insight-engine-tests`, then continue with Windows-safe documentation or CI polish only while no local Mac is available. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.

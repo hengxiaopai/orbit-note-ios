@@ -1383,3 +1383,36 @@ The engine intentionally has no side effects. It does not mutate `OrbitStore`, r
 ### Future UI Decision
 
 The insight remains a logic layer until Mac / Simulator validation is available. A later release can decide whether to show it on Orbit, Timeline, or a weekly review surface after the current runtime checks are complete.
+
+## v0.5.5-insight-engine-tests / Insight Engine Validation
+
+Status:
+
+- Adds unit-level validation for `TodayOrbitInsightEngine`.
+- Adds no insight UI surface.
+- Does not connect insight output to Orbit, Timeline, Me, Widget, notification, export, or App Group flows.
+- Does not change SwiftData schema.
+
+### Test Target
+
+`OrbitNoteTests` is a minimal XCTest target for local logic coverage.
+
+The target currently covers:
+
+- Empty input.
+- Filtering to the requested day.
+- Deterministic focus / strongest positive / strongest draining selection.
+
+### Deterministic Time
+
+`TodayOrbitInsightEngine.makeInsight` accepts an injectable `generatedAt` date so tests can assert stable output without depending on wall-clock time. The parameter has a default value, so existing app behavior remains unchanged.
+
+### CI Coverage
+
+GitHub Actions runs the app build, Widget target build, guardrails, and `xcodebuild test` for the `OrbitNote` scheme on an available iPhone Simulator.
+
+This proves the insight engine tests compile and pass in CI. It does not prove app launch, Simulator interaction, Widget Gallery behavior, notification delivery, App Group signing, or visual layout.
+
+### Deferred
+
+Insight UI remains deferred until Mac / Simulator validation is available. The engine should stay local-only and side-effect free until a validated product surface is selected.
