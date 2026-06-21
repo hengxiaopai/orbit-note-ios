@@ -2,6 +2,8 @@
 
 This project is currently developed from Windows, with macOS and Xcode validation delegated to GitHub Actions.
 
+For the current released version, CI coverage, and pending manual checks, see [Release status](RELEASE_STATUS.md).
+
 ## What Windows Can Safely Do
 
 - Edit Swift, SwiftUI, documentation, and GitHub Actions workflow files.
@@ -88,3 +90,4 @@ Avoid writing global or system proxy settings unless the user explicitly confirm
 - Do not expand SwiftData schema from Windows-only validation.
 - Do not change Xcode project settings or entitlements unless that is the scoped task.
 - Do not treat CI success as Widget Gallery, notification delivery, or real-device proof.
+- Keep [Release status](RELEASE_STATUS.md) aligned when release-state language changes.

@@ -1239,3 +1239,57 @@ Still pending:
 - App Group signed container behavior.
 - Widget tap deep link behavior.
 - iPhone SE layout.
+
+## v0.5.2-windows-safe-product-polish / Release-status Clarity
+
+Status:
+
+- Documentation and copy-alignment release.
+- Does not change Swift code.
+- Does not change Xcode project settings.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not change Widget UI.
+- Does not change Deep Link behavior.
+- Does not change notification behavior.
+- Does not change App Group behavior.
+
+### Product Communication Goal
+
+v0.5.2 keeps Orbit Note's product direction stable while making release status easier to understand.
+
+The documentation should consistently say:
+
+- CI passed means macOS/Xcode build plus limited smoke checks passed.
+- CI passed does not mean the app was manually launched in Simulator.
+- CI passed does not validate Widget Gallery, notification delivery, App Group signing, or real-device behavior.
+- Windows can continue supporting scoped development work.
+- Manual Mac / Simulator / real-device validation remains pending.
+
+### Release Status Source
+
+The compact status source is:
+
+- `docs/RELEASE_STATUS.md`
+
+It should be used when deciding whether the project is ready for manual validation, runtime fixes, or another Windows-safe documentation / CI pass.
+
+### v0.5 Product Boundary
+
+The current v0.5 theme remains:
+
+- Stability.
+- Validation readiness.
+- Developer workflow reliability.
+- Local-first behavior preservation.
+
+Do not use v0.5.2 as a reason to start:
+
+- UI redesign.
+- Layout polish that requires visual QA.
+- App Intents.
+- Interactive Widget.
+- Live Activity.
+- Share Extension.
+- TestFlight.
+- SwiftData schema expansion.

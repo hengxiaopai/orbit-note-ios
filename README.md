@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.0-ci-runtime-smoke`
+Current release: `v0.5.1-windows-safe-workflow`
 
-Current implementation track: `v0.5.1-windows-safe-workflow`
+Current implementation track: `v0.5.2-windows-safe-product-polish`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -32,7 +32,9 @@ Current implementation track: `v0.5.1-windows-safe-workflow`
 - `v0.5.0-planning` tag and GitHub pre-release created.
 - `v0.5.0-ci-runtime-smoke` completed.
 - `v0.5.0-ci-runtime-smoke` tag and GitHub pre-release created.
-- Manual Simulator CRUD smoke test still pending.
+- `v0.5.1-windows-safe-workflow` completed.
+- `v0.5.1-windows-safe-workflow` tag and GitHub pre-release created.
+- Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
 
@@ -44,12 +46,24 @@ There is currently no local Mac available, so these checks are not complete yet:
 - Restart-after-save SwiftData persistence manual verification.
 - iPhone SE layout manual verification.
 
-## Do Not Start Yet
+## Current Validation Boundary
 
-Do not implement these areas until their scoped v0.4 sub-version begins:
+GitHub Actions has passed for macOS/Xcode build and limited runtime smoke checks. That means the project can compile in CI and the runner has usable iOS Simulator infrastructure.
 
-- Widget target / App Group / deep link implementation.
+It does not mean these are manually validated:
+
+- Simulator launch.
+- Widget Gallery insertion.
+- Notification permission and delivery.
+- App Group real-device signing.
+- Widget tap routing.
+- iPhone SE layout.
+
+Do not start these areas from Windows-only validation:
+
 - App Intents.
+- Interactive Widget.
+- Live Activity.
 - Share Extension.
 - Lottie / Jitter motion.
 - TestFlight.
@@ -92,6 +106,7 @@ Do not implement these areas until their scoped v0.4 sub-version begins:
 - v0.5 validation-first plan.
 - GitHub Actions macOS/Xcode CI runtime smoke checks.
 - Windows development guide.
+- Release status documentation.
 
 ## Tech Stack
 
@@ -141,6 +156,7 @@ File names include the export date, for example:
 - `v0.5.0-planning` Documentation-only validation-first v0.5 plan.
 - `v0.5.0-ci-runtime-smoke` Stronger GitHub Actions macOS/Xcode build and simulator availability smoke checks.
 - `v0.5.1-windows-safe-workflow` Windows-safe CI maintenance, script syntax checks, and GitHub HTTPS recovery documentation.
+- `v0.5.2-windows-safe-product-polish` Release-status copy cleanup and manual-validation boundary clarification.
 
 ## Roadmap
 
@@ -515,6 +531,30 @@ Adds:
 - CI shell script syntax check with `bash -n`.
 - [Windows development guide](docs/WINDOWS_DEVELOPMENT.md).
 - Documentation for GitHub HTTPS recovery, bundle backup, and temporary proxy push.
+
+No implementation changes:
+
+- No Swift code changes.
+- No SwiftData schema changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.2 Windows-safe Product Polish
+
+Documentation-only release-status polish.
+
+Adds:
+
+- [Release status](docs/RELEASE_STATUS.md).
+- Clearer current release and development-track wording.
+- Sharper distinction between CI passed and manual validation passed.
+- Updated Windows-safe development notes.
 
 No implementation changes:
 
