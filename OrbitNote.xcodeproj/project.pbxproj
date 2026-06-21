@@ -45,6 +45,7 @@
 		000000000000000000000123 /* DeepLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000225 /* DeepLinkRouter.swift */; };
 		000000000000000000000124 /* TodayOrbitInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000226 /* TodayOrbitInsight.swift */; };
 		000000000000000000000125 /* TodayOrbitInsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000227 /* TodayOrbitInsightEngine.swift */; };
+		000000000000000000000126 /* TodayOrbitInsightEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 000000000000000000000502;
 			remoteInfo = OrbitNoteWidget;
+		};
+		000000000000000000000505 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000601 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000501;
+			remoteInfo = OrbitNote;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -74,6 +82,7 @@
 /* Begin PBXFileReference section */
 		000000000000000000000001 /* OrbitNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrbitNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000002 /* OrbitNoteWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OrbitNoteWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		000000000000000000000003 /* OrbitNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrbitNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		000000000000000000000200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		000000000000000000000201 /* OrbitNoteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNoteApp.swift; sourceTree = "<group>"; };
 		000000000000000000000202 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -114,6 +123,7 @@
 		000000000000000000000225 /* DeepLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing/DeepLinkRouter.swift; sourceTree = "<group>"; };
 		000000000000000000000226 /* TodayOrbitInsight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/TodayOrbitInsight.swift; sourceTree = "<group>"; };
 		000000000000000000000227 /* TodayOrbitInsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/TodayOrbitInsightEngine.swift; sourceTree = "<group>"; };
+		000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOrbitInsightEngineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +141,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		000000000000000000000303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -139,6 +156,7 @@
 			children = (
 				000000000000000000000402 /* OrbitNote */,
 				000000000000000000000404 /* OrbitNoteWidget */,
+				000000000000000000000405 /* OrbitNoteTests */,
 				000000000000000000000403 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -188,6 +206,7 @@
 			children = (
 				000000000000000000000001 /* OrbitNote.app */,
 				000000000000000000000002 /* OrbitNoteWidget.appex */,
+				000000000000000000000003 /* OrbitNoteTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +223,14 @@
 				00000000000000000000021F /* OrbitWidgetSnapshotReader.swift */,
 			);
 			path = OrbitNoteWidget;
+			sourceTree = "<group>";
+		};
+		000000000000000000000405 /* OrbitNoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */,
+			);
+			path = OrbitNoteTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +272,24 @@
 			productReference = 000000000000000000000002 /* OrbitNoteWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		000000000000000000000506 /* OrbitNoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000904 /* Build configuration list for PBXNativeTarget "OrbitNoteTests" */;
+			buildPhases = (
+				000000000000000000000706 /* Sources */,
+				000000000000000000000303 /* Frameworks */,
+				000000000000000000000707 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000507 /* PBXTargetDependency */,
+			);
+			name = OrbitNoteTests;
+			productName = OrbitNoteTests;
+			productReference = 000000000000000000000003 /* OrbitNoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -260,6 +305,10 @@
 					};
 					000000000000000000000502 = {
 						CreatedOnToolsVersion = 16.0;
+					};
+					000000000000000000000506 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 000000000000000000000501;
 					};
 				};
 			};
@@ -278,6 +327,7 @@
 			targets = (
 				000000000000000000000501 /* OrbitNote */,
 				000000000000000000000502 /* OrbitNoteWidget */,
+				000000000000000000000506 /* OrbitNoteTests */,
 			);
 		};
 /* End PBXProject section */
@@ -292,6 +342,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		000000000000000000000704 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000707 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -351,6 +408,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		000000000000000000000706 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000126 /* TodayOrbitInsightEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -358,6 +423,11 @@
 			isa = PBXTargetDependency;
 			target = 000000000000000000000502 /* OrbitNoteWidget */;
 			targetProxy = 000000000000000000000503 /* PBXContainerItemProxy */;
+		};
+		000000000000000000000507 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000501 /* OrbitNote */;
+			targetProxy = 000000000000000000000505 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -581,6 +651,58 @@
 			};
 			name = Release;
 		};
+		000000000000000000000807 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.orbitnote.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrbitNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OrbitNote";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		000000000000000000000808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codex.orbitnote.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrbitNote.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OrbitNote";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,6 +729,15 @@
 			buildConfigurations = (
 				000000000000000000000805 /* Debug */,
 				000000000000000000000806 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000904 /* Build configuration list for PBXNativeTarget "OrbitNoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000807 /* Debug */,
+				000000000000000000000808 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

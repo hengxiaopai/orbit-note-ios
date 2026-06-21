@@ -1,14 +1,18 @@
 import Foundation
 
 enum TodayOrbitInsightEngine {
-    static func makeInsight(entries: [OrbitEntry], date: Date = Date()) -> TodayOrbitInsight {
+    static func makeInsight(
+        entries: [OrbitEntry],
+        date: Date = Date(),
+        generatedAt: Date = Date()
+    ) -> TodayOrbitInsight {
         let day = Calendar.current.startOfDay(for: date)
         let todaysEntries = entries
             .filter { Calendar.current.isDate($0.date, inSameDayAs: day) }
             .sorted { $0.createdAt < $1.createdAt }
 
         guard !todaysEntries.isEmpty else {
-            return emptyInsight(for: day)
+            return emptyInsight(for: day, generatedAt: generatedAt)
         }
 
         let focus = closestEntry(in: todaysEntries)
@@ -17,7 +21,7 @@ enum TodayOrbitInsightEngine {
         let dominant = dominantEnergy(in: todaysEntries)
 
         return TodayOrbitInsight(
-            generatedAt: Date(),
+            generatedAt: generatedAt,
             date: day,
             entryCount: todaysEntries.count,
             headline: headline(for: dominant, count: todaysEntries.count),
@@ -35,9 +39,9 @@ enum TodayOrbitInsightEngine {
         )
     }
 
-    private static func emptyInsight(for day: Date) -> TodayOrbitInsight {
+    private static func emptyInsight(for day: Date, generatedAt: Date) -> TodayOrbitInsight {
         TodayOrbitInsight(
-            generatedAt: Date(),
+            generatedAt: generatedAt,
             date: day,
             entryCount: 0,
             headline: "No orbit yet",

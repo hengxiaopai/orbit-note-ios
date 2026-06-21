@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.3-ci-guardrails`
+Current release: `v0.5.4-insight-engine-prototype`
 
-Current implementation track: `v0.5.4-insight-engine-prototype`
+Current implementation track: `v0.5.5-insight-engine-tests`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -38,6 +38,8 @@ Current implementation track: `v0.5.4-insight-engine-prototype`
 - `v0.5.2-windows-safe-product-polish` tag and GitHub pre-release created.
 - `v0.5.3-ci-guardrails` completed.
 - `v0.5.3-ci-guardrails` tag and GitHub pre-release created.
+- `v0.5.4-insight-engine-prototype` completed.
+- `v0.5.4-insight-engine-prototype` tag and GitHub pre-release created.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -113,6 +115,7 @@ Do not start these areas from Windows-only validation:
 - Release status documentation.
 - Static iOS architecture guardrails in CI.
 - Local Today Orbit insight engine prototype.
+- XCTest coverage for the local Today Orbit insight engine.
 
 ## Tech Stack
 
@@ -165,6 +168,7 @@ File names include the export date, for example:
 - `v0.5.2-windows-safe-product-polish` Release-status copy cleanup and manual-validation boundary clarification.
 - `v0.5.3-ci-guardrails` Static CI guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
 - `v0.5.4-insight-engine-prototype` Local-only Today Orbit insight model and engine prototype with no UI surface.
+- `v0.5.5-insight-engine-tests` XCTest coverage for the local Today Orbit insight engine.
 
 ## Roadmap
 
@@ -619,6 +623,42 @@ Adds:
 No implementation changes:
 
 - No UI display.
+- No AI generation.
+- No network calls.
+- No cloud sync.
+- No SwiftData schema changes.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.5 Insight Engine Tests
+
+Logic-validation release for the local Today Orbit insight engine.
+
+Adds:
+
+- `OrbitNoteTests` unit test target.
+- `TodayOrbitInsightEngineTests`.
+- CI `xcodebuild test` execution against an available iPhone Simulator.
+- Guardrails that require the insight engine test coverage to remain present.
+
+Test coverage:
+
+- Empty input returns a stable empty insight.
+- Only entries from the requested day are counted.
+- Focus, strongest positive, and strongest draining entries are selected deterministically.
+
+Implementation note:
+
+- `TodayOrbitInsightEngine.makeInsight` accepts an injectable `generatedAt` date for deterministic tests. The default remains `Date()`, so product behavior is unchanged.
+
+No product behavior changes:
+
+- No UI display.
+- No OrbitStore integration.
 - No AI generation.
 - No network calls.
 - No cloud sync.

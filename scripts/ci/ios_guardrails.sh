@@ -79,8 +79,12 @@ require_contains_ci "docs/RELEASE_STATUS.md" "ci does not prove"
 echo "-- Today Orbit insight engine boundary --"
 require_file "OrbitNote/Models/TodayOrbitInsight.swift"
 require_file "OrbitNote/Data/TodayOrbitInsightEngine.swift"
+require_file "OrbitNoteTests/TodayOrbitInsightEngineTests.swift"
 require_contains "OrbitNote/Data/TodayOrbitInsightEngine.swift" "TodayOrbitInsightEngine"
 require_contains "OrbitNote/Models/TodayOrbitInsight.swift" "TodayOrbitInsight"
+require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testEmptyInputReturnsStableEmptyInsight"
+require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testOnlyCountsEntriesFromRequestedDay"
+require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testSelectsFocusPositiveAndDrainingDeterministically"
 
 if grep -n -E 'import SwiftData|@Model' "OrbitNote/Models/TodayOrbitInsight.swift" "OrbitNote/Data/TodayOrbitInsightEngine.swift"; then
   fail "Insight engine and model must not use SwiftData schema annotations."
