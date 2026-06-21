@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.4-insight-engine-prototype`
+Current release: `v0.5.5-insight-engine-tests`
 
-Current implementation track: `v0.5.5-insight-engine-tests`
+Current implementation track: `v0.5.6-insight-store-adapter`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -40,6 +40,8 @@ Current implementation track: `v0.5.5-insight-engine-tests`
 - `v0.5.3-ci-guardrails` tag and GitHub pre-release created.
 - `v0.5.4-insight-engine-prototype` completed.
 - `v0.5.4-insight-engine-prototype` tag and GitHub pre-release created.
+- `v0.5.5-insight-engine-tests` completed.
+- `v0.5.5-insight-engine-tests` tag and GitHub pre-release created.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -116,6 +118,7 @@ Do not start these areas from Windows-only validation:
 - Static iOS architecture guardrails in CI.
 - Local Today Orbit insight engine prototype.
 - XCTest coverage for the local Today Orbit insight engine.
+- Readonly OrbitStore insight adapter for future internal use.
 
 ## Tech Stack
 
@@ -169,6 +172,7 @@ File names include the export date, for example:
 - `v0.5.3-ci-guardrails` Static CI guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
 - `v0.5.4-insight-engine-prototype` Local-only Today Orbit insight model and engine prototype with no UI surface.
 - `v0.5.5-insight-engine-tests` XCTest coverage for the local Today Orbit insight engine.
+- `v0.5.6-insight-store-adapter` Readonly OrbitStore adapter for generating local insights from current entries.
 
 ## Roadmap
 
@@ -667,5 +671,38 @@ No product behavior changes:
 - No Deep Link changes.
 - No notification changes.
 - No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.6 Insight Store Adapter
+
+Internal-readiness release for the local Today Orbit insight engine.
+
+Adds:
+
+- `OrbitStore+Insight`.
+- `OrbitStore.makeTodayInsight(on:generatedAt:)`.
+- XCTest coverage for the readonly store adapter.
+- Guardrails that keep the adapter side-effect free.
+
+Behavior:
+
+- Reads the store's current in-memory `entries`.
+- Delegates insight generation to `TodayOrbitInsightEngine`.
+- Does not save, delete, insert, write files, refresh Widget snapshots, publish feedback, or mutate UI state.
+
+No product behavior changes:
+
+- No UI display.
+- No Orbit tab integration.
+- No Timeline integration.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group behavior changes.
+- No SwiftData schema changes.
+- No AI generation.
+- No network calls.
+- No cloud sync.
 
 Manual Mac / Simulator / real-device validation remains pending.

@@ -46,6 +46,8 @@
 		000000000000000000000124 /* TodayOrbitInsight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000226 /* TodayOrbitInsight.swift */; };
 		000000000000000000000125 /* TodayOrbitInsightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000227 /* TodayOrbitInsightEngine.swift */; };
 		000000000000000000000126 /* TodayOrbitInsightEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */; };
+		000000000000000000000127 /* OrbitStore+Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000229 /* OrbitStore+Insight.swift */; };
+		000000000000000000000128 /* OrbitStoreInsightAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000022A /* OrbitStoreInsightAdapterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +126,8 @@
 		000000000000000000000226 /* TodayOrbitInsight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/TodayOrbitInsight.swift; sourceTree = "<group>"; };
 		000000000000000000000227 /* TodayOrbitInsightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data/TodayOrbitInsightEngine.swift; sourceTree = "<group>"; };
 		000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOrbitInsightEngineTests.swift; sourceTree = "<group>"; };
+		000000000000000000000229 /* OrbitStore+Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/OrbitStore+Insight.swift"; sourceTree = "<group>"; };
+		00000000000000000000022A /* OrbitStoreInsightAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitStoreInsightAdapterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,7 @@
 				000000000000000000000219 /* ReminderService.swift */,
 				00000000000000000000021B /* WidgetSnapshotService.swift */,
 				000000000000000000000227 /* TodayOrbitInsightEngine.swift */,
+				000000000000000000000229 /* OrbitStore+Insight.swift */,
 				000000000000000000000204 /* OrbitTheme.swift */,
 				000000000000000000000206 /* GlassCard.swift */,
 				000000000000000000000207 /* Pills.swift */,
@@ -229,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */,
+				00000000000000000000022A /* OrbitStoreInsightAdapterTests.swift */,
 			);
 			path = OrbitNoteTests;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				000000000000000000000123 /* DeepLinkRouter.swift in Sources */,
 				000000000000000000000124 /* TodayOrbitInsight.swift in Sources */,
 				000000000000000000000125 /* TodayOrbitInsightEngine.swift in Sources */,
+				000000000000000000000127 /* OrbitStore+Insight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				000000000000000000000126 /* TodayOrbitInsightEngineTests.swift in Sources */,
+				000000000000000000000128 /* OrbitStoreInsightAdapterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
