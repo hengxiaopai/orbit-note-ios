@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.2-windows-safe-product-polish`
+Current release: `v0.5.3-ci-guardrails`
 
-Current implementation track: `v0.5.3-ci-guardrails`
+Current implementation track: `v0.5.4-insight-engine-prototype`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -36,6 +36,8 @@ Current implementation track: `v0.5.3-ci-guardrails`
 - `v0.5.1-windows-safe-workflow` tag and GitHub pre-release created.
 - `v0.5.2-windows-safe-product-polish` completed.
 - `v0.5.2-windows-safe-product-polish` tag and GitHub pre-release created.
+- `v0.5.3-ci-guardrails` completed.
+- `v0.5.3-ci-guardrails` tag and GitHub pre-release created.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -110,6 +112,7 @@ Do not start these areas from Windows-only validation:
 - Windows development guide.
 - Release status documentation.
 - Static iOS architecture guardrails in CI.
+- Local Today Orbit insight engine prototype.
 
 ## Tech Stack
 
@@ -161,6 +164,7 @@ File names include the export date, for example:
 - `v0.5.1-windows-safe-workflow` Windows-safe CI maintenance, script syntax checks, and GitHub HTTPS recovery documentation.
 - `v0.5.2-windows-safe-product-polish` Release-status copy cleanup and manual-validation boundary clarification.
 - `v0.5.3-ci-guardrails` Static CI guardrails for Widget, App Group snapshot, Deep Link, Reminder, and documentation boundaries.
+- `v0.5.4-insight-engine-prototype` Local-only Today Orbit insight model and engine prototype with no UI surface.
 
 ## Roadmap
 
@@ -596,6 +600,32 @@ No implementation changes:
 - No Widget UI changes.
 - No Deep Link behavior changes.
 - No notification behavior changes.
+- No App Group behavior changes.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.4 Insight Engine Prototype
+
+Local-only insight logic prototype.
+
+Adds:
+
+- `TodayOrbitInsight`.
+- `TodayOrbitInsightEngine`.
+- Deterministic insight generation from existing `OrbitEntry` values.
+- Empty-state insight for days with no entries.
+- Guardrails that keep the insight engine local-only and side-effect free.
+
+No implementation changes:
+
+- No UI display.
+- No AI generation.
+- No network calls.
+- No cloud sync.
+- No SwiftData schema changes.
+- No Widget UI changes.
+- No Deep Link changes.
+- No notification changes.
 - No App Group behavior changes.
 
 Manual Mac / Simulator / real-device validation remains pending.

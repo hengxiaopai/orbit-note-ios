@@ -1334,3 +1334,52 @@ These checks do not prove runtime behavior:
 - iPhone SE layout.
 
 Manual Mac / Simulator / real-device validation remains required.
+
+## v0.5.4-insight-engine-prototype / Today Orbit Insight Engine
+
+Status:
+
+- Local-only pure logic prototype.
+- Adds no UI surface.
+- Does not use AI generation.
+- Does not use network calls.
+- Does not write files.
+- Does not change SwiftData schema.
+- Does not change Widget, Deep Link, Notification, App Group, export, or onboarding behavior.
+
+### Insight Model
+
+`TodayOrbitInsight` is a lightweight `Codable` and `Equatable` value.
+
+Fields:
+
+- `generatedAt`
+- `date`
+- `entryCount`
+- `headline`
+- `summary`
+- `focusTitle`
+- `positiveTitle`
+- `drainingTitle`
+- `suggestedPrompt`
+
+### Insight Engine
+
+`TodayOrbitInsightEngine` reads existing `[OrbitEntry]` values and returns a deterministic summary for one day.
+
+It derives:
+
+- Today's entry count.
+- Closest orbit point.
+- Strongest positive point.
+- Strongest draining point.
+- Dominant energy by total intensity.
+- A short headline.
+- A restrained one-sentence summary.
+- A gentle reflection prompt.
+
+The engine intentionally has no side effects. It does not mutate `OrbitStore`, refresh Widget snapshots, schedule reminders, export data, call external services, or decide any UI placement.
+
+### Future UI Decision
+
+The insight remains a logic layer until Mac / Simulator validation is available. A later release can decide whether to show it on Orbit, Timeline, or a weekly review surface after the current runtime checks are complete.

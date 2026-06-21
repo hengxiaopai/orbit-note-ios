@@ -216,13 +216,22 @@ Acceptance:
 
 Goal:
 
-- Optionally prototype a lightweight Today Orbit insight using existing local entries.
+- Prototype a lightweight Today Orbit insight engine using existing local entries.
+
+Scope:
+
+- Use existing `OrbitEntry` data only.
+- Add a lightweight `TodayOrbitInsight` value.
+- Add a deterministic `TodayOrbitInsightEngine`.
+- Keep insight UI deferred.
+- Update CI guardrails for local-only insight boundaries.
 
 Scope constraints:
 
-- Use existing `OrbitEntry` data only.
 - No cloud.
 - No AI generation.
+- No network calls.
+- No file writes.
 - No complex statistics.
 - No medical or therapeutic claims.
 
@@ -233,8 +242,11 @@ Possible output:
 
 Acceptance:
 
-- Can be removed or deferred if validation/fixes need more time.
-- Does not block v0.5 if not implemented.
+- CI passes.
+- The engine compiles in the app target.
+- No SwiftData schema changes are introduced.
+- No UI behavior changes are introduced.
+- The insight UI remains deferred until after Mac / Simulator validation.
 
 ## 4. Explicit Non-goals
 
@@ -301,5 +313,6 @@ Current sequence while no local Mac is available:
 3. Complete `v0.5.1-windows-safe-workflow` for CI maintenance and developer workflow hardening.
 4. Complete `v0.5.2-windows-safe-product-polish` for release-status and validation-boundary copy cleanup.
 5. Complete `v0.5.3-ci-guardrails` for static architecture boundary checks.
-6. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-7. Start runtime fixes only from real validation findings or actionable CI failures.
+6. Complete `v0.5.4-insight-engine-prototype` as a local-only logic layer with no UI surface.
+7. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+8. Start runtime fixes only from real validation findings or actionable CI failures.
