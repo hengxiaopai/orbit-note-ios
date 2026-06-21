@@ -284,6 +284,38 @@ Acceptance:
 - Insight engine unit tests pass.
 - Manual Mac / Simulator / real-device validation remains pending.
 
+### v0.5.6-insight-store-adapter
+
+Goal:
+
+- Add a readonly OrbitStore adapter for generating a local Today Orbit insight from current entries.
+- Keep insight UI deferred.
+- Keep manual validation explicitly pending.
+
+Scope:
+
+- Add `OrbitStore+Insight`.
+- Add `OrbitStore.makeTodayInsight(on:generatedAt:)`.
+- Reuse `TodayOrbitInsightEngine`.
+- Add unit coverage for the adapter where possible.
+- Update guardrails to keep the adapter readonly and side-effect free.
+
+Non-goal:
+
+- No UI integration.
+- No OrbitStore persistence changes.
+- No SwiftData schema changes.
+- No Widget, Deep Link, Notification, App Group, export, onboarding, or snapshot behavior changes.
+- No AI, network, cloud, or file writes.
+
+Acceptance:
+
+- CI passes.
+- Adapter compiles in the app target.
+- Adapter tests pass.
+- Guardrails reject persistence, network, file write, or WidgetKit drift in the adapter.
+- Manual Mac / Simulator / real-device validation remains pending.
+
 ## 4. Explicit Non-goals
 
 v0.5 does not include:
@@ -351,5 +383,6 @@ Current sequence while no local Mac is available:
 5. Complete `v0.5.3-ci-guardrails` for static architecture boundary checks.
 6. Complete `v0.5.4-insight-engine-prototype` as a local-only logic layer with no UI surface.
 7. Complete `v0.5.5-insight-engine-tests` for CI-level insight logic coverage.
-8. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-9. Start runtime fixes only from real validation findings or actionable CI failures.
+8. Complete `v0.5.6-insight-store-adapter` as a readonly internal adapter with no UI surface.
+9. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+10. Start runtime fixes only from real validation findings or actionable CI failures.

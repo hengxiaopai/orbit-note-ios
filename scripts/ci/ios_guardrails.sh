@@ -79,19 +79,39 @@ require_contains_ci "docs/RELEASE_STATUS.md" "ci does not prove"
 echo "-- Today Orbit insight engine boundary --"
 require_file "OrbitNote/Models/TodayOrbitInsight.swift"
 require_file "OrbitNote/Data/TodayOrbitInsightEngine.swift"
+require_file "OrbitNote/Data/OrbitStore+Insight.swift"
 require_file "OrbitNoteTests/TodayOrbitInsightEngineTests.swift"
+require_file "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift"
 require_contains "OrbitNote/Data/TodayOrbitInsightEngine.swift" "TodayOrbitInsightEngine"
 require_contains "OrbitNote/Models/TodayOrbitInsight.swift" "TodayOrbitInsight"
+require_contains "OrbitNote/Data/OrbitStore+Insight.swift" "makeTodayInsight"
+require_contains "OrbitNote/Data/OrbitStore+Insight.swift" "TodayOrbitInsightEngine.makeInsight"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testEmptyInputReturnsStableEmptyInsight"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testOnlyCountsEntriesFromRequestedDay"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testSelectsFocusPositiveAndDrainingDeterministically"
+require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapterReturnsEngineInsightForCurrentEntries"
+require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapterIsStableForEmptyStore"
 
-if grep -n -E 'import SwiftData|@Model' "OrbitNote/Models/TodayOrbitInsight.swift" "OrbitNote/Data/TodayOrbitInsightEngine.swift"; then
+if grep -n -E 'import SwiftData|@Model' "OrbitNote/Models/TodayOrbitInsight.swift" "OrbitNote/Data/TodayOrbitInsightEngine.swift" "OrbitNote/Data/OrbitStore+Insight.swift"; then
   fail "Insight engine and model must not use SwiftData schema annotations."
 fi
 
 if grep -n -E 'URLSession|http://|https://|WidgetKit|FileManager|Data\\(|\\.write\\(' "OrbitNote/Data/TodayOrbitInsightEngine.swift"; then
   fail "Insight engine must stay local-only, UI-free, and side-effect free."
+fi
+
+if grep -n -F \
+  -e "save(" \
+  -e "delete(" \
+  -e "insert(" \
+  -e "FileManager" \
+  -e "URLSession" \
+  -e "http://" \
+  -e "https://" \
+  -e "WidgetKit" \
+  -e ".write(" \
+  "OrbitNote/Data/OrbitStore+Insight.swift"; then
+  fail "Insight store adapter must stay readonly and side-effect free."
 fi
 
 echo "All iOS architecture guardrails passed."

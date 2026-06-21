@@ -1416,3 +1416,35 @@ This proves the insight engine tests compile and pass in CI. It does not prove a
 ### Deferred
 
 Insight UI remains deferred until Mac / Simulator validation is available. The engine should stay local-only and side-effect free until a validated product surface is selected.
+
+## v0.5.6-insight-store-adapter / Readonly Store Adapter
+
+Status:
+
+- Adds a thin `OrbitStore` extension for generating a `TodayOrbitInsight` from current entries.
+- Adds no visible product surface.
+- Does not connect insight output to Orbit, Timeline, Me, Widget, notification, export, onboarding, or App Group flows.
+- Does not change SwiftData schema.
+
+### Adapter Design
+
+`OrbitStore.makeTodayInsight(on:generatedAt:)` is intentionally tiny:
+
+- Reads the store's current `entries`.
+- Calls `TodayOrbitInsightEngine.makeInsight`.
+- Returns the generated `TodayOrbitInsight`.
+
+It does not mutate store state, save data, delete data, insert data, write files, refresh Widget snapshots, publish feedback, or schedule work.
+
+### Purpose
+
+This creates a safe internal seam for a future insight UI without deciding where the insight should appear. The product surface remains deferred until Mac / Simulator validation is available.
+
+### Validation
+
+XCTest covers:
+
+- Adapter output matches direct engine output for the same entries.
+- Empty store output remains stable.
+
+CI guardrails also reject adapter drift toward persistence, file writes, network calls, or WidgetKit.
