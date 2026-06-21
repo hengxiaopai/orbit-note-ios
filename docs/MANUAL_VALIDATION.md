@@ -9,7 +9,7 @@ GitHub Actions verifies that the Xcode project compiles on macOS. As of `v0.5.0-
 | Area | Status | Required device | Notes |
 | --- | --- | --- | --- |
 | GitHub Actions build | Passed | GitHub macOS runner | Confirms project compile. |
-| GitHub Actions runtime smoke | Pending latest run | GitHub macOS runner | Checks Xcode diagnostics, iOS 17+ runtime availability, iPhone Simulator availability, app build, and Widget target build. |
+| GitHub Actions runtime smoke | Passed latest CI run | GitHub macOS runner | Checks Xcode diagnostics, iOS 17+ runtime availability, iPhone Simulator availability, app build, Widget target build, and CI script syntax. |
 | App launch | Pending | Mac + iOS Simulator | Must verify launch and first screen manually. |
 | SwiftData seed/load | Pending | Mac + iOS Simulator | Confirm first-launch sample data and subsequent load. |
 | Add/edit/delete orbit entry | Pending | Mac + iOS Simulator | Validate CRUD and UI refresh. |
@@ -63,6 +63,8 @@ CI still does not prove:
 - App Group signing works on a real device.
 - Widget tap deep links route correctly.
 - iPhone SE layout is readable.
+
+For a compact release-state summary, see [Release status](RELEASE_STATUS.md).
 
 ## Simulator Validation Checklist
 

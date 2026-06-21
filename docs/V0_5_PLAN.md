@@ -151,26 +151,34 @@ Acceptance:
 
 Goal:
 
-- Improve small UI and copy details after runtime behavior is trustworthy.
+- Clarify release-state language while development is still Windows-based.
+- Keep CI coverage and manual-validation boundaries easy to understand.
+- Avoid product behavior changes until Mac / Simulator validation exists.
 
-Possible scope:
+Scope:
 
-- Small / medium Widget spacing, labels, and empty state copy.
-- Me status rows for reminder, snapshot, and deep link.
-- Toast wording for validation-discovered ambiguity.
-- Small-screen readability refinements.
+- Release status documentation.
+- README status cleanup.
+- Manual validation status wording.
+- Windows-safe development note alignment.
+- Design documentation updates about validation boundaries.
 
 Non-goal:
 
+- No Swift feature code.
+- No SwiftUI UI polish that needs visual QA.
 - No redesign.
 - No new navigation model.
 - No new data model.
+- No Widget, Deep Link, Notification, App Group, or SwiftData behavior changes.
+- No manual validation result recording.
 
 Acceptance:
 
-- Visual polish remains consistent with Radium Noir + Aurora Glass.
-- iPhone portrait and Widget readability are preserved.
-- No new schema or target changes unless separately justified.
+- CI passes.
+- `docs/RELEASE_STATUS.md` exists and clearly separates what CI proves from what manual validation must prove.
+- Manual validation remains pending.
+- Modified files are limited to documentation unless a specific copy-only Swift change is justified.
 
 ### v0.5.3-insight-prototype
 
@@ -259,5 +267,6 @@ Current sequence while no local Mac is available:
 1. Complete `v0.5.0-ci-runtime-smoke`.
 2. Keep `docs/MANUAL_VALIDATION.md` pending.
 3. Complete `v0.5.1-windows-safe-workflow` for CI maintenance and developer workflow hardening.
-4. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-5. Start runtime fixes only from real validation findings or actionable CI failures.
+4. Complete `v0.5.2-windows-safe-product-polish` for release-status and validation-boundary copy cleanup.
+5. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+6. Start runtime fixes only from real validation findings or actionable CI failures.
