@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.7-insight-ui-plan`
+Current release: `v0.5.8-insight-card-minimal-ui`
 
-Current implementation track: `v0.5.8-insight-card-minimal-ui`
+Current implementation track: `v0.5.9-insight-card-static-safety`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -46,7 +46,9 @@ Current implementation track: `v0.5.8-insight-card-minimal-ui`
 - `v0.5.6-insight-store-adapter` tag and GitHub pre-release created.
 - `v0.5.7-insight-ui-plan` completed.
 - `v0.5.7-insight-ui-plan` tag and GitHub pre-release created.
-- `v0.5.8-insight-card-minimal-ui` in progress.
+- `v0.5.8-insight-card-minimal-ui` completed.
+- `v0.5.8-insight-card-minimal-ui` tag and GitHub pre-release created.
+- `v0.5.9-insight-card-static-safety` in progress.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -126,6 +128,7 @@ Do not start these areas from Windows-only validation:
 - Readonly OrbitStore insight adapter for future internal use.
 - Documentation-only Insight UI integration plan.
 - Minimal readonly Today Insight Card in the Orbit tab.
+- Insight Card manual validation checklist.
 
 ## Tech Stack
 
@@ -182,6 +185,7 @@ File names include the export date, for example:
 - `v0.5.6-insight-store-adapter` Readonly OrbitStore adapter for generating local insights from current entries.
 - `v0.5.7-insight-ui-plan` Documentation-only plan for future Insight UI integration.
 - `v0.5.8-insight-card-minimal-ui` Minimal readonly Today Insight Card in the Orbit tab.
+- `v0.5.9-insight-card-static-safety` Documentation and guardrails for the Today Insight Card boundary.
 
 ## Roadmap
 
@@ -767,3 +771,29 @@ Validation status:
 
 - GitHub Actions can verify compilation, tests, and static guardrails.
 - Manual Insight Card visual QA remains pending until Mac / Simulator access exists.
+
+## v0.5.9 Insight Card Static Safety
+
+Documentation and guardrails only.
+
+Adds:
+
+- Stronger static guardrails for `TodayInsightCard`.
+- [Insight Card validation checklist](docs/INSIGHT_CARD_VALIDATION.md).
+- Clearer CI vs visual validation boundary in release and design docs.
+
+This release does not change:
+
+- Swift UI layout.
+- Today Insight Card visuals.
+- OrbitHomeView layout.
+- Xcode project configuration.
+- Entitlements.
+- SwiftData schema.
+- Widget, Deep Link, Notification, App Group, AI, network, cloud, or product behavior.
+
+Validation status:
+
+- CI can prove the card remains readonly, local-only, non-interactive, and free of score / streak / diagnosis / prediction wording.
+- CI does not prove visual quality.
+- Manual Insight Card visual QA remains pending.

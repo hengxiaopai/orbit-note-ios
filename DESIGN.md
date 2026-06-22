@@ -1535,3 +1535,30 @@ Manual Mac / Simulator validation remains pending for:
 - Long copy.
 - Add / edit / delete refresh.
 - Widget, Reminder, Deep Link, and App Group regressions.
+
+## v0.5.9-insight-card-static-safety / Safety Boundary
+
+Status:
+
+- Documentation and guardrails only.
+- No SwiftUI layout changes.
+- No Today Insight Card visual changes.
+- No OrbitHomeView layout changes.
+- No Xcode project, entitlement, or SwiftData schema changes.
+- No Widget, Reminder, Deep Link, App Group, AI, network, cloud, or product behavior changes.
+
+### Guarded Boundary
+
+The Today Insight Card must stay:
+
+- Readonly.
+- Non-interactive.
+- Local-only.
+- Free of timers, tasks, sheets, full-screen covers, buttons, navigation links, WidgetKit, App Intents, network calls, and file access.
+- Free of score, streak, diagnosis, and prediction wording.
+
+### Validation Boundary
+
+CI does not prove visual quality. It only proves compilation, tests, project membership, and static boundary checks.
+
+Manual visual validation remains required before changing spacing, typography, placement, copy length, or card hierarchy.

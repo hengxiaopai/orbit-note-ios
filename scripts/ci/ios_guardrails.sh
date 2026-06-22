@@ -90,6 +90,7 @@ require_contains "OrbitNote/Data/OrbitStore+Insight.swift" "TodayOrbitInsightEng
 require_contains "OrbitNote/Views/Orbit/TodayInsightCard.swift" "TodayInsightCard"
 require_contains "OrbitNote/Views/Orbit/TodayInsightCard.swift" "Today insight"
 require_contains "OrbitNote/Views/Orbit/OrbitHomeView.swift" "TodayInsightCard"
+require_contains "OrbitNote/Views/Orbit/OrbitHomeView.swift" "makeTodayInsight"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testEmptyInputReturnsStableEmptyInsight"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testOnlyCountsEntriesFromRequestedDay"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testSelectsFocusPositiveAndDrainingDeterministically"
@@ -97,6 +98,9 @@ require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapt
 require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapterIsStableForEmptyStore"
 require_contains_ci "docs/INSIGHT_UI_PLAN.md" "manual validation"
 require_contains_ci "docs/INSIGHT_UI_PLAN.md" "pending"
+require_contains_ci "docs/INSIGHT_UI_PLAN.md" "Insight Card visual QA pending"
+require_contains_ci "docs/RELEASE_STATUS.md" "CI does not prove visual quality"
+require_contains "docs/MANUAL_VALIDATION.md" "docs/INSIGHT_CARD_VALIDATION.md"
 
 if grep -n -E 'import SwiftData|@Model' "OrbitNote/Models/TodayOrbitInsight.swift" "OrbitNote/Data/TodayOrbitInsightEngine.swift" "OrbitNote/Data/OrbitStore+Insight.swift"; then
   fail "Insight engine and model must not use SwiftData schema annotations."
@@ -128,9 +132,19 @@ if grep -n -F \
   -e "FileManager" \
   -e "Button(" \
   -e "NavigationLink(" \
-  -e "sheet(" \
+  -e ".sheet(" \
+  -e ".fullScreenCover(" \
+  -e "withAnimation" \
+  -e "animation(" \
+  -e "Timer" \
+  -e "Task {" \
+  -e "AppIntents" \
   "OrbitNote/Views/Orbit/TodayInsightCard.swift"; then
   fail "TodayInsightCard must stay readonly, local-only, and non-interactive."
+fi
+
+if grep -i -n -E 'score|streak|diagnosis|prediction' "OrbitNote/Views/Orbit/TodayInsightCard.swift"; then
+  fail "TodayInsightCard copy must avoid scoring, streak, diagnostic, or predictive framing."
 fi
 
 echo "All iOS architecture guardrails passed."
