@@ -1,6 +1,6 @@
 # Orbit Note Insight UI Plan
 
-Status: documentation-only plan for a future UI pass.
+Status: v0.5.8 minimal UI integration in progress. Manual visual validation remains pending.
 
 This document defines how the local Today Orbit insight can later enter the app without changing Orbit Note's product direction. It does not mark manual validation as complete.
 
@@ -17,7 +17,7 @@ The insight chain is local, deterministic, and already covered by CI:
 
 Current boundary:
 
-- Insight is not shown in UI.
+- Insight is shown only as one compact readonly Orbit tab card in v0.5.8.
 - Insight is not connected to Widget, Reminder, Deep Link, App Group, export, onboarding, or notifications.
 - Manual Mac / Simulator / real-device validation remains pending.
 
@@ -118,6 +118,23 @@ Suggested placement:
 - Below the existing header and above the Orbit canvas.
 - If iPhone SE feels crowded in manual validation, move it below the Orbit canvas and above the summary card.
 
+## v0.5.8 Minimal Implementation Notes
+
+Implemented scope:
+
+- `TodayInsightCard` renders `headline`, `summary`, and `suggestedPrompt`.
+- `OrbitHomeView` reads `store.makeTodayInsight()` and places the card below the existing header.
+- The card is readonly and has no buttons, navigation links, sheets, network calls, file access, WidgetKit import, AI framing, score, or streak language.
+- CI guardrails require the card to remain present and non-interactive.
+
+Still pending:
+
+- Manual Mac / Simulator visual QA.
+- iPhone SE fit.
+- Dynamic Type readability.
+- Add / edit / delete runtime refresh confirmation.
+- Widget, Reminder, Deep Link, and App Group regression checks.
+
 ## Future Manual Validation Checklist
 
 Run on Mac / Simulator before marking the insight UI as validated:
@@ -160,7 +177,7 @@ Do not include:
 
 ## v0.5.8 Exit Criteria
 
-The future v0.5.8 implementation should be considered complete only when:
+The v0.5.8 implementation should be considered complete only when:
 
 - CI passes.
 - The UI change is limited to a compact readonly Orbit insight card.

@@ -80,23 +80,29 @@ echo "-- Today Orbit insight engine boundary --"
 require_file "OrbitNote/Models/TodayOrbitInsight.swift"
 require_file "OrbitNote/Data/TodayOrbitInsightEngine.swift"
 require_file "OrbitNote/Data/OrbitStore+Insight.swift"
+require_file "OrbitNote/Views/Orbit/TodayInsightCard.swift"
 require_file "OrbitNoteTests/TodayOrbitInsightEngineTests.swift"
 require_file "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift"
 require_contains "OrbitNote/Data/TodayOrbitInsightEngine.swift" "TodayOrbitInsightEngine"
 require_contains "OrbitNote/Models/TodayOrbitInsight.swift" "TodayOrbitInsight"
 require_contains "OrbitNote/Data/OrbitStore+Insight.swift" "makeTodayInsight"
 require_contains "OrbitNote/Data/OrbitStore+Insight.swift" "TodayOrbitInsightEngine.makeInsight"
+require_contains "OrbitNote/Views/Orbit/TodayInsightCard.swift" "TodayInsightCard"
+require_contains "OrbitNote/Views/Orbit/TodayInsightCard.swift" "Today insight"
+require_contains "OrbitNote/Views/Orbit/OrbitHomeView.swift" "TodayInsightCard"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testEmptyInputReturnsStableEmptyInsight"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testOnlyCountsEntriesFromRequestedDay"
 require_contains "OrbitNoteTests/TodayOrbitInsightEngineTests.swift" "testSelectsFocusPositiveAndDrainingDeterministically"
 require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapterReturnsEngineInsightForCurrentEntries"
 require_contains "OrbitNoteTests/OrbitStoreInsightAdapterTests.swift" "testAdapterIsStableForEmptyStore"
+require_contains_ci "docs/INSIGHT_UI_PLAN.md" "manual validation"
+require_contains_ci "docs/INSIGHT_UI_PLAN.md" "pending"
 
 if grep -n -E 'import SwiftData|@Model' "OrbitNote/Models/TodayOrbitInsight.swift" "OrbitNote/Data/TodayOrbitInsightEngine.swift" "OrbitNote/Data/OrbitStore+Insight.swift"; then
   fail "Insight engine and model must not use SwiftData schema annotations."
 fi
 
-if grep -n -E 'URLSession|http://|https://|WidgetKit|FileManager|Data\\(|\\.write\\(' "OrbitNote/Data/TodayOrbitInsightEngine.swift"; then
+if grep -n -E 'URLSession|http://|https://|WidgetKit|FileManager|Data\(|\.write\(' "OrbitNote/Data/TodayOrbitInsightEngine.swift"; then
   fail "Insight engine must stay local-only, UI-free, and side-effect free."
 fi
 
@@ -112,6 +118,19 @@ if grep -n -F \
   -e ".write(" \
   "OrbitNote/Data/OrbitStore+Insight.swift"; then
   fail "Insight store adapter must stay readonly and side-effect free."
+fi
+
+if grep -n -F \
+  -e "URLSession" \
+  -e "http://" \
+  -e "https://" \
+  -e "WidgetKit" \
+  -e "FileManager" \
+  -e "Button(" \
+  -e "NavigationLink(" \
+  -e "sheet(" \
+  "OrbitNote/Views/Orbit/TodayInsightCard.swift"; then
+  fail "TodayInsightCard must stay readonly, local-only, and non-interactive."
 fi
 
 echo "All iOS architecture guardrails passed."

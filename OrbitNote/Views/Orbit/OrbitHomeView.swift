@@ -13,6 +13,8 @@ struct OrbitHomeView: View {
                 VStack(alignment: .leading, spacing: 22) {
                     header
 
+                    TodayInsightCard(insight: store.makeTodayInsight())
+
                     if store.todaysEntries.isEmpty {
                         EmptyState()
                     } else {

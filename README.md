@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.6-insight-store-adapter`
+Current release: `v0.5.7-insight-ui-plan`
 
-Current implementation track: `v0.5.7-insight-ui-plan`
+Current implementation track: `v0.5.8-insight-card-minimal-ui`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -44,6 +44,9 @@ Current implementation track: `v0.5.7-insight-ui-plan`
 - `v0.5.5-insight-engine-tests` tag and GitHub pre-release created.
 - `v0.5.6-insight-store-adapter` completed.
 - `v0.5.6-insight-store-adapter` tag and GitHub pre-release created.
+- `v0.5.7-insight-ui-plan` completed.
+- `v0.5.7-insight-ui-plan` tag and GitHub pre-release created.
+- `v0.5.8-insight-card-minimal-ui` in progress.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -122,6 +125,7 @@ Do not start these areas from Windows-only validation:
 - XCTest coverage for the local Today Orbit insight engine.
 - Readonly OrbitStore insight adapter for future internal use.
 - Documentation-only Insight UI integration plan.
+- Minimal readonly Today Insight Card in the Orbit tab.
 
 ## Tech Stack
 
@@ -177,6 +181,7 @@ File names include the export date, for example:
 - `v0.5.5-insight-engine-tests` XCTest coverage for the local Today Orbit insight engine.
 - `v0.5.6-insight-store-adapter` Readonly OrbitStore adapter for generating local insights from current entries.
 - `v0.5.7-insight-ui-plan` Documentation-only plan for future Insight UI integration.
+- `v0.5.8-insight-card-minimal-ui` Minimal readonly Today Insight Card in the Orbit tab.
 
 ## Roadmap
 
@@ -736,3 +741,29 @@ No implementation changes:
 - No CI behavior changes.
 
 Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.8 Insight Card Minimal UI
+
+Small SwiftUI integration for the local Today Orbit insight chain.
+
+Adds:
+
+- `TodayInsightCard`.
+- A compact readonly card in the Orbit tab, below the existing header and above the Orbit canvas.
+- Display of `headline`, `summary`, and `suggestedPrompt` from `OrbitStore.makeTodayInsight()`.
+- CI guardrails that keep the card non-interactive, local-only, and free of network, file, WidgetKit, sheet, button, or navigation behavior.
+
+No behavior expansion:
+
+- No AI generation.
+- No network calls.
+- No cloud sync.
+- No scoring or streaks.
+- No new sheets, navigation routes, or settings.
+- No SwiftData schema changes.
+- No Widget, Deep Link, Notification, App Group, export, or onboarding behavior changes.
+
+Validation status:
+
+- GitHub Actions can verify compilation, tests, and static guardrails.
+- Manual Insight Card visual QA remains pending until Mac / Simulator access exists.

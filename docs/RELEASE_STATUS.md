@@ -2,9 +2,9 @@
 
 ## Current Release
 
-- Current release: `v0.5.6-insight-store-adapter`
-- Current development track: `v0.5.7-insight-ui-plan`
-- Latest released tag: `v0.5.6-insight-store-adapter`
+- Current release: `v0.5.7-insight-ui-plan`
+- Current development track: `v0.5.8-insight-card-minimal-ui`
+- Latest released tag: `v0.5.7-insight-ui-plan`
 - Development environment: Windows
 - Manual Mac / Simulator / real-device validation: pending
 
@@ -30,6 +30,7 @@ GitHub Actions currently verifies:
 - XCTest coverage for the local Today Orbit insight engine.
 - XCTest coverage for the readonly OrbitStore insight adapter.
 - Documentation-only Insight UI integration plan.
+- Minimal Today Insight Card compilation and static guardrails.
 - Xcode build log artifact upload.
 
 ## What CI Proves
@@ -43,6 +44,7 @@ GitHub Actions currently verifies:
 - The insight engine avoids SwiftData schema annotations, WidgetKit, network calls, and file writes.
 - The insight engine handles empty input, filters to the requested day, and selects focus / positive / draining titles deterministically in unit tests.
 - The OrbitStore insight adapter delegates to the engine without persistence, network, file writes, WidgetKit, or UI changes.
+- The minimal Today Insight Card compiles and stays readonly, local-only, and non-interactive by static guardrail.
 
 ## What CI Does Not Prove
 
@@ -56,6 +58,7 @@ GitHub Actions currently verifies:
 - Widget snapshot refresh works in a live Widget.
 - Widget tap deep links route correctly.
 - iPhone SE layout is readable.
+- The Today Insight Card is visually balanced, readable, and correctly positioned on iPhone SE or standard iPhone sizes.
 
 ## Manual Validation Pending
 
@@ -69,6 +72,7 @@ GitHub Actions currently verifies:
 - App Group real-device signing.
 - Widget tap deep link routing.
 - iPhone SE layout.
+- Today Insight Card visual QA, including empty data, long copy, Dynamic Type, and add / edit / delete refresh.
 
 ## Current v0.5 Focus
 
@@ -76,4 +80,4 @@ v0.5 is focused on stability, validation readiness, and developer workflow relia
 
 ## Next Recommended Milestone
 
-Complete `v0.5.7-insight-ui-plan`, then keep insight UI implementation deferred until Mac / Simulator access exists. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.
+Complete `v0.5.8-insight-card-minimal-ui` with CI and guardrails only, then keep visual validation explicitly pending until Mac / Simulator access exists. After that, run the manual validation checklist and convert real findings into focused runtime fixes.
