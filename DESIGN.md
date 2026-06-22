@@ -1489,4 +1489,49 @@ Detailed planning lives in:
 
 - `docs/INSIGHT_UI_PLAN.md`
 
-The insight UI remains deferred until Mac / Simulator validation is available.
+The insight UI remains visually unvalidated until Mac / Simulator validation is available.
+
+## v0.5.8-insight-card-minimal-ui / Today Insight Card
+
+Status:
+
+- Minimal SwiftUI UI integration.
+- Adds one compact readonly card to the Orbit tab.
+- Does not change Xcode project settings beyond adding the Swift source file.
+- Does not change entitlements.
+- Does not change SwiftData schema.
+- Does not change Widget, Reminder, Deep Link, App Group, export, onboarding, or notification behavior.
+
+### Card Design
+
+`TodayInsightCard` uses the existing `GlassCard` surface and dark-first Orbit theme.
+
+It displays:
+
+- `Today insight`
+- `TodayOrbitInsight.headline`
+- `TodayOrbitInsight.summary`
+- `Gentle prompt`
+- `TodayOrbitInsight.suggestedPrompt`
+
+The card is intentionally not interactive. It has no button, navigation route, sheet, score, streak, AI framing, diagnosis, prediction, network call, or file write.
+
+### Placement
+
+The card appears in `OrbitHomeView` below the existing date / title header and above the Orbit canvas.
+
+This position keeps the insight close to the daily Orbit question while preserving the existing Orbit canvas, summary card, and add CTA flow.
+
+### Validation Boundary
+
+CI can validate compilation, tests, project membership, and static guardrails.
+
+Manual Mac / Simulator validation remains pending for:
+
+- iPhone SE layout.
+- Standard iPhone layout.
+- Dynamic Type sanity.
+- Empty data.
+- Long copy.
+- Add / edit / delete refresh.
+- Widget, Reminder, Deep Link, and App Group regressions.

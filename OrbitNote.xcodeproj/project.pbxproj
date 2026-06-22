@@ -48,6 +48,7 @@
 		000000000000000000000126 /* TodayOrbitInsightEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */; };
 		000000000000000000000127 /* OrbitStore+Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000229 /* OrbitStore+Insight.swift */; };
 		000000000000000000000128 /* OrbitStoreInsightAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000022A /* OrbitStoreInsightAdapterTests.swift */; };
+		000000000000000000000129 /* TodayInsightCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000022B /* TodayInsightCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		000000000000000000000228 /* TodayOrbitInsightEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayOrbitInsightEngineTests.swift; sourceTree = "<group>"; };
 		000000000000000000000229 /* OrbitStore+Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data/OrbitStore+Insight.swift"; sourceTree = "<group>"; };
 		00000000000000000000022A /* OrbitStoreInsightAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitStoreInsightAdapterTests.swift; sourceTree = "<group>"; };
+		00000000000000000000022B /* TodayInsightCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Orbit/TodayInsightCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				000000000000000000000216 /* ShareSheet.swift */,
 				000000000000000000000217 /* ToastBanner.swift */,
 				00000000000000000000020D /* OrbitHomeView.swift */,
+				00000000000000000000022B /* TodayInsightCard.swift */,
 				00000000000000000000020E /* OrbitDetailView.swift */,
 				00000000000000000000020F /* AddEntryView.swift */,
 				000000000000000000000210 /* TimelineScreen.swift */,
@@ -399,6 +402,7 @@
 				000000000000000000000124 /* TodayOrbitInsight.swift in Sources */,
 				000000000000000000000125 /* TodayOrbitInsightEngine.swift in Sources */,
 				000000000000000000000127 /* OrbitStore+Insight.swift in Sources */,
+				000000000000000000000129 /* TodayInsightCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

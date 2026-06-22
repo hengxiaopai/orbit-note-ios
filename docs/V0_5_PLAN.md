@@ -346,18 +346,29 @@ Acceptance:
 - Insight UI remains deferred.
 - Manual Mac / Simulator / real-device validation remains pending.
 
-### v0.5.8-insight-ui-integration
+### v0.5.8-insight-card-minimal-ui
 
-Reserved for a future implementation only when Mac / Simulator validation is available.
+Goal:
 
-Proposed scope:
+- Add the smallest useful Today Orbit insight UI while staying Windows-safe.
+- Keep manual visual validation explicitly pending.
+
+Scope:
 
 - Add one compact readonly Today insight card to the Orbit tab.
 - Display `headline`, `summary`, and `suggestedPrompt`.
 - Reuse `OrbitStore.makeTodayInsight(on:generatedAt:)`.
 - Avoid new interactions, sheets, navigation routes, AI, network, Widget snapshot changes, Reminder changes, Deep Link changes, App Group changes, and SwiftData schema changes.
+- Add CI guardrails that keep the card local-only, readonly, and non-interactive.
 
-Acceptance should include manual validation on empty data, one entry, multiple entries, long titles, iPhone SE, standard iPhone size, Dynamic Type sanity, dark mode, tab switching, add/edit/delete refresh, restart, and no Widget / Reminder / Deep Link regressions.
+Acceptance:
+
+- CI passes.
+- Card compiles in the app target.
+- Card is placed in the Orbit tab below the existing header and above the Orbit canvas.
+- Guardrails reject network, file, WidgetKit, sheet, button, or navigation behavior in the card.
+- No SwiftData schema, Widget, Reminder, Deep Link, App Group, or export behavior changes are introduced.
+- Manual validation remains pending for empty data, one entry, multiple entries, long titles, iPhone SE, standard iPhone size, Dynamic Type sanity, dark mode, tab switching, add/edit/delete refresh, restart, and no Widget / Reminder / Deep Link regressions.
 
 ## 4. Explicit Non-goals
 
@@ -428,6 +439,6 @@ Current sequence while no local Mac is available:
 7. Complete `v0.5.5-insight-engine-tests` for CI-level insight logic coverage.
 8. Complete `v0.5.6-insight-store-adapter` as a readonly internal adapter with no UI surface.
 9. Complete `v0.5.7-insight-ui-plan` as documentation-only planning for a future UI pass.
-10. Start `v0.5.8-insight-ui-integration` only when Mac / Simulator access exists.
-11. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+10. Complete `v0.5.8-insight-card-minimal-ui` as a minimal readonly UI integration guarded by CI.
+11. Start `v0.5.9-mac-simulator-visual-validation` or `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
 12. Start runtime fixes only from real validation findings or actionable CI failures.
