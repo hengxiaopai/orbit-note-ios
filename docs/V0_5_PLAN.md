@@ -316,6 +316,49 @@ Acceptance:
 - Guardrails reject persistence, network, file write, or WidgetKit drift in the adapter.
 - Manual Mac / Simulator / real-device validation remains pending.
 
+### v0.5.7-insight-ui-plan
+
+Goal:
+
+- Define a documentation-only plan for future Insight UI integration.
+- Choose the safest first UI entry point.
+- Keep implementation deferred until Mac / Simulator validation is available.
+
+Scope:
+
+- Add `docs/INSIGHT_UI_PLAN.md`.
+- Compare Orbit tab, Me tab, and future Widget entry options.
+- Define proposed v0.5.8 UI scope.
+- Add copy deck, layout constraints, and future manual validation checklist.
+
+Non-goal:
+
+- No Swift code changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No SwiftData schema changes.
+- No Widget, Deep Link, Notification, App Group, test, CI, or product behavior changes.
+
+Acceptance:
+
+- CI passes.
+- Modified files are documentation only.
+- Insight UI remains deferred.
+- Manual Mac / Simulator / real-device validation remains pending.
+
+### v0.5.8-insight-ui-integration
+
+Reserved for a future implementation only when Mac / Simulator validation is available.
+
+Proposed scope:
+
+- Add one compact readonly Today insight card to the Orbit tab.
+- Display `headline`, `summary`, and `suggestedPrompt`.
+- Reuse `OrbitStore.makeTodayInsight(on:generatedAt:)`.
+- Avoid new interactions, sheets, navigation routes, AI, network, Widget snapshot changes, Reminder changes, Deep Link changes, App Group changes, and SwiftData schema changes.
+
+Acceptance should include manual validation on empty data, one entry, multiple entries, long titles, iPhone SE, standard iPhone size, Dynamic Type sanity, dark mode, tab switching, add/edit/delete refresh, restart, and no Widget / Reminder / Deep Link regressions.
+
 ## 4. Explicit Non-goals
 
 v0.5 does not include:
@@ -384,5 +427,7 @@ Current sequence while no local Mac is available:
 6. Complete `v0.5.4-insight-engine-prototype` as a local-only logic layer with no UI surface.
 7. Complete `v0.5.5-insight-engine-tests` for CI-level insight logic coverage.
 8. Complete `v0.5.6-insight-store-adapter` as a readonly internal adapter with no UI surface.
-9. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-10. Start runtime fixes only from real validation findings or actionable CI failures.
+9. Complete `v0.5.7-insight-ui-plan` as documentation-only planning for a future UI pass.
+10. Start `v0.5.8-insight-ui-integration` only when Mac / Simulator access exists.
+11. Start `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+12. Start runtime fixes only from real validation findings or actionable CI failures.

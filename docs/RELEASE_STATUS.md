@@ -2,9 +2,9 @@
 
 ## Current Release
 
-- Current release: `v0.5.5-insight-engine-tests`
-- Current development track: `v0.5.6-insight-store-adapter`
-- Latest released tag: `v0.5.5-insight-engine-tests`
+- Current release: `v0.5.6-insight-store-adapter`
+- Current development track: `v0.5.7-insight-ui-plan`
+- Latest released tag: `v0.5.6-insight-store-adapter`
 - Development environment: Windows
 - Manual Mac / Simulator / real-device validation: pending
 
@@ -29,6 +29,7 @@ GitHub Actions currently verifies:
 - Static guardrails for the local-only Today Orbit insight engine boundary.
 - XCTest coverage for the local Today Orbit insight engine.
 - XCTest coverage for the readonly OrbitStore insight adapter.
+- Documentation-only Insight UI integration plan.
 - Xcode build log artifact upload.
 
 ## What CI Proves
@@ -75,4 +76,4 @@ v0.5 is focused on stability, validation readiness, and developer workflow relia
 
 ## Next Recommended Milestone
 
-Complete `v0.5.6-insight-store-adapter`, then continue with Windows-safe documentation or CI polish only while no local Mac is available. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.
+Complete `v0.5.7-insight-ui-plan`, then keep insight UI implementation deferred until Mac / Simulator access exists. Start the manual validation run once Mac / Simulator access exists, then convert real findings into focused runtime fixes.

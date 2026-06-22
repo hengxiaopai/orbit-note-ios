@@ -6,9 +6,9 @@ It helps users record the people, projects, events, and emotions that orbit arou
 
 ## Status
 
-Current release: `v0.5.5-insight-engine-tests`
+Current release: `v0.5.6-insight-store-adapter`
 
-Current implementation track: `v0.5.6-insight-store-adapter`
+Current implementation track: `v0.5.7-insight-ui-plan`
 
 - SwiftUI MVP completed.
 - SwiftData local persistence completed.
@@ -42,6 +42,8 @@ Current implementation track: `v0.5.6-insight-store-adapter`
 - `v0.5.4-insight-engine-prototype` tag and GitHub pre-release created.
 - `v0.5.5-insight-engine-tests` completed.
 - `v0.5.5-insight-engine-tests` tag and GitHub pre-release created.
+- `v0.5.6-insight-store-adapter` completed.
+- `v0.5.6-insight-store-adapter` tag and GitHub pre-release created.
 - Manual Mac / Simulator / real-device validation still pending.
 
 ## Pending Manual Mac Validation
@@ -119,6 +121,7 @@ Do not start these areas from Windows-only validation:
 - Local Today Orbit insight engine prototype.
 - XCTest coverage for the local Today Orbit insight engine.
 - Readonly OrbitStore insight adapter for future internal use.
+- Documentation-only Insight UI integration plan.
 
 ## Tech Stack
 
@@ -173,6 +176,7 @@ File names include the export date, for example:
 - `v0.5.4-insight-engine-prototype` Local-only Today Orbit insight model and engine prototype with no UI surface.
 - `v0.5.5-insight-engine-tests` XCTest coverage for the local Today Orbit insight engine.
 - `v0.5.6-insight-store-adapter` Readonly OrbitStore adapter for generating local insights from current entries.
+- `v0.5.7-insight-ui-plan` Documentation-only plan for future Insight UI integration.
 
 ## Roadmap
 
@@ -704,5 +708,31 @@ No product behavior changes:
 - No AI generation.
 - No network calls.
 - No cloud sync.
+
+Manual Mac / Simulator / real-device validation remains pending.
+
+## v0.5.7 Insight UI Plan
+
+Documentation-only release.
+
+Adds:
+
+- [Insight UI plan](docs/INSIGHT_UI_PLAN.md).
+- Comparison of Orbit tab, Me tab, and future Widget insight entry points.
+- Recommended first UI entry: a compact readonly Orbit tab card.
+- Proposed v0.5.8 implementation scope.
+- Copy deck, layout constraints, and manual validation checklist.
+
+No implementation changes:
+
+- No Swift code changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No SwiftData schema changes.
+- No Widget changes.
+- No Deep Link changes.
+- No notification changes.
+- No App Group changes.
+- No CI behavior changes.
 
 Manual Mac / Simulator / real-device validation remains pending.

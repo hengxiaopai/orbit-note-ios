@@ -1448,3 +1448,45 @@ XCTest covers:
 - Empty store output remains stable.
 
 CI guardrails also reject adapter drift toward persistence, file writes, network calls, or WidgetKit.
+
+## v0.5.7-insight-ui-plan / Insight UI Strategy
+
+Status:
+
+- Documentation-only strategy release.
+- Adds no SwiftUI implementation.
+- Does not change Xcode project settings, entitlements, SwiftData schema, CI, Widget, Reminder, Deep Link, or App Group behavior.
+
+### Recommended Entry
+
+The first insight UI should be a compact readonly card in the Orbit tab.
+
+Reasoning:
+
+- The Orbit tab already answers the core product question: what is orbiting me today?
+- The insight can sit near the existing daily context without becoming a dashboard.
+- The card can update from the existing store adapter after add/edit/delete without new data flow.
+
+Me should remain a settings/status area. It may describe insight readiness later, but should not be the main insight surface.
+
+Widget insight expansion should be deferred until Widget Gallery, App Group signing, and medium Widget layout are manually validated.
+
+### UI Constraints
+
+Future implementation must keep:
+
+- One compact card only.
+- No nested cards.
+- No first-pass animation.
+- No new interactions, sheets, or routes.
+- No AI framing, scoring, streaks, diagnosis, prediction, or productivity pressure.
+- iPhone portrait-first and iPhone SE-safe layout.
+- Orbit canvas visible and CTA reachable.
+
+### Source Of Truth
+
+Detailed planning lives in:
+
+- `docs/INSIGHT_UI_PLAN.md`
+
+The insight UI remains deferred until Mac / Simulator validation is available.
