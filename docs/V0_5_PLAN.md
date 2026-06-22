@@ -370,6 +370,37 @@ Acceptance:
 - No SwiftData schema, Widget, Reminder, Deep Link, App Group, or export behavior changes are introduced.
 - Manual validation remains pending for empty data, one entry, multiple entries, long titles, iPhone SE, standard iPhone size, Dynamic Type sanity, dark mode, tab switching, add/edit/delete refresh, restart, and no Widget / Reminder / Deep Link regressions.
 
+### v0.5.9-insight-card-static-safety
+
+Goal:
+
+- Strengthen static guardrails and manual validation planning for the minimal Today Insight Card.
+- Avoid visual changes while no local Mac / Simulator is available.
+
+Scope:
+
+- Strengthen `scripts/ci/ios_guardrails.sh` for TodayInsightCard readonly boundaries.
+- Add `docs/INSIGHT_CARD_VALIDATION.md`.
+- Update release, design, manual validation, and v0.5 planning docs.
+
+Non-goal:
+
+- No Swift UI layout changes.
+- No TodayInsightCard visual changes.
+- No OrbitHomeView layout changes.
+- No Xcode project changes.
+- No entitlement changes.
+- No SwiftData schema changes.
+- No Widget, Deep Link, Notification, App Group, AI, network, cloud, or product behavior changes.
+- No manual validation result updates.
+
+Acceptance:
+
+- CI passes.
+- Guardrails reject interaction, animation, network, file, WidgetKit, App Intents, score, streak, diagnosis, and prediction drift in `TodayInsightCard`.
+- Docs clearly state that CI does not prove visual quality.
+- Manual Insight Card visual QA remains pending.
+
 ## 4. Explicit Non-goals
 
 v0.5 does not include:
@@ -440,5 +471,6 @@ Current sequence while no local Mac is available:
 8. Complete `v0.5.6-insight-store-adapter` as a readonly internal adapter with no UI surface.
 9. Complete `v0.5.7-insight-ui-plan` as documentation-only planning for a future UI pass.
 10. Complete `v0.5.8-insight-card-minimal-ui` as a minimal readonly UI integration guarded by CI.
-11. Start `v0.5.9-mac-simulator-visual-validation` or `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
-12. Start runtime fixes only from real validation findings or actionable CI failures.
+11. Complete `v0.5.9-insight-card-static-safety` as documentation and guardrails only.
+12. Start `v0.5.10-mac-simulator-visual-validation` or `v0.5.x-manual-validation-run` only after Mac / Simulator access exists.
+13. Start runtime fixes only from real validation findings or actionable CI failures.

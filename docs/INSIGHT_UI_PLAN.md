@@ -1,6 +1,6 @@
 # Orbit Note Insight UI Plan
 
-Status: v0.5.8 minimal UI integration in progress. Manual visual validation remains pending.
+Status: v0.5.8 minimal UI integration exists. Insight Card visual QA pending.
 
 This document defines how the local Today Orbit insight can later enter the app without changing Orbit Note's product direction. It does not mark manual validation as complete.
 
@@ -130,10 +130,15 @@ Implemented scope:
 Still pending:
 
 - Manual Mac / Simulator visual QA.
+- Insight Card visual QA pending.
 - iPhone SE fit.
 - Dynamic Type readability.
 - Add / edit / delete runtime refresh confirmation.
 - Widget, Reminder, Deep Link, and App Group regression checks.
+
+Detailed checklist:
+
+- [Insight Card validation checklist](INSIGHT_CARD_VALIDATION.md)
 
 ## Future Manual Validation Checklist
 
@@ -183,3 +188,11 @@ The v0.5.8 implementation should be considered complete only when:
 - The UI change is limited to a compact readonly Orbit insight card.
 - No SwiftData schema, Widget, Reminder, Deep Link, App Group, or export behavior changes are introduced.
 - Manual Mac / Simulator validation is either completed with real notes or explicitly remains pending.
+
+## v0.5.9 Static Safety Notes
+
+`v0.5.9-insight-card-static-safety` adds documentation and guardrails only.
+
+It does not change Today Insight Card layout, OrbitHomeView layout, SwiftData schema, Xcode project membership, entitlements, Widget behavior, Reminder behavior, Deep Link behavior, App Group behavior, AI, network, cloud, or product behavior.
+
+CI does not prove visual quality. It only protects the readonly and local-only card boundary until manual validation is available.

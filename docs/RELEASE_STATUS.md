@@ -2,9 +2,9 @@
 
 ## Current Release
 
-- Current release: `v0.5.7-insight-ui-plan`
-- Current development track: `v0.5.8-insight-card-minimal-ui`
-- Latest released tag: `v0.5.7-insight-ui-plan`
+- Current release: `v0.5.8-insight-card-minimal-ui`
+- Current development track: `v0.5.9-insight-card-static-safety`
+- Latest released tag: `v0.5.8-insight-card-minimal-ui`
 - Development environment: Windows
 - Manual Mac / Simulator / real-device validation: pending
 
@@ -31,6 +31,7 @@ GitHub Actions currently verifies:
 - XCTest coverage for the readonly OrbitStore insight adapter.
 - Documentation-only Insight UI integration plan.
 - Minimal Today Insight Card compilation and static guardrails.
+- Insight Card manual validation checklist and stronger readonly boundary guardrails.
 - Xcode build log artifact upload.
 
 ## What CI Proves
@@ -45,9 +46,11 @@ GitHub Actions currently verifies:
 - The insight engine handles empty input, filters to the requested day, and selects focus / positive / draining titles deterministically in unit tests.
 - The OrbitStore insight adapter delegates to the engine without persistence, network, file writes, WidgetKit, or UI changes.
 - The minimal Today Insight Card compiles and stays readonly, local-only, and non-interactive by static guardrail.
+- The Today Insight Card avoids score, streak, diagnosis, and prediction wording by static guardrail.
 
 ## What CI Does Not Prove
 
+- CI does not prove visual quality.
 - The app launches in Simulator.
 - SwiftData seed, CRUD, and restart persistence work at runtime.
 - Notification permission UI appears correctly.
@@ -80,4 +83,4 @@ v0.5 is focused on stability, validation readiness, and developer workflow relia
 
 ## Next Recommended Milestone
 
-Complete `v0.5.8-insight-card-minimal-ui` with CI and guardrails only, then keep visual validation explicitly pending until Mac / Simulator access exists. After that, run the manual validation checklist and convert real findings into focused runtime fixes.
+Complete `v0.5.9-insight-card-static-safety` as documentation and guardrails only, then keep visual validation explicitly pending until Mac / Simulator access exists. After that, run the manual validation checklist and convert real findings into focused runtime fixes.

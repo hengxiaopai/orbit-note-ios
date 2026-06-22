@@ -27,6 +27,7 @@ GitHub Actions verifies that the Xcode project compiles on macOS. As of `v0.5.0-
 | Warm deep link routing | Pending | Mac + iOS Simulator | Route while app is already running. |
 | Export JSON/CSV regression | Pending | Mac + iOS Simulator | Confirm export and Share Sheet still work. |
 | Onboarding regression | Pending | Mac + iOS Simulator | Confirm first-run onboarding still appears. |
+| Today Insight Card visual QA | Pending | Mac + iOS Simulator | Follow `docs/INSIGHT_CARD_VALIDATION.md`; do not mark passed from CI alone. |
 
 ## Environment Prerequisites
 
@@ -65,6 +66,8 @@ CI still does not prove:
 - iPhone SE layout is readable.
 
 For a compact release-state summary, see [Release status](RELEASE_STATUS.md).
+
+For Today Insight Card-specific scenarios, see [Insight Card validation](INSIGHT_CARD_VALIDATION.md).
 
 ## Simulator Validation Checklist
 
@@ -188,6 +191,7 @@ Additional checks:
 - [ ] Deep link routing does not break normal tab switching.
 - [ ] Timeline remains readable on small screens.
 - [ ] Orbit home CTA remains reachable on small screens.
+- [ ] Follow `docs/INSIGHT_CARD_VALIDATION.md` for Today Insight Card visual QA.
 
 ## Known Pending Items
 
